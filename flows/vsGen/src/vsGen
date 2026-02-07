@@ -26,6 +26,7 @@ source "${LIB_DIR}/deps.sh"
 source "${LIB_DIR}/colors.sh"
 source "${LIB_DIR}/json-gen.sh"
 source "${LIB_DIR}/file-ops.sh"
+source "${LIB_DIR}/presets.sh"
 
 # ─── Default Configuration ────────────────────────────────────────────────────
 PRIMARY_COLOR="pink"
@@ -77,6 +78,8 @@ OPTIONS:
                                  0.5 = standard variety
                                  1.0 = rainbow cacophony
     --bg-lightness <0.0-1.0>   Background darkness level.      Default: 0.12
+    --preset <NAME>            Use a built-in colour preset.
+    --list-presets             List available presets and exit.
     --dry-run                  Show generated colours without writing files.
     -v, --verbose              Show detailed colour generation info.
     -h, --help                 Show this help message.
@@ -89,6 +92,9 @@ EXAMPLES:
     # Auto-output to ./out/ with defaults
     vsGen -p coral -s gold -t skyblue --compl
 
+    # Use a preset
+    vsGen --preset sakura
+
     # Update existing workspace with high variation
     vsGen -c project.code-workspace -p coral -s gold --variation 0.8
 
@@ -98,6 +104,10 @@ EXAMPLES:
 COLOUR VALUES:
     Named colours: pink, coral, gold, hotpink, lavender, skyblue, etc.
     Hex values:    "#ff69b4", "#ffd900", "#b0c4de"
+
+PRESETS:
+    sakura, ocean, forest, sunset, neon, nord, dracula, pastel
+    Use --list-presets for details.
 
 REQUIRES:
     pastel — command-line tool for colour manipulation
@@ -153,6 +163,14 @@ parse_args() {
                 DRY_RUN=true
                 shift
                 ;;
+            --preset)
+                apply_preset "$2"
+                shift 2
+                ;;
+            --list-presets)
+                list_presets
+                exit 0
+                ;;
             -v|--verbose)
                 VERBOSE=true
                 shift
@@ -185,6 +203,15 @@ main() {
     echo ""
 
     check_dependencies
+
+    # Show configuration summary
+    log_info "Theme:     ${THEME_NAME}"
+    log_info "Primary:   ${PRIMARY_COLOR}"
+    log_info "Secondary: ${SECONDARY_COLOR}"
+    log_info "Tertiary:  ${TERTIARY_COLOR}"
+    log_info "Variation: ${VARIATION}"
+    [[ "$USE_COMPLEMENTARY" == true ]] && log_info "Complementary: enabled"
+    echo ""
 
     # Validate inputs
     if [[ -n "$CONFIG_FILE" ]] && [[ ! -f "$CONFIG_FILE" ]]; then
