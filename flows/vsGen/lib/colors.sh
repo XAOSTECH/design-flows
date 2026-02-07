@@ -56,11 +56,11 @@ get_complementary() {
     pastel complement "$color" | pastel format hex
 }
 
-# Rotate hue by N degrees
+# Rotate hue by N degrees (supports negative values)
 rotate_hue() {
     local color="$1"
     local degrees="$2"
-    pastel rotate "$degrees" "$color" | pastel format hex
+    pastel rotate -- "$degrees" "$color" | pastel format hex
 }
 
 # Saturate color
