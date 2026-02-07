@@ -2,17 +2,17 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # json-gen.sh — VS Code theme JSON generation for vscode-theme-gen
 # ═══════════════════════════════════════════════════════════════════════════════
-# Builds the "workbench.colorCustomizations" and
-# "editor.tokenColorCustomizations" JSON blocks.
+# Builds the "workbench.colourCustomizations" and
+# "editor.tokenColourCustomizations" JSON blocks.
 #
-# Requires: colors.sh sourced (for pastel helpers + ensure_readable)
+# Requires: colours.sh sourced (for pastel helpers + ensure_readable)
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_theme_json() {
     local primary_hex secondary_hex tertiary_hex
-    primary_hex=$(get_hex "$PRIMARY_COLOR")
-    secondary_hex=$(get_hex "$SECONDARY_COLOR")
-    tertiary_hex=$(get_hex "$TERTIARY_COLOR")
+    primary_hex=$(get_hex "$PRIMARY_COLOUR")
+    secondary_hex=$(get_hex "$SECONDARY_COLOUR")
+    tertiary_hex=$(get_hex "$TERTIARY_COLOUR")
 
     # ── Background colours (subtle tint from primary) ──
     local bg_main bg_sidebar bg_panel bg_dark bg_hover bg_input bg_widget
@@ -45,32 +45,32 @@ generate_theme_json() {
 
     # ── Complementary accents (if enabled) ──
     local compl_highlight="" compl_border="" compl_accent=""
-    if [[ "$USE_COMPLEMENTARY" == true ]] && [[ ${#COMPLEMENTARY_COLORS[@]} -gt 0 ]]; then
-        compl_highlight="${COMPLEMENTARY_COLORS[0]}"
-        compl_border="${COMPLEMENTARY_COLORS[2]}"
-        compl_accent="${COMPLEMENTARY_COLORS[4]}"
+    if [[ "$USE_COMPLEMENTARY" == true ]] && [[ ${#COMPLEMENTARY_COLOURS[@]} -gt 0 ]]; then
+        compl_highlight="${COMPLEMENTARY_COLOURS[0]}"
+        compl_border="${COMPLEMENTARY_COLOURS[2]}"
+        compl_accent="${COMPLEMENTARY_COLOURS[4]}"
     fi
 
     # ── Analogous & triadic helpers ──
     local ana0 ana1 ana2 ana3 tri0 tri1 bln0 bln1 bln2 bln3
-    ana0=$(ensure_readable "${ANALOGOUS_COLORS[0]:-$accent_primary}")
-    ana1=$(ensure_readable "${ANALOGOUS_COLORS[1]:-$accent_primary}")
-    ana2=$(ensure_readable "${ANALOGOUS_COLORS[2]:-$accent_secondary}")
-    ana3=$(ensure_readable "${ANALOGOUS_COLORS[3]:-$accent_secondary}")
-    tri0=$(ensure_readable "${TRIADIC_COLORS[0]:-$accent_tertiary}")
-    tri1=$(ensure_readable "${TRIADIC_COLORS[1]:-$accent_tertiary}")
-    bln0=$(ensure_readable "${BLEND_COLORS[0]:-$accent_primary}")
-    bln1=$(ensure_readable "${BLEND_COLORS[1]:-$accent_secondary}")
-    bln2=$(ensure_readable "${BLEND_COLORS[2]:-$accent_tertiary}")
-    bln3=$(ensure_readable "${BLEND_COLORS[3]:-$fg_soft}")
+    ana0=$(ensure_readable "${ANALOGOUS_COLOURS[0]:-$accent_primary}")
+    ana1=$(ensure_readable "${ANALOGOUS_COLOURS[1]:-$accent_primary}")
+    ana2=$(ensure_readable "${ANALOGOUS_COLOURS[2]:-$accent_secondary}")
+    ana3=$(ensure_readable "${ANALOGOUS_COLOURS[3]:-$accent_secondary}")
+    tri0=$(ensure_readable "${TRIADIC_COLOURS[0]:-$accent_tertiary}")
+    tri1=$(ensure_readable "${TRIADIC_COLOURS[1]:-$accent_tertiary}")
+    bln0=$(ensure_readable "${BLEND_COLOURS[0]:-$accent_primary}")
+    bln1=$(ensure_readable "${BLEND_COLOURS[1]:-$accent_secondary}")
+    bln2=$(ensure_readable "${BLEND_COLOURS[2]:-$accent_tertiary}")
+    bln3=$(ensure_readable "${BLEND_COLOURS[3]:-$fg_soft}")
 
     # ── Variation accents ──
     local var0="" var1="" var2="" var3=""
-    if [[ ${#VARIATION_COLORS[@]} -gt 0 ]]; then
-        var0=$(ensure_readable "${VARIATION_COLORS[0]}")
-        var1=$(ensure_readable "${VARIATION_COLORS[1]:-$var0}")
-        var2=$(ensure_readable "${VARIATION_COLORS[2]:-$var0}")
-        var3=$(ensure_readable "${VARIATION_COLORS[3]:-$var0}")
+    if [[ ${#VARIATION_COLOURS[@]} -gt 0 ]]; then
+        var0=$(ensure_readable "${VARIATION_COLOURS[0]}")
+        var1=$(ensure_readable "${VARIATION_COLOURS[1]:-$var0}")
+        var2=$(ensure_readable "${VARIATION_COLOURS[2]:-$var0}")
+        var3=$(ensure_readable "${VARIATION_COLOURS[3]:-$var0}")
     fi
 
     # ── Readable shade helpers (used extensively below) ──
@@ -101,13 +101,13 @@ generate_theme_json() {
 
     # ── Emit JSON ─────────────────────────────────────────────────────────────
     cat << THEME_EOF
-		"workbench.colorCustomizations": {
+		"workbench.colourCustomizations": {
 			// ═══════════════════════════════════════════════════════════
 			// 🎨 ${THEME_NAME}
 			// Generated with vscode-theme-gen using pastel
-			// Primary:   ${PRIMARY_COLOR} (${primary_hex})
-			// Secondary: ${SECONDARY_COLOR} (${secondary_hex})
-			// Tertiary:  ${TERTIARY_COLOR} (${tertiary_hex})
+			// Primary:   ${PRIMARY_COLOUR} (${primary_hex})
+			// Secondary: ${SECONDARY_COLOUR} (${secondary_hex})
+			// Tertiary:  ${TERTIARY_COLOUR} (${tertiary_hex})
 			// Variation: ${VARIATION}
 			// ═══════════════════════════════════════════════════════════
 
@@ -466,7 +466,7 @@ generate_theme_json() {
 
 			// ── Complementary Accents ──
 			\"badge.background\": \"${compl_highlight}\",
-			\"badge.foreground\": \"${bg_dark}\""; fi)$(if [[ ${#VARIATION_COLORS[@]} -gt 0 ]]; then echo ",
+			\"badge.foreground\": \"${bg_dark}\""; fi)$(if [[ ${#VARIATION_COLOURS[@]} -gt 0 ]]; then echo ",
 
 			// ── Variation Accents ──
 			\"editorBracketHighlight.foreground1\": \"${var0}\",
@@ -474,7 +474,7 @@ generate_theme_json() {
 			\"editorBracketHighlight.foreground3\": \"${var2}\",
 			\"editorBracketHighlight.foreground4\": \"${var3}\""; fi)
 		},
-		"editor.tokenColorCustomizations": {
+		"editor.tokenColourCustomizations": {
 			"comments": "${p3}80",
 			"strings": "${s2}",
 			"keywords": "${accent_primary}",
@@ -634,7 +634,7 @@ generate_theme_json() {
 				{
 					\"scope\": [\"markup.bold\"],
 					\"settings\": { \"foreground\": \"${compl_accent}\", \"fontStyle\": \"bold\" }
-				}"; fi)$(if [[ ${#VARIATION_COLORS[@]} -gt 0 ]]; then echo ",
+				}"; fi)$(if [[ ${#VARIATION_COLOURS[@]} -gt 0 ]]; then echo ",
 				{
 					\"scope\": [\"meta.object-literal.key\"],
 					\"settings\": { \"foreground\": \"${var0}\" }

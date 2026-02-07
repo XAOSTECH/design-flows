@@ -68,21 +68,21 @@ update_workspace_file() {
 
     # Check if file has settings section
     if grep -q '"settings"' "$config"; then
-        # Check if colorCustomizations exists
-        if grep -q '"workbench.colorCustomizations"' "$config"; then
+        # Check if colourCustomizations exists
+        if grep -q '"workbench.colourCustomizations"' "$config"; then
             local tmp_file
             tmp_file=$(mktemp)
 
             awk -v theme="$theme_settings" '
             BEGIN { in_color_section = 0; in_token_section = 0; brace_count = 0 }
 
-            /"workbench\.colorCustomizations"/ {
+            /"workbench\.colourCustomizations"/ {
                 in_color_section = 1
                 brace_count = 0
                 next
             }
 
-            /"editor\.tokenColorCustomizations"/ && !in_color_section {
+            /"editor\.tokenColourCustomizations"/ && !in_color_section {
                 in_token_section = 1
                 brace_count = 0
                 next
@@ -116,7 +116,7 @@ update_workspace_file() {
             ' "$config" > "$tmp_file"
 
             mv "$tmp_file" "$config"
-            log_success "Updated color customizations in: $config"
+            log_success "Updated colour customizations in: $config"
         else
             local tmp_file
             tmp_file=$(mktemp)
@@ -133,7 +133,7 @@ update_workspace_file() {
             ' "$config" > "$tmp_file"
 
             mv "$tmp_file" "$config"
-            log_success "Added color customizations to: $config"
+            log_success "Added colour customizations to: $config"
         fi
     else
         local tmp_file

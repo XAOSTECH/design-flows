@@ -23,15 +23,15 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIB_DIR="${SCRIPT_DIR}/../lib"
 
 source "${LIB_DIR}/deps.sh"
-source "${LIB_DIR}/colors.sh"
+source "${LIB_DIR}/colours.sh"
 source "${LIB_DIR}/json-gen.sh"
 source "${LIB_DIR}/file-ops.sh"
 source "${LIB_DIR}/presets.sh"
 
 # ─── Default Configuration ────────────────────────────────────────────────────
-PRIMARY_COLOR="pink"
-SECONDARY_COLOR="yellow"
-TERTIARY_COLOR="lavender"
+PRIMARY_COLOUR="pink"
+SECONDARY_COLOUR="yellow"
+TERTIARY_COLOUR="lavender"
 THEME_NAME="Custom Theme"
 USE_COMPLEMENTARY=false
 OUTPUT_FILE=""
@@ -49,11 +49,11 @@ VARIATION="0.5"
 declare -a PRIMARY_SHADES=()
 declare -a SECONDARY_SHADES=()
 declare -a TERTIARY_SHADES=()
-declare -a COMPLEMENTARY_COLORS=()
-declare -a VARIATION_COLORS=()
-declare -a ANALOGOUS_COLORS=()
-declare -a TRIADIC_COLORS=()
-declare -a BLEND_COLORS=()
+declare -a COMPLEMENTARY_COLOURS=()
+declare -a VARIATION_COLOURS=()
+declare -a ANALOGOUS_COLOURS=()
+declare -a TRIADIC_COLOURS=()
+declare -a BLEND_COLOURS=()
 
 # ─── Usage ────────────────────────────────────────────────────────────────────
 
@@ -65,9 +65,9 @@ USAGE:
     vsGen [OPTIONS]
 
 OPTIONS:
-    -p, --primary <COLOR>      Primary colour (name or hex).   Default: pink
-    -s, --secondary <COLOR>    Secondary colour (name or hex). Default: yellow
-    -t, --tertiary <COLOR>     Tertiary colour (name or hex).  Default: lavender
+    -p, --primary <COLOUR>      Primary colour (name or hex).   Default: pink
+    -s, --secondary <COLOUR>    Secondary colour (name or hex). Default: yellow
+    -t, --tertiary <COLOUR>     Tertiary colour (name or hex).  Default: lavender
     -n, --name <NAME>          Theme name for comments.        Default: "Custom Theme"
     -o, --output <FILE>        Output workspace file path.
                                Default: ./out/<Name>-<date>-v<ver>.code-workspace
@@ -122,15 +122,15 @@ parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             -p|--primary)
-                PRIMARY_COLOR="$2"
+                PRIMARY_COLOUR="$2"
                 shift 2
                 ;;
             -s|--secondary)
-                SECONDARY_COLOR="$2"
+                SECONDARY_COLOUR="$2"
                 shift 2
                 ;;
             -t|--tertiary)
-                TERTIARY_COLOR="$2"
+                TERTIARY_COLOUR="$2"
                 shift 2
                 ;;
             -n|--name)
@@ -206,9 +206,9 @@ main() {
 
     # Show configuration summary
     log_info "Theme:     ${THEME_NAME}"
-    log_info "Primary:   ${PRIMARY_COLOR}"
-    log_info "Secondary: ${SECONDARY_COLOR}"
-    log_info "Tertiary:  ${TERTIARY_COLOR}"
+    log_info "Primary:   ${PRIMARY_COLOUR}"
+    log_info "Secondary: ${SECONDARY_COLOUR}"
+    log_info "Tertiary:  ${TERTIARY_COLOUR}"
     log_info "Variation: ${VARIATION}"
     [[ "$USE_COMPLEMENTARY" == true ]] && log_info "Complementary: enabled"
     echo ""

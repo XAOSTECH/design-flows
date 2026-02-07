@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════════════════
-# colors.sh — Color manipulation and palette generation for vscode-theme-gen
+# colours.sh — Colour manipulation and palette generation for vscode-theme-gen
 # ═══════════════════════════════════════════════════════════════════════════════
 # All pastel wrappers and palette-building logic lives here.
 # Requires: pastel CLI, deps.sh sourced for logging
@@ -8,7 +8,7 @@
 
 # ─── Low-Level Pastel Wrappers ────────────────────────────────────────────────
 
-# Get hex color from pastel
+# Get hex colour from pastel
 get_hex() {
     pastel format hex "$1" 2>/dev/null | tr -d '\n'
 }
@@ -21,65 +21,65 @@ generate_gradient() {
     pastel gradient -n "$count" "$from" "$to" | pastel format hex
 }
 
-# Mix two colors
+# Mix two colours
 mix_colors() {
-    local color1="$1"
-    local color2="$2"
+    local colour1="$1"
+    local colour2="$2"
     local factor="${3:-0.5}"
-    pastel mix -f "$factor" "$color1" "$color2" | pastel format hex
+    pastel mix -f "$factor" "$colour1" "$colour2" | pastel format hex
 }
 
-# Lighten a color
+# Lighten a colour
 lighten() {
-    local color="$1"
+    local colour="$1"
     local amount="${2:-0.1}"
-    pastel lighten "$amount" "$color" | pastel format hex
+    pastel lighten "$amount" "$colour" | pastel format hex
 }
 
-# Darken a color
+# Darken a colour
 darken() {
-    local color="$1"
+    local colour="$1"
     local amount="${2:-0.1}"
-    pastel darken "$amount" "$color" | pastel format hex
+    pastel darken "$amount" "$colour" | pastel format hex
 }
 
 # Set lightness
 set_lightness() {
-    local color="$1"
+    local colour="$1"
     local lightness="$2"
-    pastel set lightness "$lightness" "$color" | pastel format hex
+    pastel set lightness "$lightness" "$colour" | pastel format hex
 }
 
-# Get complementary color
+# Get complementary colour
 get_complementary() {
-    local color="$1"
-    pastel complement "$color" | pastel format hex
+    local colour="$1"
+    pastel complement "$colour" | pastel format hex
 }
 
 # Rotate hue by N degrees (supports negative values)
 rotate_hue() {
-    local color="$1"
+    local colour="$1"
     local degrees="$2"
-    pastel rotate -- "$degrees" "$color" | pastel format hex
+    pastel rotate -- "$degrees" "$colour" | pastel format hex
 }
 
-# Saturate color
+# Saturate colour
 saturate() {
-    local color="$1"
+    local colour="$1"
     local amount="${2:-0.2}"
-    pastel saturate "$amount" "$color" | pastel format hex
+    pastel saturate "$amount" "$colour" | pastel format hex
 }
 
-# Desaturate color
+# Desaturate colour
 desaturate() {
-    local color="$1"
+    local colour="$1"
     local amount="${2:-0.2}"
-    pastel desaturate "$amount" "$color" | pastel format hex
+    pastel desaturate "$amount" "$colour" | pastel format hex
 }
 
 # ─── Font/Foreground Safety ──────────────────────────────────────────────────
-# Ensures foreground/font colors are never too dark to read on dark backgrounds.
-# Returns the color lightened to at least MIN_FG_LIGHTNESS if needed.
+# Ensures foreground/font colours are never too dark to read on dark backgrounds.
+# Returns the colour lightened to at least MIN_FG_LIGHTNESS if needed.
 
 MIN_FG_LIGHTNESS="0.45"
 
@@ -118,10 +118,10 @@ _contrast_ratio() {
 # ratio ≥ 3.0 against a typical dark background (#1e1e1e). If too low,
 # lighten iteratively until it passes.
 ensure_readable() {
-    local color="$1"
+    local colour="$1"
     local min_lightness="${2:-$MIN_FG_LIGHTNESS}"
     local hex
-    hex=$(get_hex "$color")
+    hex=$(get_hex "$colour")
 
     # ── Step 1: HSL lightness floor ──
     local current_lightness
@@ -158,20 +158,20 @@ ensure_readable() {
 # Populates the global shade arrays used by the theme generator.
 #
 # Globals expected (set before calling):
-#   PRIMARY_COLOR, SECONDARY_COLOR, TERTIARY_COLOR
+#   PRIMARY_COLOUR, SECONDARY_COLOUR, TERTIARY_COLOUR
 #   USE_COMPLEMENTARY, VARIATION
 #   PRIMARY_SHADES, SECONDARY_SHADES, TERTIARY_SHADES
-#   COMPLEMENTARY_COLORS, VARIATION_COLORS
-#   ANALOGOUS_COLORS, TRIADIC_COLORS, BLEND_COLORS
+#   COMPLEMENTARY_COLOURS, VARIATION_COLOURS
+#   ANALOGOUS_COLOURS, TRIADIC_COLOURS, BLEND_COLOURS
 
 generate_palette() {
     log_info "Generating colour palette..."
 
     # ── base hex values ──
     local primary_hex secondary_hex tertiary_hex
-    primary_hex=$(get_hex "$PRIMARY_COLOR")
-    secondary_hex=$(get_hex "$SECONDARY_COLOR")
-    tertiary_hex=$(get_hex "$TERTIARY_COLOR")
+    primary_hex=$(get_hex "$PRIMARY_COLOUR")
+    secondary_hex=$(get_hex "$SECONDARY_COLOUR")
+    tertiary_hex=$(get_hex "$TERTIARY_COLOUR")
 
     log_verbose "Primary base:   $primary_hex"
     log_verbose "Secondary base: $secondary_hex"
@@ -180,30 +180,30 @@ generate_palette() {
     # ── primary shades (saturated → soft, 10 stops) ──
     log_verbose "Generating primary gradient..."
     local primary_bright primary_soft primary_dark
-    primary_bright=$(saturate "$PRIMARY_COLOR" 0.25)
-    primary_soft=$(lighten "$PRIMARY_COLOR" 0.20)
-    primary_dark=$(darken "$PRIMARY_COLOR" 0.15)
+    primary_bright=$(saturate "$PRIMARY_COLOUR" 0.25)
+    primary_soft=$(lighten "$PRIMARY_COLOUR" 0.20)
+    primary_dark=$(darken "$PRIMARY_COLOUR" 0.15)
     mapfile -t PRIMARY_SHADES < <(generate_gradient "$primary_dark" "$primary_bright" 4; generate_gradient "$primary_bright" "$primary_soft" 6)
 
     # ── secondary shades ──
     log_verbose "Generating secondary gradient..."
     local secondary_bright secondary_soft secondary_dark
-    secondary_bright=$(saturate "$SECONDARY_COLOR" 0.25)
-    secondary_soft=$(lighten "$SECONDARY_COLOR" 0.25)
-    secondary_dark=$(darken "$SECONDARY_COLOR" 0.12)
+    secondary_bright=$(saturate "$SECONDARY_COLOUR" 0.25)
+    secondary_soft=$(lighten "$SECONDARY_COLOUR" 0.25)
+    secondary_dark=$(darken "$SECONDARY_COLOUR" 0.12)
     mapfile -t SECONDARY_SHADES < <(generate_gradient "$secondary_dark" "$secondary_bright" 4; generate_gradient "$secondary_bright" "$secondary_soft" 6)
 
     # ── tertiary shades ──
     log_verbose "Generating tertiary gradient..."
     local tertiary_bright tertiary_soft tertiary_dark
-    tertiary_bright=$(saturate "$TERTIARY_COLOR" 0.20)
-    tertiary_soft=$(lighten "$TERTIARY_COLOR" 0.22)
-    tertiary_dark=$(darken "$TERTIARY_COLOR" 0.10)
+    tertiary_bright=$(saturate "$TERTIARY_COLOUR" 0.20)
+    tertiary_soft=$(lighten "$TERTIARY_COLOUR" 0.22)
+    tertiary_dark=$(darken "$TERTIARY_COLOUR" 0.10)
     mapfile -t TERTIARY_SHADES < <(generate_gradient "$tertiary_dark" "$tertiary_bright" 4; generate_gradient "$tertiary_bright" "$tertiary_soft" 6)
 
     # ── analogous colours (±30° from each base) ──
     log_verbose "Generating analogous colours..."
-    ANALOGOUS_COLORS=(
+    ANALOGOUS_COLOURS=(
         "$(rotate_hue "$primary_hex"  30)"
         "$(rotate_hue "$primary_hex" -30)"
         "$(rotate_hue "$secondary_hex"  30)"
@@ -214,7 +214,7 @@ generate_palette() {
 
     # ── triadic colours (±120° from primary) ──
     log_verbose "Generating triadic colours..."
-    TRIADIC_COLORS=(
+    TRIADIC_COLOURS=(
         "$(rotate_hue "$primary_hex" 120)"
         "$(rotate_hue "$primary_hex" 240)"
         "$(rotate_hue "$secondary_hex" 120)"
@@ -223,7 +223,7 @@ generate_palette() {
 
     # ── cross-blended accent colours ──
     log_verbose "Generating cross-blend colours..."
-    BLEND_COLORS=(
+    BLEND_COLOURS=(
         "$(mix_colors "$primary_hex" "$secondary_hex" 0.3)"
         "$(mix_colors "$primary_hex" "$secondary_hex" 0.7)"
         "$(mix_colors "$primary_hex" "$tertiary_hex" 0.4)"
@@ -236,17 +236,17 @@ generate_palette() {
     if [[ "$USE_COMPLEMENTARY" == true ]]; then
         log_verbose "Generating complementary colours..."
         local compl_primary compl_secondary compl_tertiary mixed
-        compl_primary=$(get_complementary "$PRIMARY_COLOR")
-        compl_secondary=$(get_complementary "$SECONDARY_COLOR")
-        compl_tertiary=$(get_complementary "$TERTIARY_COLOR")
-        mixed=$(mix_colors "$PRIMARY_COLOR" "$SECONDARY_COLOR" 0.5)
+        compl_primary=$(get_complementary "$PRIMARY_COLOUR")
+        compl_secondary=$(get_complementary "$SECONDARY_COLOUR")
+        compl_tertiary=$(get_complementary "$TERTIARY_COLOUR")
+        mixed=$(mix_colors "$PRIMARY_COLOUR" "$SECONDARY_COLOUR" 0.5)
 
         # Split-complementary (±150° from primary)
         local split_a split_b
         split_a=$(rotate_hue "$primary_hex" 150)
         split_b=$(rotate_hue "$primary_hex" 210)
 
-        COMPLEMENTARY_COLORS=(
+        COMPLEMENTARY_COLOURS=(
             "$compl_primary"
             "$compl_secondary"
             "$(lighten "$compl_primary" 0.2)"
@@ -270,7 +270,7 @@ generate_palette() {
         # Number of extra hues scales with variation: 0→0  0.5→6  1.0→16
         steps=$(awk "BEGIN { printf \"%d\", 4 + 12 * $VARIATION }")
         angle_step=$(awk "BEGIN { printf \"%.1f\", 360.0 / $steps }")
-        VARIATION_COLORS=()
+        VARIATION_COLOURS=()
 
         for (( i=0; i<steps; i++ )); do
             local angle
@@ -286,11 +286,11 @@ generate_palette() {
                 rotated=$(mix_colors "$rotated" "$primary_hex" "$mix_factor")
             fi
 
-            VARIATION_COLORS+=("$rotated")
+            VARIATION_COLOURS+=("$rotated")
         done
     fi
 
-    log_success "Palette generated (${#PRIMARY_SHADES[@]}+${#SECONDARY_SHADES[@]}+${#TERTIARY_SHADES[@]} shades, ${#ANALOGOUS_COLORS[@]} analogous, ${#TRIADIC_COLORS[@]} triadic, ${#BLEND_COLORS[@]} blends)"
+    log_success "Palette generated (${#PRIMARY_SHADES[@]}+${#SECONDARY_SHADES[@]}+${#TERTIARY_SHADES[@]} shades, ${#ANALOGOUS_COLOURS[@]} analogous, ${#TRIADIC_COLOURS[@]} triadic, ${#BLEND_COLOURS[@]} blends)"
 }
 
 # ─── Palette Preview ─────────────────────────────────────────────────────────
@@ -298,11 +298,11 @@ generate_palette() {
 show_palette_preview() {
     echo ""
     echo "═══════════════════════════════════════════════════════════"
-    echo "  🎨 ${THEME_NAME} - Color Palette Preview"
+    echo "  🎨 ${THEME_NAME} - Colour Palette Preview"
     echo "═══════════════════════════════════════════════════════════"
     echo ""
 
-    echo "  Primary: ${PRIMARY_COLOR}"
+    echo "  Primary: ${PRIMARY_COLOUR}"
     echo "  ─────────────────────────────────────"
     for i in "${!PRIMARY_SHADES[@]}"; do
         local hex="${PRIMARY_SHADES[$i]}"
@@ -312,7 +312,7 @@ show_palette_preview() {
     done
 
     echo ""
-    echo "  Secondary: ${SECONDARY_COLOR}"
+    echo "  Secondary: ${SECONDARY_COLOUR}"
     echo "  ─────────────────────────────────────"
     for i in "${!SECONDARY_SHADES[@]}"; do
         local hex="${SECONDARY_SHADES[$i]}"
@@ -322,7 +322,7 @@ show_palette_preview() {
     done
 
     echo ""
-    echo "  Tertiary: ${TERTIARY_COLOR}"
+    echo "  Tertiary: ${TERTIARY_COLOUR}"
     echo "  ─────────────────────────────────────"
     for i in "${!TERTIARY_SHADES[@]}"; do
         local hex="${TERTIARY_SHADES[$i]}"
@@ -331,60 +331,60 @@ show_palette_preview() {
         printf " %s\n" "$hex"
     done
 
-    if [[ "$USE_COMPLEMENTARY" == true ]] && [[ ${#COMPLEMENTARY_COLORS[@]} -gt 0 ]]; then
+    if [[ "$USE_COMPLEMENTARY" == true ]] && [[ ${#COMPLEMENTARY_COLOURS[@]} -gt 0 ]]; then
         echo ""
         echo "  Complementary Accents:"
         echo "  ─────────────────────────────────────"
-        for i in "${!COMPLEMENTARY_COLORS[@]}"; do
-            local hex="${COMPLEMENTARY_COLORS[$i]}"
+        for i in "${!COMPLEMENTARY_COLOURS[@]}"; do
+            local hex="${COMPLEMENTARY_COLOURS[$i]}"
             printf "  "
             pastel paint "$hex" "████"
             printf " %s\n" "$hex"
         done
     fi
 
-    if [[ ${#VARIATION_COLORS[@]} -gt 0 ]]; then
+    if [[ ${#VARIATION_COLOURS[@]} -gt 0 ]]; then
         echo ""
         echo "  Variation Hues (level ${VARIATION}):"
         echo "  ─────────────────────────────────────"
-        for i in "${!VARIATION_COLORS[@]}"; do
-            local hex="${VARIATION_COLORS[$i]}"
+        for i in "${!VARIATION_COLOURS[@]}"; do
+            local hex="${VARIATION_COLOURS[$i]}"
             printf "  "
             pastel paint "$hex" "████"
             printf " %s\n" "$hex"
         done
     fi
 
-    if [[ ${#ANALOGOUS_COLORS[@]} -gt 0 ]]; then
+    if [[ ${#ANALOGOUS_COLOURS[@]} -gt 0 ]]; then
         echo ""
         echo "  Analogous (±30°):"
         echo "  ─────────────────────────────────────"
-        for i in "${!ANALOGOUS_COLORS[@]}"; do
-            local hex="${ANALOGOUS_COLORS[$i]}"
+        for i in "${!ANALOGOUS_COLOURS[@]}"; do
+            local hex="${ANALOGOUS_COLOURS[$i]}"
             printf "  "
             pastel paint "$hex" "████"
             printf " %s\n" "$hex"
         done
     fi
 
-    if [[ ${#TRIADIC_COLORS[@]} -gt 0 ]]; then
+    if [[ ${#TRIADIC_COLOURS[@]} -gt 0 ]]; then
         echo ""
         echo "  Triadic (±120°):"
         echo "  ─────────────────────────────────────"
-        for i in "${!TRIADIC_COLORS[@]}"; do
-            local hex="${TRIADIC_COLORS[$i]}"
+        for i in "${!TRIADIC_COLOURS[@]}"; do
+            local hex="${TRIADIC_COLOURS[$i]}"
             printf "  "
             pastel paint "$hex" "████"
             printf " %s\n" "$hex"
         done
     fi
 
-    if [[ ${#BLEND_COLORS[@]} -gt 0 ]]; then
+    if [[ ${#BLEND_COLOURS[@]} -gt 0 ]]; then
         echo ""
         echo "  Cross-Blends:"
         echo "  ─────────────────────────────────────"
-        for i in "${!BLEND_COLORS[@]}"; do
-            local hex="${BLEND_COLORS[$i]}"
+        for i in "${!BLEND_COLOURS[@]}"; do
+            local hex="${BLEND_COLOURS[$i]}"
             printf "  "
             pastel paint "$hex" "████"
             printf " %s\n" "$hex"
