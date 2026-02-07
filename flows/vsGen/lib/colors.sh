@@ -83,28 +83,74 @@ desaturate() {
 
 MIN_FG_LIGHTNESS="0.45"
 
+# Compute relative luminance (sRGB → linear → Y) for a hex colour.
+# Returns a value 0.0 (black) – 1.0 (white).
+_luminance() {
+    local hex="$1"
+    # Strip leading #
+    hex="${hex#\#}"
+    local r=$((16#${hex:0:2}))
+    local g=$((16#${hex:2:2}))
+    local b=$((16#${hex:4:2}))
+    awk "BEGIN {
+        r = $r/255.0; g = $g/255.0; b = $b/255.0;
+        r = (r<=0.03928) ? r/12.92 : ((r+0.055)/1.055)^2.4;
+        g = (g<=0.03928) ? g/12.92 : ((g+0.055)/1.055)^2.4;
+        b = (b<=0.03928) ? b/12.92 : ((b+0.055)/1.055)^2.4;
+        printf \"%.6f\", 0.2126*r + 0.7152*g + 0.0722*b
+    }"
+}
+
+# WCAG contrast ratio between two hex colours.
+_contrast_ratio() {
+    local lum1 lum2
+    lum1=$(_luminance "$1")
+    lum2=$(_luminance "$2")
+    awk "BEGIN {
+        l1 = ($lum1 > $lum2) ? $lum1 : $lum2;
+        l2 = ($lum1 > $lum2) ? $lum2 : $lum1;
+        printf \"%.2f\", (l1 + 0.05) / (l2 + 0.05)
+    }"
+}
+
+# Ensure a foreground colour is readable on a dark editor background.
+# Strategy: first check HSL lightness floor, then verify WCAG contrast
+# ratio ≥ 3.0 against a typical dark background (#1e1e1e). If too low,
+# lighten iteratively until it passes.
 ensure_readable() {
     local color="$1"
     local min_lightness="${2:-$MIN_FG_LIGHTNESS}"
     local hex
     hex=$(get_hex "$color")
 
-    # Get the current lightness (0.0–1.0) via pastel
+    # ── Step 1: HSL lightness floor ──
     local current_lightness
     current_lightness=$(pastel format hsl "$hex" 2>/dev/null \
         | grep -oP '[\d.]+(?=%)' | tail -1)
 
-    # pastel HSL lightness is 0–100; normalise to 0.0–1.0
     if [[ -n "$current_lightness" ]]; then
         local norm
         norm=$(awk "BEGIN { printf \"%.4f\", $current_lightness / 100.0 }")
         local too_dark
         too_dark=$(awk "BEGIN { print ($norm < $min_lightness) ? 1 : 0 }")
         if [[ "$too_dark" == "1" ]]; then
-            set_lightness "$hex" "$min_lightness"
-            return
+            log_verbose "Lightness guard: $hex → lifting to L=$min_lightness"
+            hex=$(set_lightness "$hex" "$min_lightness")
         fi
     fi
+
+    # ── Step 2: WCAG contrast ratio check against dark bg ──
+    local bg="#1e1e1e"
+    local ratio
+    ratio=$(_contrast_ratio "$hex" "$bg")
+    local attempts=0
+    while (( $(awk "BEGIN { print ($ratio < 3.0) ? 1 : 0 }") )) && (( attempts < 8 )); do
+        log_verbose "Contrast guard: $hex ratio=$ratio < 3.0 — lightening"
+        hex=$(lighten "$hex" 0.05)
+        ratio=$(_contrast_ratio "$hex" "$bg")
+        ((attempts++))
+    done
+
     echo "$hex"
 }
 
