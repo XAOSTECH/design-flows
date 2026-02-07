@@ -50,6 +50,9 @@ declare -a SECONDARY_SHADES=()
 declare -a TERTIARY_SHADES=()
 declare -a COMPLEMENTARY_COLORS=()
 declare -a VARIATION_COLORS=()
+declare -a ANALOGOUS_COLORS=()
+declare -a TRIADIC_COLORS=()
+declare -a BLEND_COLORS=()
 
 # ─── Usage ────────────────────────────────────────────────────────────────────
 

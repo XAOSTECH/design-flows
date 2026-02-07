@@ -51,6 +51,19 @@ generate_theme_json() {
         compl_accent="${COMPLEMENTARY_COLORS[4]}"
     fi
 
+    # ── Analogous & triadic helpers ──
+    local ana0 ana1 ana2 ana3 tri0 tri1 bln0 bln1 bln2 bln3
+    ana0=$(ensure_readable "${ANALOGOUS_COLORS[0]:-$accent_primary}")
+    ana1=$(ensure_readable "${ANALOGOUS_COLORS[1]:-$accent_primary}")
+    ana2=$(ensure_readable "${ANALOGOUS_COLORS[2]:-$accent_secondary}")
+    ana3=$(ensure_readable "${ANALOGOUS_COLORS[3]:-$accent_secondary}")
+    tri0=$(ensure_readable "${TRIADIC_COLORS[0]:-$accent_tertiary}")
+    tri1=$(ensure_readable "${TRIADIC_COLORS[1]:-$accent_tertiary}")
+    bln0=$(ensure_readable "${BLEND_COLORS[0]:-$accent_primary}")
+    bln1=$(ensure_readable "${BLEND_COLORS[1]:-$accent_secondary}")
+    bln2=$(ensure_readable "${BLEND_COLORS[2]:-$accent_tertiary}")
+    bln3=$(ensure_readable "${BLEND_COLORS[3]:-$fg_soft}")
+
     # ── Variation accents ──
     local var0="" var1="" var2="" var3=""
     if [[ ${#VARIATION_COLORS[@]} -gt 0 ]]; then
@@ -125,9 +138,9 @@ generate_theme_json() {
 			"editorBracketHighlight.foreground1": "${accent_primary}",
 			"editorBracketHighlight.foreground2": "${accent_secondary}",
 			"editorBracketHighlight.foreground3": "${accent_tertiary}",
-			"editorBracketHighlight.foreground4": "${p1}",
-			"editorBracketHighlight.foreground5": "${s2}",
-			"editorBracketHighlight.foreground6": "${t1}",
+			"editorBracketHighlight.foreground4": "${ana0}",
+			"editorBracketHighlight.foreground5": "${tri0}",
+			"editorBracketHighlight.foreground6": "${bln0}",
 			"editorBracketHighlight.unexpectedBracket.foreground": "#ff5555",
 
 			// ── Editor Gutter ──
@@ -239,14 +252,14 @@ generate_theme_json() {
 			"terminal.ansiYellow": "${accent_secondary}",
 			"terminal.ansiBlue": "${accent_tertiary}",
 			"terminal.ansiMagenta": "${accent_primary}",
-			"terminal.ansiCyan": "${t2}",
+			"terminal.ansiCyan": "${tri0}",
 			"terminal.ansiWhite": "${fg_main}",
 			"terminal.ansiBrightBlack": "${p2}",
-			"terminal.ansiBrightRed": "${p3}",
+			"terminal.ansiBrightRed": "${ana1}",
 			"terminal.ansiBrightGreen": "${s4}",
-			"terminal.ansiBrightYellow": "${s5}",
-			"terminal.ansiBrightBlue": "${t3}",
-			"terminal.ansiBrightMagenta": "${fg_soft}",
+			"terminal.ansiBrightYellow": "${bln1}",
+			"terminal.ansiBrightBlue": "${tri1}",
+			"terminal.ansiBrightMagenta": "${ana0}",
 			"terminal.ansiBrightCyan": "${t4}",
 			"terminal.ansiBrightWhite": "#ffffff",
 			"terminalCursor.foreground": "${s1}",
@@ -309,13 +322,13 @@ generate_theme_json() {
 			"gitDecoration.addedResourceForeground": "${s2}",
 			"gitDecoration.modifiedResourceForeground": "${accent_tertiary}",
 			"gitDecoration.deletedResourceForeground": "${p1}",
-			"gitDecoration.renamedResourceForeground": "${t2}",
-			"gitDecoration.untrackedResourceForeground": "${s1}",
+			"gitDecoration.renamedResourceForeground": "${bln2}",
+			"gitDecoration.untrackedResourceForeground": "${ana2}",
 			"gitDecoration.conflictingResourceForeground": "${accent_secondary}",
 			"gitDecoration.ignoredResourceForeground": "${p2}60",
-			"gitDecoration.stageModifiedResourceForeground": "${accent_tertiary}",
+			"gitDecoration.stageModifiedResourceForeground": "${bln3}",
 			"gitDecoration.stageDeletedResourceForeground": "${p1}",
-			"gitDecoration.submoduleResourceForeground": "${t1}",
+			"gitDecoration.submoduleResourceForeground": "${tri0}",
 
 			// ── Diff Editor ──
 			"diffEditor.insertedTextBackground": "${s2}20",
@@ -467,12 +480,12 @@ generate_theme_json() {
 			"keywords": "${accent_primary}",
 			"numbers": "${s1}",
 			"types": "${accent_tertiary}",
-			"functions": "${s5}",
+			"functions": "${bln0}",
 			"variables": "${fg_main}",
 			"textMateRules": [
 				{
 					"scope": ["entity.name.function", "support.function"],
-					"settings": { "foreground": "${s5}" }
+					"settings": { "foreground": "${bln0}" }
 				},
 				{
 					"scope": ["entity.name.type", "support.type", "support.class"],
@@ -492,7 +505,7 @@ generate_theme_json() {
 				},
 				{
 					"scope": ["string.regexp"],
-					"settings": { "foreground": "${t2}" }
+					"settings": { "foreground": "${tri0}" }
 				},
 				{
 					"scope": ["constant.numeric"],
@@ -504,7 +517,7 @@ generate_theme_json() {
 				},
 				{
 					"scope": ["constant.character", "constant.other"],
-					"settings": { "foreground": "${t1}" }
+					"settings": { "foreground": "${ana0}" }
 				},
 				{
 					"scope": ["variable.parameter"],
@@ -536,7 +549,7 @@ generate_theme_json() {
 				},
 				{
 					"scope": ["entity.name.section", "entity.name.namespace"],
-					"settings": { "foreground": "${t1}" }
+					"settings": { "foreground": "${tri1}" }
 				},
 				{
 					"scope": ["punctuation", "meta.brace"],
@@ -548,15 +561,15 @@ generate_theme_json() {
 				},
 				{
 					"scope": ["meta.decorator", "entity.name.function.decorator"],
-					"settings": { "foreground": "${accent_tertiary}", "fontStyle": "italic" }
+					"settings": { "foreground": "${bln2}", "fontStyle": "italic" }
 				},
 				{
 					"scope": ["meta.selector", "entity.other.attribute-name.class.css"],
-					"settings": { "foreground": "${s3}" }
+					"settings": { "foreground": "${ana2}" }
 				},
 				{
 					"scope": ["support.type.property-name.css"],
-					"settings": { "foreground": "${t2}" }
+					"settings": { "foreground": "${bln3}" }
 				},
 				{
 					"scope": ["markup.heading"],
@@ -600,7 +613,7 @@ generate_theme_json() {
 				},
 				{
 					"scope": ["source.json support.type.property-name"],
-					"settings": { "foreground": "${accent_tertiary}" }
+					"settings": { "foreground": "${bln2}" }
 				},
 				{
 					"scope": ["meta.embedded", "source.groovy.embedded"],
