@@ -1,0 +1,747 @@
+#!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════
+# 🎨 vscode-theme-gen - VS Code Theme Generator using Pastel
+# ═══════════════════════════════════════════════════════════════════════════════
+# Generates beautiful color themes for VS Code workspace files
+# Uses pastel CLI for color manipulation
+#
+# Usage:
+#   vscode-theme-gen [OPTIONS]
+#
+# Examples:
+#   vscode-theme-gen --primary pink --secondary yellow --name "Sakura"
+#   vscode-theme-gen -p "#ff69b4" -s "#ffd900" --compl --output theme.json
+#   vscode-theme-gen --config workspace.code-workspace --primary coral
+# ═══════════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# ─── Default Configuration ────────────────────────────────────────────────────
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TEMPLATE_DIR="${SCRIPT_DIR}/templates"
+
+# Default colors
+PRIMARY_COLOR="pink"
+SECONDARY_COLOR="yellow"
+THEME_NAME="Custom Theme"
+USE_COMPLEMENTARY=false
+OUTPUT_FILE=""
+CONFIG_FILE=""
+DRY_RUN=false
+VERBOSE=false
+
+# Background darkness level (0.0 = black, 1.0 = white)
+BG_LIGHTNESS="0.12"
+
+# ─── Color Arrays (populated by generate_palette) ─────────────────────────────
+declare -a PRIMARY_SHADES=()
+declare -a SECONDARY_SHADES=()
+declare -a COMPLEMENTARY_COLORS=()
+
+# ─── Helper Functions ─────────────────────────────────────────────────────────
+
+print_usage() {
+    cat << 'EOF'
+🎨 vscode-theme-gen - VS Code Theme Generator
+
+USAGE:
+    vscode-theme-gen [OPTIONS]
+
+OPTIONS:
+    -p, --primary <COLOR>      Primary color (name or hex). Default: pink
+    -s, --secondary <COLOR>    Secondary color (name or hex). Default: yellow
+    -n, --name <NAME>          Theme name for comments. Default: "Custom Theme"
+    -o, --output <FILE>        Output file path (creates new workspace file)
+    -c, --config <FILE>        Existing workspace file to update (overwrites colors)
+    --compl                    Generate complementary colors for variety
+    --bg-lightness <0.0-1.0>   Background darkness level. Default: 0.12
+    --dry-run                  Show generated colors without writing
+    -v, --verbose              Show detailed color generation info
+    -h, --help                 Show this help message
+
+EXAMPLES:
+    # Create new theme with pink and yellow
+    vscode-theme-gen -p pink -s yellow -o my-theme.code-workspace
+
+    # Update existing workspace with coral theme + complementary
+    vscode-theme-gen -c project.code-workspace -p coral -s gold --compl
+
+    # Preview a hotpink/lime theme
+    vscode-theme-gen -p hotpink -s lime --dry-run -v
+
+COLOR VALUES:
+    Colors can be specified as:
+    - Named colors: pink, coral, gold, hotpink, lavender, etc.
+    - Hex values: "#ff69b4", "#ffd900"
+
+REQUIRES:
+    pastel - Command-line tool for color manipulation
+    Install: cargo install pastel
+         or: wget pre-built binary from https://github.com/sharkdp/pastel/releases
+EOF
+}
+
+log_verbose() {
+    if [[ "$VERBOSE" == true ]]; then
+        echo -e "  \033[0;90m$1\033[0m"
+    fi
+}
+
+log_info() {
+    echo -e "  \033[0;36m→\033[0m $1"
+}
+
+log_success() {
+    echo -e "  \033[0;32m✓\033[0m $1"
+}
+
+log_error() {
+    echo -e "  \033[0;31m✗\033[0m $1" >&2
+}
+
+check_dependencies() {
+    if ! command -v pastel &> /dev/null; then
+        log_error "pastel is not installed"
+        echo ""
+        echo "Install with one of:"
+        echo "  cargo install pastel"
+        echo "  wget -qO- https://github.com/sharkdp/pastel/releases/download/v0.9.0/pastel-v0.9.0-x86_64-unknown-linux-musl.tar.gz | tar xz"
+        exit 1
+    fi
+}
+
+# ─── Color Generation Functions ───────────────────────────────────────────────
+
+# Get hex color from pastel
+get_hex() {
+    pastel format hex "$1" 2>/dev/null | tr -d '\n'
+}
+
+# Generate gradient shades
+generate_gradient() {
+    local from="$1"
+    local to="$2"
+    local count="${3:-6}"
+    pastel gradient -n "$count" "$from" "$to" | pastel format hex
+}
+
+# Mix two colors
+mix_colors() {
+    local color1="$1"
+    local color2="$2"
+    local factor="${3:-0.5}"
+    pastel mix -f "$factor" "$color1" "$color2" | pastel format hex
+}
+
+# Lighten a color
+lighten() {
+    local color="$1"
+    local amount="${2:-0.1}"
+    pastel lighten "$amount" "$color" | pastel format hex
+}
+
+# Darken a color
+darken() {
+    local color="$1"
+    local amount="${2:-0.1}"
+    pastel darken "$amount" "$color" | pastel format hex
+}
+
+# Set lightness
+set_lightness() {
+    local color="$1"
+    local lightness="$2"
+    pastel set lightness "$lightness" "$color" | pastel format hex
+}
+
+# Get complementary color
+get_complementary() {
+    local color="$1"
+    pastel complement "$color" | pastel format hex
+}
+
+# Saturate color
+saturate() {
+    local color="$1"
+    local amount="${2:-0.2}"
+    pastel saturate "$amount" "$color" | pastel format hex
+}
+
+# Desaturate color
+desaturate() {
+    local color="$1"
+    local amount="${2:-0.2}"
+    pastel desaturate "$amount" "$color" | pastel format hex
+}
+
+# Generate the full color palette
+generate_palette() {
+    log_info "Generating color palette..."
+    
+    # Get base colors
+    local primary_hex=$(get_hex "$PRIMARY_COLOR")
+    local secondary_hex=$(get_hex "$SECONDARY_COLOR")
+    
+    log_verbose "Primary base: $primary_hex"
+    log_verbose "Secondary base: $secondary_hex"
+    
+    # Generate primary shades (dark to light)
+    log_verbose "Generating primary gradient..."
+    local primary_bright=$(saturate "$PRIMARY_COLOR" 0.2)
+    local primary_soft=$(lighten "$PRIMARY_COLOR" 0.15)
+    
+    mapfile -t PRIMARY_SHADES < <(generate_gradient "$primary_bright" "$primary_soft" 6)
+    
+    # Generate secondary shades
+    log_verbose "Generating secondary gradient..."
+    local secondary_bright=$(saturate "$SECONDARY_COLOR" 0.2)
+    local secondary_soft=$(lighten "$SECONDARY_COLOR" 0.2)
+    
+    mapfile -t SECONDARY_SHADES < <(generate_gradient "$secondary_bright" "$secondary_soft" 6)
+    
+    # Generate complementary colors if requested
+    if [[ "$USE_COMPLEMENTARY" == true ]]; then
+        log_verbose "Generating complementary colors..."
+        local compl_primary=$(get_complementary "$PRIMARY_COLOR")
+        local compl_secondary=$(get_complementary "$SECONDARY_COLOR")
+        local mixed=$(mix_colors "$PRIMARY_COLOR" "$SECONDARY_COLOR" 0.5)
+        
+        COMPLEMENTARY_COLORS=(
+            "$compl_primary"
+            "$compl_secondary"
+            "$(lighten "$compl_primary" 0.2)"
+            "$(lighten "$compl_secondary" 0.2)"
+            "$mixed"
+            "$(get_complementary "$mixed")"
+        )
+    fi
+    
+    log_success "Palette generated"
+}
+
+# ─── Theme Generation ─────────────────────────────────────────────────────────
+
+generate_theme_json() {
+    local primary_hex=$(get_hex "$PRIMARY_COLOR")
+    local secondary_hex=$(get_hex "$SECONDARY_COLOR")
+    
+    # Background colors (subtle tint from primary)
+    local bg_main=$(mix_colors "#1e1e1e" "$primary_hex" 0.95)
+    local bg_sidebar=$(mix_colors "#252526" "$primary_hex" 0.92)
+    local bg_panel=$(mix_colors "#2d2d30" "$primary_hex" 0.90)
+    local bg_dark=$(mix_colors "#1a1a1a" "$primary_hex" 0.96)
+    local bg_hover=$(mix_colors "#3a3a3a" "$primary_hex" 0.88)
+    
+    # Foreground colors
+    local fg_main=$(lighten "$primary_hex" 0.35)
+    local fg_soft="${PRIMARY_SHADES[4]:-$(lighten "$primary_hex" 0.25)}"
+    
+    # Accent colors
+    local accent_primary="${PRIMARY_SHADES[0]:-$primary_hex}"
+    local accent_secondary="${SECONDARY_SHADES[0]:-$secondary_hex}"
+    local accent_soft="${PRIMARY_SHADES[3]:-$(lighten "$primary_hex" 0.1)}"
+    
+    # Complementary accents (if enabled)
+    local compl_highlight=""
+    local compl_border=""
+    local compl_accent=""
+    if [[ "$USE_COMPLEMENTARY" == true ]] && [[ ${#COMPLEMENTARY_COLORS[@]} -gt 0 ]]; then
+        compl_highlight="${COMPLEMENTARY_COLORS[0]}"
+        compl_border="${COMPLEMENTARY_COLORS[2]}"
+        compl_accent="${COMPLEMENTARY_COLORS[4]}"
+    fi
+    
+    # Generate the settings JSON
+    cat << THEME_EOF
+		"workbench.colorCustomizations": {
+			// ═══════════════════════════════════════════════════════════
+			// 🎨 ${THEME_NAME}
+			// Generated with vscode-theme-gen using pastel
+			// Primary: ${PRIMARY_COLOR} (${primary_hex})
+			// Secondary: ${SECONDARY_COLOR} (${secondary_hex})
+			// ═══════════════════════════════════════════════════════════
+
+			// ── Editor Background ──
+			"editor.background": "${bg_main}",
+			"editor.foreground": "${fg_main}",
+			"editorLineNumber.foreground": "${PRIMARY_SHADES[2]:-$accent_soft}",
+			"editorLineNumber.activeForeground": "${accent_secondary}",
+			"editorCursor.foreground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+			"editor.selectionBackground": "${accent_primary}50",
+			"editor.selectionHighlightBackground": "${fg_soft}30",
+			"editor.wordHighlightBackground": "${SECONDARY_SHADES[2]:-$accent_secondary}30",
+			"editor.findMatchBackground": "${accent_secondary}50",
+			"editor.findMatchHighlightBackground": "${SECONDARY_SHADES[3]:-$accent_secondary}40",
+			"editorBracketMatch.background": "${accent_primary}30",
+			"editorBracketMatch.border": "${accent_primary}",
+			"editorIndentGuide.background1": "${PRIMARY_SHADES[2]:-$accent_soft}20",
+			"editorIndentGuide.activeBackground1": "${accent_primary}",
+
+			// ── Sidebar & Activity Bar ──
+			"sideBar.background": "${bg_sidebar}",
+			"sideBar.foreground": "${fg_soft}",
+			"sideBarTitle.foreground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+			"sideBarSectionHeader.background": "${bg_panel}",
+			"sideBarSectionHeader.foreground": "${PRIMARY_SHADES[1]:-$accent_primary}",
+			"activityBar.background": "${bg_dark}",
+			"activityBar.foreground": "${accent_primary}",
+			"activityBar.inactiveForeground": "${PRIMARY_SHADES[2]:-$accent_soft}60",
+			"activityBarBadge.background": "${accent_secondary}",
+			"activityBarBadge.foreground": "${bg_dark}",
+
+			// ── Title Bar ──
+			"titleBar.activeBackground": "${bg_dark}",
+			"titleBar.activeForeground": "${fg_soft}",
+			"titleBar.inactiveBackground": "${bg_main}",
+			"titleBar.inactiveForeground": "${PRIMARY_SHADES[2]:-$accent_soft}80",
+
+			// ── Status Bar ──
+			"statusBar.background": "${accent_primary}",
+			"statusBar.foreground": "${bg_dark}",
+			"statusBar.debuggingBackground": "${accent_secondary}",
+			"statusBar.debuggingForeground": "${bg_dark}",
+			"statusBar.noFolderBackground": "${PRIMARY_SHADES[3]:-$accent_soft}",
+			"statusBarItem.hoverBackground": "${PRIMARY_SHADES[1]:-$accent_primary}",
+			"statusBarItem.prominentBackground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+			"statusBarItem.prominentForeground": "${bg_dark}",
+
+			// ── Tabs ──
+			"tab.activeBackground": "${bg_panel}",
+			"tab.activeForeground": "${SECONDARY_SHADES[5]:-$fg_main}",
+			"tab.inactiveBackground": "${bg_main}",
+			"tab.inactiveForeground": "${fg_soft}80",
+			"tab.border": "${bg_dark}",
+			"tab.activeBorderTop": "${accent_primary}",
+			"tab.hoverBackground": "${bg_hover}",
+			"editorGroupHeader.tabsBackground": "${bg_dark}",
+
+			// ── Panel (Terminal, Output, etc.) ──
+			"panel.background": "${bg_main}",
+			"panel.border": "${accent_primary}50",
+			"panelTitle.activeBorder": "${accent_secondary}",
+			"panelTitle.activeForeground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+			"panelTitle.inactiveForeground": "${fg_soft}80",
+			"terminal.foreground": "${fg_main}",
+			"terminal.ansiYellow": "${accent_secondary}",
+			"terminal.ansiBrightYellow": "${SECONDARY_SHADES[5]:-$fg_main}",
+			"terminal.ansiMagenta": "${accent_primary}",
+			"terminal.ansiBrightMagenta": "${fg_soft}",
+			"terminal.ansiRed": "${PRIMARY_SHADES[1]:-$accent_primary}",
+			"terminal.ansiBrightRed": "${PRIMARY_SHADES[3]:-$accent_soft}",
+			"terminalCursor.foreground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+
+			// ── Lists & Trees ──
+			"list.activeSelectionBackground": "${accent_primary}50",
+			"list.activeSelectionForeground": "${SECONDARY_SHADES[5]:-$fg_main}",
+			"list.hoverBackground": "${PRIMARY_SHADES[2]:-$accent_soft}20",
+			"list.focusBackground": "${accent_secondary}30",
+			"list.highlightForeground": "${accent_secondary}",
+			"list.inactiveSelectionBackground": "${fg_soft}20",
+
+			// ── Input & Dropdowns ──
+			"input.background": "${bg_sidebar}",
+			"input.foreground": "${fg_main}",
+			"input.border": "${accent_primary}50",
+			"input.placeholderForeground": "${fg_soft}60",
+			"inputOption.activeBorder": "${accent_secondary}",
+			"dropdown.background": "${bg_sidebar}",
+			"dropdown.border": "${accent_primary}50",
+			"dropdown.foreground": "${fg_soft}",
+
+			// ── Buttons ──
+			"button.background": "${accent_primary}",
+			"button.foreground": "${bg_dark}",
+			"button.hoverBackground": "${PRIMARY_SHADES[1]:-$accent_primary}",
+			"button.secondaryBackground": "${accent_secondary}",
+			"button.secondaryForeground": "${bg_dark}",
+			"button.secondaryHoverBackground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+
+			// ── Scrollbar ──
+			"scrollbar.shadow": "${bg_dark}50",
+			"scrollbarSlider.background": "${accent_primary}30",
+			"scrollbarSlider.hoverBackground": "${accent_primary}60",
+			"scrollbarSlider.activeBackground": "${accent_primary}80",
+
+			// ── Notifications ──
+			"notificationCenter.border": "${accent_primary}",
+			"notifications.background": "${bg_sidebar}",
+			"notifications.foreground": "${fg_soft}",
+			"notificationsInfoIcon.foreground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+
+			// ── Git Decorations ──
+			"gitDecoration.addedResourceForeground": "${SECONDARY_SHADES[2]:-$accent_secondary}",
+			"gitDecoration.modifiedResourceForeground": "${accent_primary}",
+			"gitDecoration.deletedResourceForeground": "${PRIMARY_SHADES[1]:-$accent_primary}",
+			"gitDecoration.untrackedResourceForeground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+			"gitDecoration.conflictingResourceForeground": "${accent_secondary}",
+
+			// ── Minimap ──
+			"minimap.selectionHighlight": "${accent_primary}80",
+			"minimap.findMatchHighlight": "${accent_secondary}80",
+
+			// ── Peek View ──
+			"peekView.border": "${accent_primary}",
+			"peekViewEditor.background": "${bg_main}",
+			"peekViewResult.background": "${bg_sidebar}",
+			"peekViewTitle.background": "${bg_dark}",
+			"peekViewTitleLabel.foreground": "${fg_soft}",
+			"peekViewEditor.matchHighlightBackground": "${accent_secondary}50",
+
+			// ── Breadcrumbs ──
+			"breadcrumb.foreground": "${fg_soft}",
+			"breadcrumb.focusForeground": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+			"breadcrumb.activeSelectionForeground": "${accent_primary}",
+
+			// ── Welcome Page ──
+			"welcomePage.tileBackground": "${bg_sidebar}",
+			"welcomePage.tileBorder": "${accent_primary}30",
+			"walkThrough.embeddedEditorBackground": "${bg_main}",
+
+			// ── Focus Borders ──
+			"focusBorder": "${accent_primary}80",
+			"contrastBorder": "${accent_primary}30"$(if [[ "$USE_COMPLEMENTARY" == true ]] && [[ -n "$compl_highlight" ]]; then echo ",
+
+			// ── Complementary Accents ──
+			\"editorOverviewRuler.findMatchForeground\": \"${compl_highlight}80\",
+			\"editorOverviewRuler.selectionHighlightForeground\": \"${compl_border}60\",
+			\"editor.lineHighlightBorder\": \"${compl_accent}30\",
+			\"editorWidget.border\": \"${compl_border}\",
+			\"badge.background\": \"${compl_highlight}\",
+			\"badge.foreground\": \"${bg_dark}\""; fi)
+		},
+		"editor.tokenColorCustomizations": {
+			"comments": "${PRIMARY_SHADES[3]:-$accent_soft}80",
+			"strings": "${SECONDARY_SHADES[2]:-$accent_secondary}",
+			"keywords": "${accent_primary}",
+			"numbers": "${SECONDARY_SHADES[1]:-$accent_secondary}",
+			"types": "${fg_soft}",
+			"functions": "${SECONDARY_SHADES[5]:-$fg_main}",
+			"variables": "${fg_main}",
+			"textMateRules": [
+				{
+					"scope": ["entity.name.function", "support.function"],
+					"settings": { "foreground": "${SECONDARY_SHADES[5]:-$fg_main}" }
+				},
+				{
+					"scope": ["entity.name.type", "support.type", "support.class"],
+					"settings": { "foreground": "${fg_soft}" }
+				},
+				{
+					"scope": ["keyword", "storage.type", "storage.modifier"],
+					"settings": { "foreground": "${accent_primary}" }
+				},
+				{
+					"scope": ["string", "string.quoted"],
+					"settings": { "foreground": "${SECONDARY_SHADES[2]:-$accent_secondary}" }
+				},
+				{
+					"scope": ["constant.numeric"],
+					"settings": { "foreground": "${SECONDARY_SHADES[1]:-$accent_secondary}" }
+				},
+				{
+					"scope": ["variable.parameter", "variable.other"],
+					"settings": { "foreground": "${fg_main}" }
+				},
+				{
+					"scope": ["comment", "punctuation.definition.comment"],
+					"settings": { "foreground": "${PRIMARY_SHADES[3]:-$accent_soft}80", "fontStyle": "italic" }
+				},
+				{
+					"scope": ["entity.name.tag"],
+					"settings": { "foreground": "${PRIMARY_SHADES[1]:-$accent_primary}" }
+				},
+				{
+					"scope": ["entity.other.attribute-name"],
+					"settings": { "foreground": "${SECONDARY_SHADES[3]:-$accent_secondary}" }
+				},
+				{
+					"scope": ["punctuation", "meta.brace"],
+					"settings": { "foreground": "${PRIMARY_SHADES[4]:-$fg_soft}" }
+				},
+				{
+					"scope": ["constant.language", "support.constant"],
+					"settings": { "foreground": "${accent_secondary}" }
+				}$(if [[ "$USE_COMPLEMENTARY" == true ]] && [[ -n "$compl_highlight" ]]; then echo ",
+				{
+					\"scope\": [\"markup.heading\", \"entity.name.section\"],
+					\"settings\": { \"foreground\": \"${compl_highlight}\" }
+				},
+				{
+					\"scope\": [\"markup.bold\"],
+					\"settings\": { \"foreground\": \"${compl_accent}\", \"fontStyle\": \"bold\" }
+				}"; fi)
+			]
+		}
+THEME_EOF
+}
+
+# ─── File Operations ──────────────────────────────────────────────────────────
+
+create_workspace_file() {
+    local output="$1"
+    local theme_settings
+    theme_settings=$(generate_theme_json)
+    
+    cat << EOF > "$output"
+{
+	"folders": [
+		{
+			"path": "../"
+		}
+	],
+	"settings": {
+${theme_settings}
+	}
+}
+EOF
+    log_success "Created workspace file: $output"
+}
+
+update_workspace_file() {
+    local config="$1"
+    local theme_settings
+    theme_settings=$(generate_theme_json)
+    
+    # Backup original
+    cp "$config" "${config}.bak"
+    log_verbose "Backup created: ${config}.bak"
+    
+    # Check if file has settings section
+    if grep -q '"settings"' "$config"; then
+        # Check if colorCustomizations exists
+        if grep -q '"workbench.colorCustomizations"' "$config"; then
+            # Complex replacement - use temp file approach
+            local tmp_file=$(mktemp)
+            
+            # Use awk to replace the color customizations section
+            awk -v theme="$theme_settings" '
+            BEGIN { in_color_section = 0; in_token_section = 0; brace_count = 0 }
+            
+            /"workbench\.colorCustomizations"/ {
+                in_color_section = 1
+                brace_count = 0
+                next
+            }
+            
+            /"editor\.tokenColorCustomizations"/ && !in_color_section {
+                in_token_section = 1
+                brace_count = 0
+                next
+            }
+            
+            in_color_section {
+                if (/{/) brace_count++
+                if (/}/) {
+                    brace_count--
+                    if (brace_count <= 0) {
+                        in_color_section = 0
+                        print theme
+                        if (/},/) print ","
+                    }
+                }
+                next
+            }
+            
+            in_token_section {
+                if (/{/) brace_count++
+                if (/}/) {
+                    brace_count--
+                    if (brace_count <= 0) {
+                        in_token_section = 0
+                    }
+                }
+                next
+            }
+            
+            { print }
+            ' "$config" > "$tmp_file"
+            
+            mv "$tmp_file" "$config"
+            log_success "Updated color customizations in: $config"
+        else
+            # Insert colorCustomizations into settings
+            # Find the settings object and insert after the opening brace
+            local tmp_file=$(mktemp)
+            
+            awk -v theme="$theme_settings" '
+            /"settings"[[:space:]]*:[[:space:]]*{/ {
+                print
+                getline
+                print theme ","
+                print
+                next
+            }
+            { print }
+            ' "$config" > "$tmp_file"
+            
+            mv "$tmp_file" "$config"
+            log_success "Added color customizations to: $config"
+        fi
+    else
+        # No settings section - add one
+        local tmp_file=$(mktemp)
+        
+        # Find the last closing brace and insert settings before it
+        awk -v theme="$theme_settings" '
+        {
+            if (/^}[[:space:]]*$/ && !done) {
+                print "\t,\"settings\": {"
+                print theme
+                print "\t}"
+                done = 1
+            }
+            print
+        }
+        ' "$config" > "$tmp_file"
+        
+        mv "$tmp_file" "$config"
+        log_success "Added settings section to: $config"
+    fi
+}
+
+show_palette_preview() {
+    echo ""
+    echo "═══════════════════════════════════════════════════════════"
+    echo "  🎨 ${THEME_NAME} - Color Palette Preview"
+    echo "═══════════════════════════════════════════════════════════"
+    echo ""
+    
+    echo "  Primary: ${PRIMARY_COLOR}"
+    echo "  ─────────────────────────────────────"
+    for i in "${!PRIMARY_SHADES[@]}"; do
+        local hex="${PRIMARY_SHADES[$i]}"
+        # Print colored block using pastel
+        printf "  "
+        pastel paint "$hex" "████"
+        printf " %s\n" "$hex"
+    done
+    
+    echo ""
+    echo "  Secondary: ${SECONDARY_COLOR}"
+    echo "  ─────────────────────────────────────"
+    for i in "${!SECONDARY_SHADES[@]}"; do
+        local hex="${SECONDARY_SHADES[$i]}"
+        printf "  "
+        pastel paint "$hex" "████"
+        printf " %s\n" "$hex"
+    done
+    
+    if [[ "$USE_COMPLEMENTARY" == true ]] && [[ ${#COMPLEMENTARY_COLORS[@]} -gt 0 ]]; then
+        echo ""
+        echo "  Complementary Accents:"
+        echo "  ─────────────────────────────────────"
+        for i in "${!COMPLEMENTARY_COLORS[@]}"; do
+            local hex="${COMPLEMENTARY_COLORS[$i]}"
+            printf "  "
+            pastel paint "$hex" "████"
+            printf " %s\n" "$hex"
+        done
+    fi
+    
+    echo ""
+    echo "═══════════════════════════════════════════════════════════"
+    echo ""
+}
+
+# ─── Main ─────────────────────────────────────────────────────────────────────
+
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -p|--primary)
+                PRIMARY_COLOR="$2"
+                shift 2
+                ;;
+            -s|--secondary)
+                SECONDARY_COLOR="$2"
+                shift 2
+                ;;
+            -n|--name)
+                THEME_NAME="$2"
+                shift 2
+                ;;
+            -o|--output)
+                OUTPUT_FILE="$2"
+                shift 2
+                ;;
+            -c|--config)
+                CONFIG_FILE="$2"
+                shift 2
+                ;;
+            --compl|--complementary)
+                USE_COMPLEMENTARY=true
+                shift
+                ;;
+            --bg-lightness)
+                BG_LIGHTNESS="$2"
+                shift 2
+                ;;
+            --dry-run)
+                DRY_RUN=true
+                shift
+                ;;
+            -v|--verbose)
+                VERBOSE=true
+                shift
+                ;;
+            -h|--help)
+                print_usage
+                exit 0
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                print_usage
+                exit 1
+                ;;
+        esac
+    done
+}
+
+main() {
+    parse_args "$@"
+    
+    echo ""
+    echo "  🎨 vscode-theme-gen"
+    echo "  ═══════════════════════════════════════"
+    echo ""
+    
+    check_dependencies
+    
+    # Validate inputs
+    if [[ -n "$CONFIG_FILE" ]] && [[ ! -f "$CONFIG_FILE" ]]; then
+        log_error "Config file not found: $CONFIG_FILE"
+        exit 1
+    fi
+    
+    if [[ -z "$OUTPUT_FILE" ]] && [[ -z "$CONFIG_FILE" ]] && [[ "$DRY_RUN" == false ]]; then
+        log_error "Either --output or --config must be specified (or use --dry-run)"
+        exit 1
+    fi
+    
+    # Generate palette
+    generate_palette
+    
+    # Show preview (always show the color palette)
+    show_palette_preview
+    
+    # Generate output
+    if [[ "$DRY_RUN" == true ]]; then
+        log_info "Dry run - no files written"
+        echo ""
+        echo "Generated theme settings:"
+        echo "─────────────────────────────────────────────────────────────"
+        generate_theme_json
+        echo ""
+        echo "─────────────────────────────────────────────────────────────"
+    elif [[ -n "$OUTPUT_FILE" ]]; then
+        create_workspace_file "$OUTPUT_FILE"
+    elif [[ -n "$CONFIG_FILE" ]]; then
+        update_workspace_file "$CONFIG_FILE"
+    fi
+    
+    echo ""
+    log_success "Done!"
+    echo ""
+}
+
+main "$@"
