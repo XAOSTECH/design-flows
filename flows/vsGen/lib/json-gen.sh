@@ -101,7 +101,7 @@ generate_theme_json() {
 
     # ── Emit JSON ─────────────────────────────────────────────────────────────
     cat << THEME_EOF
-		"workbench.colourCustomizations": {
+		"workbench.colorCustomizations": {
 			// ═══════════════════════════════════════════════════════════
 			// 🎨 ${THEME_NAME}
 			// Generated with vscode-theme-gen using pastel

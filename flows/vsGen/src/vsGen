@@ -45,7 +45,7 @@ BG_LIGHTNESS="0.12"
 # Variation: 0 = no extra hues, 0.5 = standard, 1.0 = rainbow cacophony
 VARIATION="0.5"
 
-# ─── Colour Arrays (populated by generate_palette in colors.sh) ──────────────
+# ─── Colour Arrays (populated by generate_palette in colours.sh) ──────────────
 declare -a PRIMARY_SHADES=()
 declare -a SECONDARY_SHADES=()
 declare -a TERTIARY_SHADES=()
