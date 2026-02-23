@@ -6,10 +6,10 @@
     <img alt="GitHub repo" src="https://img.shields.io/badge/GitHub-XAOSTECH%2F-design-flows-181717?style=for-the-badge&logo=github">
   </a>
   <a href="https://github.com/XAOSTECH/design-flows/releases">
-    <img alt="GitHub release" src="https://img.shields.io/github/v/release/XAOSTECH/design-flows?style=for-the-badge&logo=semantic-release&color=blue">
+    <img alt="GitHub release" src="https://img.shields.io/github/v/release/XAOSTECH/design-flows?style=for-the-badge&logo=semantic-release&colour=blue">
   </a>
   <a href="https://github.com/XAOSTECH/design-flows/blob/main/LICENSE">
-    <img alt="License" src="https://img.shields.io/github/license/XAOSTECH/design-flows?style=for-the-badge&color=green">
+    <img alt="License" src="https://img.shields.io/github/license/XAOSTECH/design-flows?style=for-the-badge&colour=green">
   </a>
 </p>
 
@@ -18,13 +18,13 @@
     <img alt="CI Status" src="https://github.com/XAOSTECH/design-flows/actions/workflows/bash-lint.yml/badge.svg?branch=Main>
   </a>
   <a href="https://github.com/XAOSTECH/design-flows/issues">
-    <img alt="Issues" src="https://img.shields.io/github/issues/XAOSTECH/design-flows?style=flat-square&logo=github&color=yellow">
+    <img alt="Issues" src="https://img.shields.io/github/issues/XAOSTECH/design-flows?style=flat-square&logo=github&colour=yellow">
   </a>
   <a href="https://github.com/XAOSTECH/design-flows/pulls">
-    <img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/XAOSTECH/design-flows?style=flat-square&logo=github&color=purple">
+    <img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/XAOSTECH/design-flows?style=flat-square&logo=github&colour=purple">
   </a>
   <a href="https://github.com/XAOSTECH/design-flows/stargazers">
-    <img alt="Stars" src="https://img.shields.io/github/stars/XAOSTECH/design-flows?style=flat-square&logo=github&color=gold">
+    <img alt="Stars" src="https://img.shields.io/github/stars/XAOSTECH/design-flows?style=flat-square&logo=github&colour=gold">
   </a>
   <a href="https://github.com/XAOSTECH/design-flows/network/members">
     <img alt="Forks" src="https://img.shields.io/github/forks/XAOSTECH/design-flows?style=flat-square&logo=github">
@@ -32,22 +32,22 @@
 </p>
 
 <p align="center">
-  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/XAOSTECH/design-flows?style=flat-square&logo=git&color=blue">
-  <img alt="Repo Size" src="https://img.shields.io/github/repo-size/XAOSTECH/design-flows?style=flat-square&logo=files&color=teal">
-  <img alt="Code Size" src="https://img.shields.io/github/languages/code-size/XAOSTECH/design-flows?style=flat-square&logo=files&color=orange">
-  <img alt="Contributors" src="https://img.shields.io/github/contributors/XAOSTECH/design-flows?style=flat-square&logo=github&color=green">
+  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/XAOSTECH/design-flows?style=flat-square&logo=git&colour=blue">
+  <img alt="Repo Size" src="https://img.shields.io/github/repo-size/XAOSTECH/design-flows?style=flat-square&logo=files&colour=teal">
+  <img alt="Code Size" src="https://img.shields.io/github/languages/code-size/XAOSTECH/design-flows?style=flat-square&logo=files&colour=orange">
+  <img alt="Contributors" src="https://img.shields.io/github/contributors/XAOSTECH/design-flows?style=flat-square&logo=github&colour=green">
 </p>
 
 <!-- Optional: Stability/Maturity Badge -->
 <p align="center">
-  <img alt="Stability" src="https://img.shields.io/badge/stability-beta-yellow?style=flat-square">
+  <img alt="Stability" src="https://img.shields.io/badge/stability-stable-green?style=flat-square">
   <img alt="Maintenance" src="https://img.shields.io/maintenance/yes/2026?style=flat-square">
 </p>
 
 ---
 
 <p align="center">
-  <b>Graphic-/Webdesign flows</b>
+  <b>Unix Design Flows</b>
 </p>
 
 ---
@@ -70,7 +70,7 @@
 
 ## 🔍 Overview
 
-Graphic-/Webdesign flows
+Unix Design Flows
 
 ### Why design-flows?
 
