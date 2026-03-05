@@ -155,3 +155,63 @@ update_workspace_file() {
         log_success "Added settings section to: $config"
     fi
 }
+
+# ─── Create workspace file with optional symlink ─────────────────────────────
+# If symlink_path is provided, creates the workspace at export_path and
+# creates a symlink at symlink_path pointing to it.
+
+create_workspace_with_symlink() {
+    local export_path="$1"
+    local symlink_path="$2"
+    local theme_settings
+    theme_settings=$(generate_theme_json)
+
+    # Create the actual workspace file at export location
+    mkdir -p "$(dirname "$export_path")"
+
+    cat << EOF > "$export_path"
+{
+	"folders": [
+		{
+			"path": "../"
+		}
+	],
+	"settings": {
+${theme_settings}
+	}
+}
+EOF
+    log_success "Created workspace file: $export_path"
+
+    # Create symlink if symlink path provided
+    if [[ -n "$symlink_path" ]]; then
+        mkdir -p "$(dirname "$symlink_path")"
+
+        # Remove existing symlink/file at symlink location
+        if [[ -L "$symlink_path" ]] || [[ -f "$symlink_path" ]]; then
+            rm -f "$symlink_path"
+            log_verbose "Removed existing file/link: $symlink_path"
+        fi
+
+        # Create symlink with relative path if possible
+        local target_dir
+        target_dir="$(dirname "$symlink_path")"
+        
+        # Get relative path from symlink directory to export file
+        local export_dir
+        export_dir="$(dirname "$export_path")"
+        
+        # Try to create relative symlink
+        if [[ "$target_dir" == "$export_dir" ]]; then
+            # Same directory, use filename only
+            ln -s "$(basename "$export_path")" "$symlink_path"
+        else
+            # Different directories, use relative path
+            local rel_path
+            rel_path=$(python3 -c "import os.path; print(os.path.relpath('$export_path', '$target_dir'))" 2>/dev/null || echo "$export_path")
+            ln -s "$rel_path" "$symlink_path"
+        fi
+
+        log_success "Created symlink: $symlink_path → $(basename "$export_path")"
+    fi
+}

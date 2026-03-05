@@ -36,6 +36,7 @@ THEME_NAME="Custom Theme"
 USE_COMPLEMENTARY=false
 OUTPUT_FILE=""
 CONFIG_FILE=""
+EXPORT_FILE=""
 DRY_RUN=false
 VERBOSE=false
 
@@ -71,6 +72,8 @@ OPTIONS:
     -n, --name <NAME>          Theme name for comments.        Default: "Custom Theme"
     -o, --output <FILE>        Output workspace file path.
                                Default: ./out/<Name>-<date>-v<ver>.code-workspace
+    -e, --export <FILE>        Export file path (actual location).
+                               Creates symlink at -o location pointing to export target.
     -c, --config <FILE>        Existing workspace file to update (overwrites colours).
     --compl                    Generate complementary accent colours.
     --variation <0.0-1.0>      Colour variation level.         Default: 0.5
@@ -91,6 +94,9 @@ EXAMPLES:
 
     # Auto-output to ./out/ with defaults
     vsGen -p coral -s gold -t skyblue --compl
+
+    # Export to external location with symlink in design folder
+    vsGen -p coral -s gold -e ~/projects/my-workspace.code-workspace -o ./out/symlink
 
     # Use a preset
     vsGen --preset sakura
@@ -139,6 +145,10 @@ parse_args() {
                 ;;
             -o|--output)
                 OUTPUT_FILE="$2"
+                shift 2
+                ;;
+            -e|--export)
+                EXPORT_FILE="$2"
                 shift 2
                 ;;
             -c|--config)
@@ -221,8 +231,14 @@ main() {
 
     # Default output path when neither -o nor -c supplied (and not dry-run)
     if [[ -z "$OUTPUT_FILE" ]] && [[ -z "$CONFIG_FILE" ]] && [[ "$DRY_RUN" == false ]]; then
-        OUTPUT_FILE=$(resolve_default_output)
-        log_info "No output specified — defaulting to: $OUTPUT_FILE"
+        if [[ -z "$EXPORT_FILE" ]]; then
+            OUTPUT_FILE=$(resolve_default_output)
+            log_info "No output specified — defaulting to: $OUTPUT_FILE"
+        else
+            # If only export is specified, create symlink in default location
+            OUTPUT_FILE=$(resolve_default_output)
+            log_info "Export mode: file → $EXPORT_FILE, symlink → $OUTPUT_FILE"
+        fi
     fi
 
     # Generate palette
@@ -240,6 +256,9 @@ main() {
         generate_theme_json
         echo ""
         echo "─────────────────────────────────────────────────────────────"
+    elif [[ -n "$EXPORT_FILE" ]]; then
+        # Export mode: write to export location and optionally create symlink
+        create_workspace_with_symlink "$EXPORT_FILE" "$OUTPUT_FILE"
     elif [[ -n "$OUTPUT_FILE" ]]; then
         create_workspace_file "$OUTPUT_FILE"
     elif [[ -n "$CONFIG_FILE" ]]; then
