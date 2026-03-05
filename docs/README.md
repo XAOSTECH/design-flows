@@ -52,39 +52,54 @@
 
 ---
 
+> **Note:** This repository is part of the [**design-tools**](https://github.com/XAOSTECH/design-tools) monorepo.  
+> 📚 [**View full documentation →**](https://xaostech.github.io/design-tools)
+
+---
+
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
-- [Features](#-features)
+- [Available Flows](#-available-flows)
 - [Installation](#-installation)
 - [Usage](#-usage)
-- [Configuration](#-configuration)
+- [Flow Development](#-flow-development)
 - [Documentation](#-documentation)
 - [Contributing](#-contributing)
-- [Roadmap](#-roadmap)
-- [Support](#-support)
 - [License](#-license)
-- [Acknowledgements](#-acknowledgements)
 
 ---
 
 ## 🔍 Overview
 
-Unix Design Flows
+**design-flows** provides automated design workflow scripts for Unix-like systems. Each flow is a self-contained tool that automates specific design tasks.
+
+### Available Flows
+
+#### vsGen — VS Code Theme Generator
+
+**Location:** `flows/vsGen/`
+
+Generates VS Code workspace colour themes from 3 base colours with intelligent palette expansion.
+
+**Features:**
+- 10 shades per colour (light to dark gradients)
+- Analogous, triadic, and split-complementary harmonies
+- WCAG contrast ratio protection (≥3.0)
+- 8 built-in presets
+- Configurable variation level
+- Auto-installs dependencies
+
+**[→ Full vsGen Documentation](../flows/vsGen/README.md)**
 
 ### Why design-flows?
 
-{{WHY_PROJECT}}
+Design workflows involve repetitive tasks that can be automated. design-flows provides:
 
----
-
-## ✨ Features
-
-- 🚀 **Feature 1** - Description of feature 1
-- 🔧 **Feature 2** - Description of feature 2
-- 📦 **Feature 3** - Description of feature 3
-- 🔒 **Feature 4** - Description of feature 4
-- ⚡ **Feature 5** - Description of feature 5
+- **Consistency** — Automated workflows ensure consistent output
+- **Speed** — Generate complex themes in seconds
+- **Accessibility** — Built-in WCAG compliance checks
+- **Flexibility** — Highly configurable with sensible defaults
 
 ---
 
@@ -92,75 +107,111 @@ Unix Design Flows
 
 ### Prerequisites
 
-- {{PREREQUISITE_1}}
-- {{PREREQUISITE_2}}
-- {{PREREQUISITE_3}}
+- Bash 5.0+
+- Git
+- [pastel](https://github.com/sharkdp/pastel) (auto-installed by vsGen if missing)
 
-### Quick Start
+### Standalone Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/XAOSTECH/design-flows.git
 cd design-flows
-
-# Run installation
-./install.sh
-
-# Or manual installation
-{{MANUAL_INSTALL_STEPS}}
 ```
 
-### Package Managers
+### Monorepo Installation
 
 ```bash
-# npm
-npm install {{PACKAGE_NAME}}
-
-# yarn
-yarn add {{PACKAGE_NAME}}
-
-# apt (Debian/Ubuntu)
-sudo apt install {{PACKAGE_NAME}}
-
-# brew (macOS)
-brew install {{PACKAGE_NAME}}
+# Clone the entire monorepo
+git clone --recursive https://github.com/XAOSTECH/design-tools.git
+cd design-tools/design-flows
 ```
 
 ---
 
 ## 🚀 Usage
 
-### Basic Usage
+### vsGen Examples
 
 ```bash
-{{BASIC_USAGE_EXAMPLE}}
+cd flows/vsGen
+
+# Use a built-in preset
+./src/vsGen --preset sakura
+
+# Custom colour combinations
+./src/vsGen -p coral -s gold -t skyblue
+
+# High variation with complementary colours
+./src/vsGen -p "#ff1493" -s "#ffd700" --variation 0.8 --compl
+
+# Preview without writing files
+./src/vsGen --preset neon --dry-run -v
+
+# Update existing workspace
+./src/vsGen -c project.code-workspace -p violet -s lime
+
+# List all presets
+./src/vsGen --list-presets
 ```
 
-### Advanced Usage
+### Output
+
+vsGen generates VS Code workspace files at:
+
+```
+./out/<ThemeName>-<YYYY-MM-DD>-v<VERSION>.code-workspace
+```
+
+Open in VS Code:
 
 ```bash
-{{ADVANCED_USAGE_EXAMPLE}}
+code ./out/My-Theme-2026-03-05-v1.1.0.code-workspace
 ```
 
-### Examples
+---
 
-<details>
-<summary>📘 Example 1: {{EXAMPLE_1_TITLE}}</summary>
+## 🛠️ Flow Development
+
+### Structure
+
+Each flow should follow this structure:
+
+```
+flows/
+└── <flow-name>/
+    ├── README.md           # Flow-specific documentation
+    ├── src/
+    │   └── <flow-name>     # Main executable
+    ├── lib/                # Optional libraries
+    │   ├── deps.sh         # Dependency checks
+    │   └── ...
+    └── test/               # Optional tests
+        └── test.sh
+```
+
+### Guidelines
+
+1. **Modular** — Extract reusable functions into `lib/`
+2. **Self-documenting** — Include `--help` and examples
+3. **Error handling** — Use `set -euo pipefail`
+4. **Logging** — Provide verbose output with `-v`
+5. **Dependencies** — Auto-install when possible
+6. **UK English** — Use British spelling (colour, not color)
+
+### Example 1: Generate a New Theme
 
 ```bash
-{{EXAMPLE_1_CODE}}
+cd flows/vsGen
+./src/vsGen --preset sakura -n "Sakura Workspace"
 ```
 
-</details>
-
-<details>
-<summary>📗 Example 2: {{EXAMPLE_2_TITLE}}</summary>
+### Example 2: Update Existing Workspace Colours
 
 ```bash
-{{EXAMPLE_2_CODE}}
+cd flows/vsGen
+./src/vsGen -c ../../project.code-workspace -p coral -s gold -t skyblue --variation 0.8
 ```
-
-</details>
 
 ---
 
@@ -170,34 +221,50 @@ brew install {{PACKAGE_NAME}}
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `{{ENV_VAR_1}}` | {{ENV_VAR_1_DESC}} | `{{ENV_VAR_1_DEFAULT}}` |
-| `{{ENV_VAR_2}}` | {{ENV_VAR_2_DESC}} | `{{ENV_VAR_2_DEFAULT}}` |
+| `FLOWS_VERBOSE` | Enable verbose logging (`1` to enable) | `0` |
+| `PASTEL_BIN` | Override pastel executable path | `pastel` |
 
 ### Configuration File
 
 ```yaml
 # config.yml
-{{CONFIG_FILE_EXAMPLE}}
+default_flow: vsGen
+default_preset: sakura
+variation: 0.5
+background_lightness: 0.12
+complementary_colours: true
 ```
 
 ---
 
 ## 📚 Documentation
 
-| Document | Description |
-|----------|-------------|
-| [📖 Getting Started](docs/GETTING_STARTED.md) | Quick start guide |
-| [📋 API Reference](docs/API.md) | Complete API documentation |
-| [🔧 Configuration](docs/CONFIGURATION.md) | Configuration options |
-| [❓ FAQ](docs/FAQ.md) | Frequently asked questions |
+### Flow Documentation
+
+| Flow | Documentation | Description |
+|------|---------------|-------------|
+| **vsGen** | [README](../flows/vsGen/README.md) | VS Code theme generator |
+
+### Additional Resources
+
+- [design-tools monorepo](https://github.com/XAOSTECH/design-tools)
+- [Contributing Guidelines](../CONTRIBUTING.md)
+- [GitHub Pages](https://xaostech.github.io/design-tools)
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) before submitting PRs.
+Contributions are welcome! See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines.
 
-1. Fork the repository
+### Workflow
+
+1. **Fork** and clone the repository
+2. **Create branch**: `git checkout -b flow/<flow-name>`
+3. **Develop** following flow development guidelines
+4. **Test** thoroughly with various inputs
+5. **Commit** with conventional commits: `feat(flow): add feature`
+6. **Push** and open a Pull Request
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
@@ -209,11 +276,11 @@ See also: [Code of Conduct](CODE_OF_CONDUCT.md) | [Security Policy](SECURITY.md)
 
 ## 🗺️ Roadmap
 
-- [x] {{COMPLETED_FEATURE_1}}
-- [x] {{COMPLETED_FEATURE_2}}
-- [ ] {{PLANNED_FEATURE_1}}
-- [ ] {{PLANNED_FEATURE_2}}
-- [ ] {{PLANNED_FEATURE_3}}
+- [x] vsGen modularised into `src/` + `lib/`
+- [x] WCAG readability safeguards for generated themes
+- [ ] Add additional flows (terminal theme generator)
+- [ ] Add flow-level smoke tests in CI
+- [ ] Add optional YAML configuration loading
 
 See the [open issues](https://github.com/XAOSTECH/design-flows/issues) for a full list of proposed features and known issues.
 
@@ -221,7 +288,7 @@ See the [open issues](https://github.com/XAOSTECH/design-flows/issues) for a ful
 
 ## 💬 Support
 
-- 📧 **Email**: {{SUPPORT_EMAIL}}
+- 📧 **Email**: maintainers@xaostech.dev
 - 💻 **Issues**: [GitHub Issues](https://github.com/XAOSTECH/design-flows/issues)
 - 💬 **Discussions**: [GitHub Discussions](https://github.com/XAOSTECH/design-flows/discussions)
 - 📝 **Wiki**: [GitHub Wiki](https://github.com/XAOSTECH/design-flows/wiki)
@@ -236,9 +303,9 @@ Distributed under the GPL-3.0 License. See [`LICENSE`](LICENSE) for more informa
 
 ## 🙏 Acknowledgements
 
-- {{ACKNOWLEDGMENT_1}}
-- {{ACKNOWLEDGMENT_2}}
-- {{ACKNOWLEDGMENT_3}}
+- [pastel](https://github.com/sharkdp/pastel) for CLI colour tooling
+- VS Code workspace settings and colour customisation model
+- Contributors and testers in XAOSTECH design workflows
 
 ---
 
