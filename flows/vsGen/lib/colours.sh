@@ -178,27 +178,38 @@ generate_palette() {
     log_verbose "Tertiary base:  $tertiary_hex"
 
     # ── primary shades (saturated → soft, 10 stops) ──
+    # Variation affects the intensity of lightness/saturation shifts
     log_verbose "Generating primary gradient..."
     local primary_bright primary_soft primary_dark
-    primary_bright=$(saturate "$PRIMARY_COLOUR" 0.25)
-    primary_soft=$(lighten "$PRIMARY_COLOUR" 0.20)
-    primary_dark=$(darken "$PRIMARY_COLOUR" 0.15)
+    local sat_amount light_amount dark_amount
+    sat_amount=$(awk "BEGIN { printf \"%.3f\", 0.15 + 0.15 * $VARIATION }")
+    light_amount=$(awk "BEGIN { printf \"%.3f\", 0.10 + 0.20 * $VARIATION }")
+    dark_amount=$(awk "BEGIN { printf \"%.3f\", 0.10 + 0.15 * $VARIATION }")
+    primary_bright=$(saturate "$PRIMARY_COLOUR" "$sat_amount")
+    primary_soft=$(lighten "$PRIMARY_COLOUR" "$light_amount")
+    primary_dark=$(darken "$PRIMARY_COLOUR" "$dark_amount")
     mapfile -t PRIMARY_SHADES < <(generate_gradient "$primary_dark" "$primary_bright" 4; generate_gradient "$primary_bright" "$primary_soft" 6)
 
     # ── secondary shades ──
     log_verbose "Generating secondary gradient..."
     local secondary_bright secondary_soft secondary_dark
-    secondary_bright=$(saturate "$SECONDARY_COLOUR" 0.25)
-    secondary_soft=$(lighten "$SECONDARY_COLOUR" 0.25)
-    secondary_dark=$(darken "$SECONDARY_COLOUR" 0.12)
+    sat_amount=$(awk "BEGIN { printf \"%.3f\", 0.15 + 0.15 * $VARIATION }")
+    light_amount=$(awk "BEGIN { printf \"%.3f\", 0.12 + 0.20 * $VARIATION }")
+    dark_amount=$(awk "BEGIN { printf \"%.3f\", 0.08 + 0.12 * $VARIATION }")
+    secondary_bright=$(saturate "$SECONDARY_COLOUR" "$sat_amount")
+    secondary_soft=$(lighten "$SECONDARY_COLOUR" "$light_amount")
+    secondary_dark=$(darken "$SECONDARY_COLOUR" "$dark_amount")
     mapfile -t SECONDARY_SHADES < <(generate_gradient "$secondary_dark" "$secondary_bright" 4; generate_gradient "$secondary_bright" "$secondary_soft" 6)
 
     # ── tertiary shades ──
     log_verbose "Generating tertiary gradient..."
     local tertiary_bright tertiary_soft tertiary_dark
-    tertiary_bright=$(saturate "$TERTIARY_COLOUR" 0.20)
-    tertiary_soft=$(lighten "$TERTIARY_COLOUR" 0.22)
-    tertiary_dark=$(darken "$TERTIARY_COLOUR" 0.10)
+    sat_amount=$(awk "BEGIN { printf \"%.3f\", 0.12 + 0.15 * $VARIATION }")
+    light_amount=$(awk "BEGIN { printf \"%.3f\", 0.10 + 0.20 * $VARIATION }")
+    dark_amount=$(awk "BEGIN { printf \"%.3f\", 0.07 + 0.10 * $VARIATION }")
+    tertiary_bright=$(saturate "$TERTIARY_COLOUR" "$sat_amount")
+    tertiary_soft=$(lighten "$TERTIARY_COLOUR" "$light_amount")
+    tertiary_dark=$(darken "$TERTIARY_COLOUR" "$dark_amount")
     mapfile -t TERTIARY_SHADES < <(generate_gradient "$tertiary_dark" "$tertiary_bright" 4; generate_gradient "$tertiary_bright" "$tertiary_soft" 6)
 
     # ── analogous colours (±30° from each base) ──

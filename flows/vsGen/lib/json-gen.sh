@@ -14,15 +14,30 @@ generate_theme_json() {
     secondary_hex=$(get_hex "$SECONDARY_COLOUR")
     tertiary_hex=$(get_hex "$TERTIARY_COLOUR")
 
-    # ── Background colours (subtle tint from primary) ──
-    local bg_main bg_sidebar bg_panel bg_dark bg_hover bg_input bg_widget
-    bg_main=$(mix_colors "#1e1e1e" "$primary_hex" 0.95)
-    bg_sidebar=$(mix_colors "#252526" "$primary_hex" 0.92)
-    bg_panel=$(mix_colors "#2d2d30" "$primary_hex" 0.90)
-    bg_dark=$(mix_colors "#1a1a1a" "$primary_hex" 0.96)
-    bg_hover=$(mix_colors "#3a3a3a" "$primary_hex" 0.88)
-    bg_input=$(mix_colors "#303030" "$primary_hex" 0.93)
-    bg_widget=$(mix_colors "#2a2a2a" "$primary_hex" 0.91)
+    # ── Background colours (adjusted by BG_LIGHTNESS, tinted with primary) ──
+    # BG_LIGHTNESS: 0.0 = pure black, 0.12 = default dark, 0.5 = medium gray, 1.0 = white
+    # Convert to 0-100 scale for pastel
+    local bg_base bg_main bg_sidebar bg_panel bg_dark bg_hover bg_input bg_widget
+    
+    # Calculate lightness values (convert 0.0-1.0 to 0-100 for pastel)
+    local bg_main_l bg_sidebar_l bg_panel_l bg_dark_l bg_hover_l bg_input_l bg_widget_l
+    bg_main_l=$(awk "BEGIN { printf \"%.1f\", $BG_LIGHTNESS * 100 }")
+    bg_sidebar_l=$(awk "BEGIN { printf \"%.1f\", ($BG_LIGHTNESS + 0.02) * 100 }")
+    bg_panel_l=$(awk "BEGIN { printf \"%.1f\", ($BG_LIGHTNESS + 0.05) * 100 }")
+    bg_dark_l=$(awk "BEGIN { l=$BG_LIGHTNESS - 0.02; printf \"%.1f\", ((l > 0) ? l : 0) * 100 }")
+    bg_hover_l=$(awk "BEGIN { printf \"%.1f\", ($BG_LIGHTNESS + 0.10) * 100 }")
+    bg_input_l=$(awk "BEGIN { printf \"%.1f\", ($BG_LIGHTNESS + 0.07) * 100 }")
+    bg_widget_l=$(awk "BEGIN { printf \"%.1f\", ($BG_LIGHTNESS + 0.04) * 100 }")
+    
+    # Create base grays at target lightness, then apply primary tint
+    # Mix factors: higher = more gray (subtle tinting), lower = more primary (stronger tinting)
+    bg_main=$(mix_colors "$(set_lightness '#808080' "$bg_main_l")" "$primary_hex" 0.90)
+    bg_sidebar=$(mix_colors "$(set_lightness '#808080' "$bg_sidebar_l")" "$primary_hex" 0.88)
+    bg_panel=$(mix_colors "$(set_lightness '#808080' "$bg_panel_l")" "$primary_hex" 0.85)
+    bg_dark=$(mix_colors "$(set_lightness '#808080' "$bg_dark_l")" "$primary_hex" 0.92)
+    bg_hover=$(mix_colors "$(set_lightness '#808080' "$bg_hover_l")" "$primary_hex" 0.82)
+    bg_input=$(mix_colors "$(set_lightness '#808080' "$bg_input_l")" "$primary_hex" 0.87)
+    bg_widget=$(mix_colors "$(set_lightness '#808080' "$bg_widget_l")" "$primary_hex" 0.86)
 
     # ── Foreground colours – all passed through ensure_readable ──
     local fg_main fg_soft fg_muted fg_bright
