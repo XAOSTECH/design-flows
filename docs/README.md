@@ -90,8 +90,6 @@ Generates VS Code workspace colour themes from 3 base colours with intelligent p
 - Configurable variation level
 - Auto-installs dependencies
 
-**[→ Full vsGen Documentation](../flows/vsGen/README.md)**
-
 ### Why design-flows?
 
 Design workflows involve repetitive tasks that can be automated. design-flows provides:
