@@ -100,8 +100,11 @@ find_monorepo_pastel_source_dir() {
     return 1
 }
 
-# Build pastel from monorepo submodule source if cargo is available.
+# Build pastel from monorepo submodule source when --build is requested.
+# If local cargo is missing/too old, use a temporary rustup toolchain and remove it after build.
 build_monorepo_pastel_binary() {
+    MONOREPO_PASTEL_BUILD_BIN=""
+
     # Only run when explicitly requested via --build.
     if [[ "${VSGEN_BUILD_PASTEL:-0}" != "1" ]]; then
         return 1
@@ -114,75 +117,82 @@ build_monorepo_pastel_binary() {
 
     local cargo_bin
     cargo_bin="$(type -P cargo || true)"
-    local installed_temp_cargo=false
-    if [[ -z "$cargo_bin" ]]; then
-        log_info "--build enabled: cargo not found, installing temporary Rust toolchain..."
+    local temp_rust_dir=""
+    local used_temp_toolchain=false
 
-        if command -v apt-get >/dev/null 2>&1; then
-            if [[ "$(id -u)" -eq 0 ]]; then
-                DEBIAN_FRONTEND=noninteractive apt-get update -y >/dev/null 2>&1 || true
-                if DEBIAN_FRONTEND=noninteractive apt-get install -y cargo rustc >/dev/null 2>&1; then
-                    installed_temp_cargo=true
-                else
-                    log_warn "Could not install cargo/rustc automatically; falling back"
-                    return 1
-                fi
-            elif command -v sudo >/dev/null 2>&1; then
-                if sudo -n true >/dev/null 2>&1; then
-                    sudo DEBIAN_FRONTEND=noninteractive apt-get update -y >/dev/null 2>&1 || true
-                    if sudo DEBIAN_FRONTEND=noninteractive apt-get install -y cargo rustc >/dev/null 2>&1; then
-                        installed_temp_cargo=true
-                    else
-                        log_warn "Could not install cargo/rustc automatically; falling back"
-                        return 1
-                    fi
-                else
-                    log_warn "sudo requires a password; cannot auto-install cargo in non-interactive mode"
-                    return 1
-                fi
-            else
-                log_warn "No root/sudo access to install cargo automatically; falling back"
-                return 1
-            fi
-        else
-            log_warn "Unsupported package manager for temporary cargo install; falling back"
+    _setup_temp_toolchain() {
+        temp_rust_dir="$(mktemp -d)"
+        export CARGO_HOME="$temp_rust_dir/cargo"
+        export RUSTUP_HOME="$temp_rust_dir/rustup"
+
+        if ! curl https://sh.rustup.rs -sSf | sh -s -- -y --profile minimal --default-toolchain stable >/dev/null 2>&1; then
+            log_warn "Failed to install temporary Rust toolchain via rustup"
             return 1
         fi
 
-        cargo_bin="$(type -P cargo || true)"
-        if [[ -z "$cargo_bin" ]]; then
-            log_warn "cargo still unavailable after install attempt; falling back"
+        cargo_bin="$CARGO_HOME/bin/cargo"
+        if [[ ! -x "$cargo_bin" ]]; then
+            log_warn "Temporary cargo executable not found after rustup install"
+            return 1
+        fi
+
+        used_temp_toolchain=true
+        return 0
+    }
+
+    # If cargo is unavailable, bootstrap a temporary local toolchain.
+    if [[ -z "$cargo_bin" ]]; then
+        log_info "--build enabled: cargo not found, installing temporary Rust toolchain..."
+        if ! _setup_temp_toolchain; then
             return 1
         fi
     fi
 
     log_info "Building pastel from monorepo submodule (${source_dir})..."
     local build_ok=true
-    if ! (cd "$source_dir" && "$cargo_bin" build --release >/dev/null 2>&1); then
-        log_warn "Failed to build monorepo pastel with cargo; falling back"
-        build_ok=false
-    fi
+    local build_log
+    build_log="$(mktemp)"
 
-    local built_bin="$source_dir/target/release/pastel"
-    if [[ "$installed_temp_cargo" == true ]]; then
-        log_info "Removing temporary Rust toolchain..."
-        if [[ "$(id -u)" -eq 0 ]]; then
-            DEBIAN_FRONTEND=noninteractive apt-get purge -y cargo rustc >/dev/null 2>&1 || true
-            DEBIAN_FRONTEND=noninteractive apt-get autoremove -y >/dev/null 2>&1 || true
-        elif command -v sudo >/dev/null 2>&1 && sudo -n true >/dev/null 2>&1; then
-            sudo DEBIAN_FRONTEND=noninteractive apt-get purge -y cargo rustc >/dev/null 2>&1 || true
-            sudo DEBIAN_FRONTEND=noninteractive apt-get autoremove -y >/dev/null 2>&1 || true
+    if ! (cd "$source_dir" && "$cargo_bin" build --release >"$build_log" 2>&1); then
+        # Common case: distro cargo too old for lockfile v4, retry with fresh temporary toolchain.
+        if grep -q "lock file version 4" "$build_log" && [[ "$used_temp_toolchain" == false ]]; then
+            log_info "System cargo too old for this lockfile; retrying with temporary latest toolchain..."
+            if _setup_temp_toolchain; then
+                if ! (cd "$source_dir" && "$cargo_bin" build --release >"$build_log" 2>&1); then
+                    build_ok=false
+                fi
+            else
+                build_ok=false
+            fi
+        else
+            build_ok=false
         fi
     fi
 
+    local built_bin="$source_dir/target/release/pastel"
+
     if [[ "$build_ok" == true ]] && [[ -x "$built_bin" ]]; then
-        echo "$built_bin"
+        MONOREPO_PASTEL_BUILD_BIN="$built_bin"
+        rm -f "$build_log"
+        if [[ "$used_temp_toolchain" == true ]] && [[ -n "$temp_rust_dir" ]]; then
+            log_info "Removing temporary Rust toolchain..."
+            rm -rf "$temp_rust_dir"
+        fi
         return 0
     fi
 
-    if [[ "$build_ok" == true ]]; then
-        log_warn "cargo build completed but pastel binary not found at $built_bin"
+    log_warn "Failed to build monorepo pastel with cargo; falling back"
+    if [[ "$VERBOSE" == true ]]; then
+        log_verbose "Build output:"
+        sed 's/^/    /' "$build_log" >&2
     fi
+
+    rm -f "$build_log"
+    if [[ "$used_temp_toolchain" == true ]] && [[ -n "$temp_rust_dir" ]]; then
+        log_info "Removing temporary Rust toolchain..."
+        rm -rf "$temp_rust_dir"
+    fi
+
     return 1
 }
 
@@ -343,8 +353,8 @@ check_dependencies() {
     fi
 
     # 3) Monorepo submodule source auto-build (if cargo exists)
-    if monorepo_pastel=$(build_monorepo_pastel_binary); then
-        export PASTEL_BIN="$monorepo_pastel"
+    if build_monorepo_pastel_binary; then
+        export PASTEL_BIN="$MONOREPO_PASTEL_BUILD_BIN"
         local built_version
         built_version=$("${PASTEL_BIN}" --version 2>/dev/null | grep -oP 'pastel \K[0-9.]+' || echo "unknown")
         log_verbose "pastel ${built_version} built from monorepo submodule (${PASTEL_BIN})"
