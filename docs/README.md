@@ -107,7 +107,7 @@ Design workflows involve repetitive tasks that can be automated. design-flows pr
 
 - Bash 5.0+
 - Git
-- [pastel](https://github.com/sharkdp/pastel) (auto-installed by vsGen if missing)
+- [pastel](https://github.com/sharkdp/pastel)
 
 ### Standalone Installation
 
@@ -124,6 +124,24 @@ cd design-flows
 git clone --recursive https://github.com/XAOSTECH/design-tools.git
 cd design-tools/design-flows
 ```
+
+In the `design-tools` monorepo, `pastel` is delivered as a root submodule at
+`../pastel/`.
+
+`vsGen` resolves `pastel` in this order:
+1. `PASTEL_BIN` (explicit override)
+2. Monorepo submodule binary: `../pastel/target/release/pastel` (or debug)
+3. System `pastel` from `PATH`
+4. Auto-install fallback
+
+If you use monorepo `pastel`, build it once:
+
+```bash
+./flows/vsGen/lib/deps.sh --build --check -v
+```
+
+This keeps `vsGen` itself unchanged and lets you trigger submodule build logic
+manually from `deps.sh` when you want it.
 
 ---
 
