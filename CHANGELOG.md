@@ -1,4 +1,33 @@
 
+## [0.0.1] - 2026-03-09 (re-release)
+
+### Added
+- add automatic versioning for incremental theme generations
+- add deps.sh --build manual mode for monorepo pastel
+- add --export/-e flag with symlink support
+- improve variation and bg-lightness parameters
+- auto-install pastel + UK English (COLOR→COLOUR)
+- add colour presets, --list-presets, and config summary
+- expand palette with analogous, triadic, split-complementary & cross-blends
+- add WCAG contrast ratio guard for font readability
+
+### Fixed
+- support temporary rustup toolchain for modern pastel builds
+- anglicise description + americanise function
+- pass -- to pastel rotate for negative degree values
+
+### Changed
+- chore: dc-init2
+- chore: gitkeep out + README del ref
+- chore(json-gen): adapt info
+- chore: update CHANGELOG for v0.0.1
+- dc-init
+- refactor: extract libraries from monolithic vsGen script
+- restructure folders
+
+### Documentation
+- fill README placeholders
+
 ## [0.0.1] - 2026-02-23
 
 ### Added
