@@ -2,8 +2,8 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # json-gen.sh — VS Code theme JSON generation for vscode-theme-gen
 # ═══════════════════════════════════════════════════════════════════════════════
-# Builds the "workbench.colourCustomizations" and
-# "editor.tokenColourCustomizations" JSON blocks.
+# Builds the "workbench.colorCustomizations" and
+# "editor.tokenColorCustomizations" JSON blocks.
 #
 # Requires: colours.sh sourced (for pastel helpers + ensure_readable)
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -484,12 +484,12 @@ generate_theme_json() {
 			\"badge.foreground\": \"${bg_dark}\""; fi)$(if [[ ${#VARIATION_COLOURS[@]} -gt 0 ]]; then echo ",
 
 			// ── Variation Accents ──
-			\"editorBracketHighlight.foreground1\": \"${var0}\",
-			\"editorBracketHighlight.foreground2\": \"${var1}\",
-			\"editorBracketHighlight.foreground3\": \"${var2}\",
-			\"editorBracketHighlight.foreground4\": \"${var3}\""; fi)
+			\"editorBracketPairGuide.activeBackground1\": \"${var0}60\",
+			\"editorBracketPairGuide.activeBackground2\": \"${var1}60\",
+			\"editorBracketPairGuide.activeBackground3\": \"${var2}60\",
+			\"editorBracketPairGuide.activeBackground4\": \"${var3}60\""; fi)
 		},
-		"editor.tokenColourCustomizations": {
+		"editor.tokenColorCustomizations": {
 			"comments": "${p3}80",
 			"strings": "${s2}",
 			"keywords": "${accent_primary}",
