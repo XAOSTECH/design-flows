@@ -128,7 +128,7 @@ generate_theme_json() {
 		"workbench.colorCustomizations": {
 			// ═══════════════════════════════════════════════════════════
 			// 🎨 ${THEME_NAME}
-			// Generated with the vsGen design flow (https://github.io/XAOSTECH/design-tools) using pastel (https://github.com/sharkdp/pastel)
+			// Generated with the vsGen design flow (https://github.com/XAOSTECH/design-flows) using pastel (https://github.com/sharkdp/pastel)
 			// Primary:   ${PRIMARY_COLOUR} (${primary_hex})
 			// Secondary: ${SECONDARY_COLOUR} (${secondary_hex})
 			// Tertiary:  ${TERTIARY_COLOUR} (${tertiary_hex})
