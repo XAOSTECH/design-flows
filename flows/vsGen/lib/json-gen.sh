@@ -61,10 +61,19 @@ generate_theme_json() {
     # ── Complementary accents (if enabled) ──
     local compl_highlight="" compl_border="" compl_accent=""
     if [[ "$USE_COMPLEMENTARY" == true ]] && [[ ${#COMPLEMENTARY_COLOURS[@]} -gt 0 ]]; then
-        compl_highlight="${COMPLEMENTARY_COLOURS[0]}"
+        compl_highlight=$(ensure_readable "${COMPLEMENTARY_COLOURS[0]}")
         compl_border="${COMPLEMENTARY_COLOURS[2]}"
-        compl_accent="${COMPLEMENTARY_COLOURS[4]}"
+        compl_accent=$(ensure_readable "${COMPLEMENTARY_COLOURS[4]}")
     fi
+
+    # ── Badge colours (always visible against dark backgrounds) ──
+    local badge_bg badge_fg
+    if [[ -n "$compl_highlight" ]]; then
+        badge_bg="$compl_highlight"
+    else
+        badge_bg="$accent_secondary"
+    fi
+    badge_fg="$bg_dark"
 
     # ── Analogous & triadic helpers ──
     local ana0 ana1 ana2 ana3 tri0 tri1 bln0 bln1 bln2 bln3
@@ -214,6 +223,10 @@ generate_theme_json() {
 			"activityBarBadge.background": "${accent_secondary}",
 			"activityBarBadge.foreground": "${bg_dark}",
 
+			// ── Badges ──
+			"badge.background": "${badge_bg}",
+			"badge.foreground": "${badge_fg}",
+
 			// ── Title Bar ──
 			"titleBar.activeBackground": "${bg_dark}",
 			"titleBar.activeForeground": "${fg_soft}",
@@ -292,6 +305,7 @@ generate_theme_json() {
 			"list.invalidItemForeground": "#ff5555",
 			"list.errorForeground": "#ff5555",
 			"list.warningForeground": "${accent_secondary}",
+			"list.deemphasizedForeground": "${fg_muted}",
 			"tree.indentGuidesStroke": "${p2}40",
 
 			// ── Input & Dropdowns ──
@@ -477,11 +491,7 @@ generate_theme_json() {
 			"textBlockQuote.border": "${accent_primary}40",
 			"textCodeBlock.background": "${bg_panel}",
 			"textPreformat.foreground": "${s2}",
-			"textSeparator.foreground": "${p2}30"$(if [[ "$USE_COMPLEMENTARY" == true ]] && [[ -n "$compl_highlight" ]]; then echo ",
-
-			// ── Complementary Accents ──
-			\"badge.background\": \"${compl_highlight}\",
-			\"badge.foreground\": \"${bg_dark}\""; fi)$(if [[ ${#VARIATION_COLOURS[@]} -gt 0 ]]; then echo ",
+			"textSeparator.foreground": "${p2}30"$(if [[ ${#VARIATION_COLOURS[@]} -gt 0 ]]; then echo ",
 
 			// ── Variation Accents ──
 			\"editorBracketPairGuide.activeBackground1\": \"${var0}60\",
