@@ -34,6 +34,7 @@ SECONDARY_COLOUR="yellow"
 TERTIARY_COLOUR="lavender"
 THEME_NAME="Custom Theme"
 USE_COMPLEMENTARY=false
+INVERT_THEME=false
 OUTPUT_FILE=""
 CONFIG_FILE=""
 EXPORT_FILE=""
@@ -76,6 +77,7 @@ OPTIONS:
                                Creates symlink at -o location pointing to export target.
     -c, --config <FILE>        Existing workspace file to update (overwrites colours).
     --compl                    Generate complementary accent colours.
+    --invert                   Invert the generated theme (flip all colours).
     --variation <0.0-1.0>      Colour variation level.         Default: 0.5
                                  0   = none (strict primary/secondary/tertiary)
                                  0.5 = standard variety
@@ -106,6 +108,9 @@ EXAMPLES:
 
     # Preview a hotpink/lime/cyan theme
     vsGen -p hotpink -s lime -t cyan --dry-run -v
+
+    # Auto-invert a theme for a complementary version
+    vsGen -p deeppink -s gold --invert -n "Gold-Inverted"
 
 COLOUR VALUES:
     Named colours: pink, coral, gold, hotpink, lavender, skyblue, etc.
@@ -157,6 +162,10 @@ parse_args() {
                 ;;
             --compl|--complementary)
                 USE_COMPLEMENTARY=true
+                shift
+                ;;
+            --invert)
+                INVERT_THEME=true
                 shift
                 ;;
             --variation)
@@ -221,6 +230,7 @@ main() {
     log_info "Tertiary:  ${TERTIARY_COLOUR}"
     log_info "Variation: ${VARIATION}"
     [[ "$USE_COMPLEMENTARY" == true ]] && log_info "Complementary: enabled"
+    [[ "$INVERT_THEME" == true ]] && log_info "Invert: enabled"
     echo ""
 
     # Validate inputs
@@ -243,6 +253,11 @@ main() {
 
     # Generate palette
     generate_palette
+
+    # Invert palette if requested
+    if [[ "$INVERT_THEME" == true ]]; then
+        invert_palette
+    fi
 
     # Show preview
     show_palette_preview

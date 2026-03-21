@@ -332,6 +332,58 @@ generate_palette() {
     log_success "Palette generated (${#PRIMARY_SHADES[@]}+${#SECONDARY_SHADES[@]}+${#TERTIARY_SHADES[@]} shades, ${#ANALOGOUS_COLOURS[@]} analogous, ${#TRIADIC_COLOURS[@]} triadic, ${#BLEND_COLOURS[@]} blends)"
 }
 
+# ─── Palette Inversion ───────────────────────────────────────────────────────
+# Inverts every colour in every palette array via pastel complement.
+# Called after generate_palette when --invert is used.
+
+invert_palette() {
+    log_info "Inverting palette..."
+
+    _invert_hex() {
+        pastel complement "$1" | pastel format hex | tr -d '\n'
+    }
+
+    # Invert shade arrays
+    local i
+    for i in "${!PRIMARY_SHADES[@]}"; do
+        PRIMARY_SHADES[$i]=$(_invert_hex "${PRIMARY_SHADES[$i]}")
+    done
+    for i in "${!SECONDARY_SHADES[@]}"; do
+        SECONDARY_SHADES[$i]=$(_invert_hex "${SECONDARY_SHADES[$i]}")
+    done
+    for i in "${!TERTIARY_SHADES[@]}"; do
+        TERTIARY_SHADES[$i]=$(_invert_hex "${TERTIARY_SHADES[$i]}")
+    done
+
+    # Invert derived arrays
+    for i in "${!ANALOGOUS_COLOURS[@]}"; do
+        ANALOGOUS_COLOURS[$i]=$(_invert_hex "${ANALOGOUS_COLOURS[$i]}")
+    done
+    for i in "${!TRIADIC_COLOURS[@]}"; do
+        TRIADIC_COLOURS[$i]=$(_invert_hex "${TRIADIC_COLOURS[$i]}")
+    done
+    for i in "${!BLEND_COLOURS[@]}"; do
+        BLEND_COLOURS[$i]=$(_invert_hex "${BLEND_COLOURS[$i]}")
+    done
+    if [[ ${#COMPLEMENTARY_COLOURS[@]} -gt 0 ]]; then
+        for i in "${!COMPLEMENTARY_COLOURS[@]}"; do
+            COMPLEMENTARY_COLOURS[$i]=$(_invert_hex "${COMPLEMENTARY_COLOURS[$i]}")
+        done
+    fi
+    if [[ ${#VARIATION_COLOURS[@]} -gt 0 ]]; then
+        for i in "${!VARIATION_COLOURS[@]}"; do
+            VARIATION_COLOURS[$i]=$(_invert_hex "${VARIATION_COLOURS[$i]}")
+        done
+    fi
+
+    # Also invert the base colour names so json-gen.sh picks up inverted hex
+    PRIMARY_COLOUR=$(get_hex "$(_invert_hex "$(get_hex "$PRIMARY_COLOUR")")")
+    SECONDARY_COLOUR=$(get_hex "$(_invert_hex "$(get_hex "$SECONDARY_COLOUR")")")
+    TERTIARY_COLOUR=$(get_hex "$(_invert_hex "$(get_hex "$TERTIARY_COLOUR")")")
+
+    log_success "Palette inverted"
+}
+
 # ─── Palette Preview ─────────────────────────────────────────────────────────
 
 show_palette_preview() {
