@@ -177,6 +177,33 @@ generate_palette() {
     log_verbose "Secondary base: $secondary_hex"
     log_verbose "Tertiary base:  $tertiary_hex"
 
+    # ── Lift near-black colours for hue operations ──────────────────────────
+    # Hue rotation / saturation of pure black (#000000) produces black — useless
+    # for palette generation.  We create "hue-capable" variants at L≈0.10 so that
+    # analogous, triadic, variation, and blend operations can produce visible
+    # tinted dark colours, while the original hex is still used for backgrounds.
+    local primary_hue_hex="$primary_hex"
+    local secondary_hue_hex="$secondary_hex"
+    local tertiary_hue_hex="$tertiary_hex"
+
+    _lift_for_hue() {
+        local hex="$1"
+        local lum
+        lum=$(_luminance "$hex")
+        local too_dark
+        too_dark=$(awk "BEGIN { print ($lum < 0.005) ? 1 : 0 }")
+        if [[ "$too_dark" == "1" ]]; then
+            # Lift to L=0.10 — still very dark, but gives hue ops something to work with
+            log_verbose "Hue lift: $hex too dark (lum=$lum) — lifting to L=0.10"
+            set_lightness "$hex" 0.10
+        else
+            echo "$hex"
+        fi
+    }
+    primary_hue_hex=$(_lift_for_hue "$primary_hex")
+    secondary_hue_hex=$(_lift_for_hue "$secondary_hex")
+    tertiary_hue_hex=$(_lift_for_hue "$tertiary_hex")
+
     # ── primary shades (saturated → soft, 10 stops) ──
     # Variation affects the intensity of lightness/saturation shifts
     log_verbose "Generating primary gradient..."
@@ -213,49 +240,50 @@ generate_palette() {
     mapfile -t TERTIARY_SHADES < <(generate_gradient "$tertiary_dark" "$tertiary_bright" 4; generate_gradient "$tertiary_bright" "$tertiary_soft" 6)
 
     # ── analogous colours (±30° from each base) ──
+    # Use hue-lifted variants so near-black primaries produce visible tints
     log_verbose "Generating analogous colours..."
     ANALOGOUS_COLOURS=(
-        "$(rotate_hue "$primary_hex"  30)"
-        "$(rotate_hue "$primary_hex" -30)"
-        "$(rotate_hue "$secondary_hex"  30)"
-        "$(rotate_hue "$secondary_hex" -30)"
-        "$(rotate_hue "$tertiary_hex"  30)"
-        "$(rotate_hue "$tertiary_hex" -30)"
+        "$(rotate_hue "$primary_hue_hex"  30)"
+        "$(rotate_hue "$primary_hue_hex" -30)"
+        "$(rotate_hue "$secondary_hue_hex"  30)"
+        "$(rotate_hue "$secondary_hue_hex" -30)"
+        "$(rotate_hue "$tertiary_hue_hex"  30)"
+        "$(rotate_hue "$tertiary_hue_hex" -30)"
     )
 
     # ── triadic colours (±120° from primary) ──
     log_verbose "Generating triadic colours..."
     TRIADIC_COLOURS=(
-        "$(rotate_hue "$primary_hex" 120)"
-        "$(rotate_hue "$primary_hex" 240)"
-        "$(rotate_hue "$secondary_hex" 120)"
-        "$(rotate_hue "$tertiary_hex" 120)"
+        "$(rotate_hue "$primary_hue_hex" 120)"
+        "$(rotate_hue "$primary_hue_hex" 240)"
+        "$(rotate_hue "$secondary_hue_hex" 120)"
+        "$(rotate_hue "$tertiary_hue_hex" 120)"
     )
 
     # ── cross-blended accent colours ──
     log_verbose "Generating cross-blend colours..."
     BLEND_COLOURS=(
-        "$(mix_colors "$primary_hex" "$secondary_hex" 0.3)"
-        "$(mix_colors "$primary_hex" "$secondary_hex" 0.7)"
-        "$(mix_colors "$primary_hex" "$tertiary_hex" 0.4)"
+        "$(mix_colors "$primary_hue_hex" "$secondary_hex" 0.3)"
+        "$(mix_colors "$primary_hue_hex" "$secondary_hex" 0.7)"
+        "$(mix_colors "$primary_hue_hex" "$tertiary_hex" 0.4)"
         "$(mix_colors "$secondary_hex" "$tertiary_hex" 0.5)"
-        "$(mix_colors "$primary_hex" "$tertiary_hex" 0.6)"
-        "$(mix_colors "$(lighten "$primary_hex" 0.15)" "$secondary_hex" 0.5)"
+        "$(mix_colors "$primary_hue_hex" "$tertiary_hex" 0.6)"
+        "$(mix_colors "$(lighten "$primary_hue_hex" 0.15)" "$secondary_hex" 0.5)"
     )
 
     # ── complementary colours ──
     if [[ "$USE_COMPLEMENTARY" == true ]]; then
         log_verbose "Generating complementary colours..."
         local compl_primary compl_secondary compl_tertiary mixed
-        compl_primary=$(get_complementary "$PRIMARY_COLOUR")
-        compl_secondary=$(get_complementary "$SECONDARY_COLOUR")
-        compl_tertiary=$(get_complementary "$TERTIARY_COLOUR")
-        mixed=$(mix_colors "$PRIMARY_COLOUR" "$SECONDARY_COLOUR" 0.5)
+        compl_primary=$(get_complementary "$primary_hue_hex")
+        compl_secondary=$(get_complementary "$secondary_hue_hex")
+        compl_tertiary=$(get_complementary "$tertiary_hue_hex")
+        mixed=$(mix_colors "$primary_hue_hex" "$secondary_hex" 0.5)
 
         # Split-complementary (±150° from primary)
         local split_a split_b
-        split_a=$(rotate_hue "$primary_hex" 150)
-        split_b=$(rotate_hue "$primary_hex" 210)
+        split_a=$(rotate_hue "$primary_hue_hex" 150)
+        split_b=$(rotate_hue "$primary_hue_hex" 210)
 
         COMPLEMENTARY_COLOURS=(
             "$compl_primary"
@@ -287,14 +315,14 @@ generate_palette() {
             local angle
             angle=$(awk "BEGIN { printf \"%.1f\", $i * $angle_step }")
             local rotated
-            rotated=$(rotate_hue "$primary_hex" "$angle")
+            rotated=$(rotate_hue "$primary_hue_hex" "$angle")
 
             # Mix back toward primary by (1 - variation) so low variation
             # keeps hues close while high variation lets them go wild.
             local mix_factor
             mix_factor=$(awk "BEGIN { printf \"%.2f\", 1.0 - $VARIATION }")
             if (( $(awk "BEGIN { print ($mix_factor > 0.02) }") )); then
-                rotated=$(mix_colors "$rotated" "$primary_hex" "$mix_factor")
+                rotated=$(mix_colors "$rotated" "$primary_hue_hex" "$mix_factor")
             fi
 
             VARIATION_COLOURS+=("$rotated")
