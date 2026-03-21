@@ -229,9 +229,6 @@ generate_theme_json() {
 			"editorBracketPairGuide.background1": "${accent_primary}30",
 			"editorBracketPairGuide.background2": "${accent_secondary}30",
 			"editorBracketPairGuide.background3": "${accent_tertiary}30",
-			"editorBracketPairGuide.activeBackground1": "${accent_primary}60",
-			"editorBracketPairGuide.activeBackground2": "${accent_secondary}60",
-			"editorBracketPairGuide.activeBackground3": "${accent_tertiary}60",
 
 			// ── Editor Gutter ──
 			"editorGutter.background": "${bg_main}",
@@ -831,7 +828,12 @@ generate_theme_json() {
 			\"editorBracketPairGuide.activeBackground1\": \"${var0}60\",
 			\"editorBracketPairGuide.activeBackground2\": \"${var1}60\",
 			\"editorBracketPairGuide.activeBackground3\": \"${var2}60\",
-			\"editorBracketPairGuide.activeBackground4\": \"${var3}60\""; fi)
+			\"editorBracketPairGuide.activeBackground4\": \"${var3}60\""; else echo ",
+
+			// ── Bracket Pair Active Guides ──
+			\"editorBracketPairGuide.activeBackground1\": \"${accent_primary}60\",
+			\"editorBracketPairGuide.activeBackground2\": \"${accent_secondary}60\",
+			\"editorBracketPairGuide.activeBackground3\": \"${accent_tertiary}60\""; fi)
 		},
 		"editor.tokenColorCustomizations": {
 			"comments": "${p3}80",
