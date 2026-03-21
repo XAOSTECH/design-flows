@@ -1,4 +1,20 @@
 
+## [0.1.0] - 2026-03-21
+
+### Added
+- add comprehensive VS Code colour keys
+- add --invert flag to flip generated themes
+
+### Fixed
+- correct repo URL in generated theme comment
+- remove duplicate editorBracketPairGuide.activeBackground keys
+- use hue-lifted variants for near-black colour operations
+- ensure badge readability + add missing SCM color keys
+
+### Changed
+- chore(dc-init): update workflows
+- chore(dc-init): update workflows + action
+
 ## [0.0.1] - 2026-03-09 (re-release)
 
 ### Added
