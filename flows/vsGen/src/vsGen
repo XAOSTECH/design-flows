@@ -21,9 +21,10 @@ set -euo pipefail
 # ─── Resolve paths & source libraries ─────────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LIB_DIR="${SCRIPT_DIR}/../lib"
+SHARED_LIB="${SCRIPT_DIR}/../../../lib"
 
-source "${LIB_DIR}/deps.sh"
-source "${LIB_DIR}/colours.sh"
+source "${SHARED_LIB}/colours.sh"
+source "${SHARED_LIB}/deps.sh"
 source "${LIB_DIR}/json-gen.sh"
 source "${LIB_DIR}/file-ops.sh"
 source "${LIB_DIR}/presets.sh"
