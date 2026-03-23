@@ -115,6 +115,9 @@ EXAMPLES:
 COLOUR VALUES:
     Named colours: pink, coral, gold, hotpink, lavender, skyblue, etc.
     Hex values:    "#ff69b4", "#ffd900", "#b0c4de"
+    Bare hex:      ff69b4, ffd900 (leading '#' is stripped automatically)
+    Note: Always quote hex values with '#' — the shell treats unquoted
+          '#' as a comment character, e.g. -p "#430f02" not -p #430f02
 
 PRESETS:
     sakura, ocean, forest, sunset, neon, nord, dracula, pastel
@@ -129,34 +132,50 @@ EOF
 
 # ─── Argument Parsing ─────────────────────────────────────────────────────────
 
+_require_arg() {
+    local flag="$1"
+    if [[ $# -lt 2 ]] || [[ -z "$2" ]]; then
+        log_error "${flag} requires a value"
+        exit 1
+    fi
+}
+_strip_hash() { printf '%s' "${1#\#}"; }
+
 parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
             -p|--primary)
-                PRIMARY_COLOUR="$2"
+                _require_arg "$1" "${2:-}"
+                PRIMARY_COLOUR="$(_strip_hash "$2")"
                 shift 2
                 ;;
             -s|--secondary)
-                SECONDARY_COLOUR="$2"
+                _require_arg "$1" "${2:-}"
+                SECONDARY_COLOUR="$(_strip_hash "$2")"
                 shift 2
                 ;;
             -t|--tertiary)
-                TERTIARY_COLOUR="$2"
+                _require_arg "$1" "${2:-}"
+                TERTIARY_COLOUR="$(_strip_hash "$2")"
                 shift 2
                 ;;
             -n|--name)
+                _require_arg "$1" "${2:-}"
                 THEME_NAME="$2"
                 shift 2
                 ;;
             -o|--output)
+                _require_arg "$1" "${2:-}"
                 OUTPUT_FILE="$2"
                 shift 2
                 ;;
             -e|--export)
+                _require_arg "$1" "${2:-}"
                 EXPORT_FILE="$2"
                 shift 2
                 ;;
             -c|--config)
+                _require_arg "$1" "${2:-}"
                 CONFIG_FILE="$2"
                 shift 2
                 ;;
@@ -169,12 +188,14 @@ parse_args() {
                 shift
                 ;;
             --variation)
+                _require_arg "$1" "${2:-}"
                 VARIATION="$2"
                 # Clamp to [0, 1]
                 VARIATION=$(awk "BEGIN { v=$VARIATION; if(v<0) v=0; if(v>1) v=1; printf \"%.2f\", v }")
                 shift 2
                 ;;
             --bg-lightness)
+                _require_arg "$1" "${2:-}"
                 BG_LIGHTNESS="$2"
                 shift 2
                 ;;
@@ -183,6 +204,7 @@ parse_args() {
                 shift
                 ;;
             --preset)
+                _require_arg "$1" "${2:-}"
                 apply_preset "$2"
                 shift 2
                 ;;
