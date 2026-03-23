@@ -1,31 +1,9 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════════════════
-# deps.sh — Dependency checks and logging helpers for vscode-theme-gen
+# deps.sh — Dependency resolution for design-flows
 # ═══════════════════════════════════════════════════════════════════════════════
-
-# ─── Logging Helpers ──────────────────────────────────────────────────────────
-
-log_verbose() {
-    if [[ "$VERBOSE" == true ]]; then
-        echo -e "  \033[0;90m$1\033[0m"
-    fi
-}
-
-log_info() {
-    echo -e "  \033[0;36m→\033[0m $1"
-}
-
-log_success() {
-    echo -e "  \033[0;32m✓\033[0m $1"
-}
-
-log_warn() {
-    echo -e "  \033[0;33m⚠\033[0m $1" >&2
-}
-
-log_error() {
-    echo -e "  \033[0;31m✗\033[0m $1" >&2
-}
+# Requires: colours.sh sourced first (for log_* helpers)
+# ═══════════════════════════════════════════════════════════════════════════════
 
 # Wrapper so existing calls like `pastel ...` can route via selected binary.
 pastel() {
@@ -48,7 +26,7 @@ pastel() {
 # Find monorepo root (where .gitmodules lives) by walking up from this flow.
 find_monorepo_root() {
     local current_dir
-    current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+    current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/../" && pwd)"
 
     while [[ "$current_dir" != "/" ]]; do
         if [[ -f "$current_dir/.gitmodules" ]]; then
@@ -106,7 +84,7 @@ build_monorepo_pastel_binary() {
     MONOREPO_PASTEL_BUILD_BIN=""
 
     # Only run when explicitly requested via --build.
-    if [[ "${VSGEN_BUILD_PASTEL:-0}" != "1" ]]; then
+    if [[ "${DESFLOW_BUILD_PASTEL:-0}" != "1" ]]; then
         return 1
     fi
 
@@ -385,7 +363,7 @@ print_deps_usage() {
     cat << 'EOF'
 Usage: deps.sh [OPTIONS]
 
-Dependency helper for vsGen.
+Dependency resolution for design-flows.
 
 OPTIONS:
     --build     Attempt to build ../pastel submodule binary first.
@@ -394,8 +372,8 @@ OPTIONS:
     -h, --help  Show this help message.
 
 Examples:
-    ./flows/vsGen/lib/deps.sh --check
-    ./flows/vsGen/lib/deps.sh --build --check -v
+    ./lib/deps.sh --check
+    ./lib/deps.sh --build --check -v
 EOF
 }
 
@@ -430,9 +408,9 @@ deps_main() {
     done
 
     if [[ "$build_requested" == true ]]; then
-        export VSGEN_BUILD_PASTEL=1
+        export DESFLOW_BUILD_PASTEL=1
     else
-        export VSGEN_BUILD_PASTEL=0
+        export DESFLOW_BUILD_PASTEL=0
     fi
 
     if [[ "$run_check" == true ]]; then
