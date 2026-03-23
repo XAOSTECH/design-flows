@@ -1,10 +1,23 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════════════════
-# colours.sh — Colour manipulation and palette generation for vscode-theme-gen
+# colours.sh — ANSI helpers, colour manipulation and palette generation
 # ═══════════════════════════════════════════════════════════════════════════════
-# All pastel wrappers and palette-building logic lives here.
-# Requires: pastel CLI, deps.sh sourced for logging
+# Shared library for all design-flows.
+# Provides: ANSI log helpers, pastel wrappers, palette-building logic.
 # ═══════════════════════════════════════════════════════════════════════════════
+
+# ─── ANSI Log Helpers ─────────────────────────────────────────────────────────
+
+log_verbose() {
+    if [[ "${VERBOSE:-false}" == true ]]; then
+        echo -e "  \033[0;90m$1\033[0m"
+    fi
+}
+
+log_info()    { echo -e "  \033[0;36m→\033[0m $1"; }
+log_success() { echo -e "  \033[0;32m✓\033[0m $1"; }
+log_warn()    { echo -e "  \033[0;33m⚠\033[0m $1" >&2; }
+log_error()   { echo -e "  \033[0;31m✗\033[0m $1" >&2; }
 
 # ─── Low-Level Pastel Wrappers ────────────────────────────────────────────────
 
