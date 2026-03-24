@@ -161,4 +161,25 @@ FOOTEOF
     write_target_file "${base}/kitty/${THEME_NAME}.conf" "$kitty_conf"
     write_target_file "${base}/alacritty/${THEME_NAME}.toml" "$alacritty_toml"
     write_target_file "${base}/foot/${THEME_NAME}.ini" "$foot_ini"
+
+    # ── Install to user config directories ───────────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        local kitty_dest="${HOME}/.config/kitty"
+        if [[ -d "$kitty_dest" ]]; then
+            cp "${base}/kitty/${THEME_NAME}.conf" "${kitty_dest}/"
+            log_success "Installed: ${kitty_dest}/${THEME_NAME}.conf"
+        fi
+
+        local ala_dest="${HOME}/.config/alacritty"
+        if [[ -d "$ala_dest" ]]; then
+            cp "${base}/alacritty/${THEME_NAME}.toml" "${ala_dest}/"
+            log_success "Installed: ${ala_dest}/${THEME_NAME}.toml"
+        fi
+
+        local foot_dest="${HOME}/.config/foot"
+        if [[ -d "$foot_dest" ]]; then
+            cp "${base}/foot/${THEME_NAME}.ini" "${foot_dest}/"
+            log_success "Installed: ${foot_dest}/${THEME_NAME}.ini"
+        fi
+    fi
 }
