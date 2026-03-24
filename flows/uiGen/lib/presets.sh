@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # ═══════════════════════════════════════════════════════════════════════════════
-# presets.sh — Built-in colour presets for vscode-theme-gen
+# presets.sh — Built-in colour presets for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Each preset defines PRIMARY_COLOUR, SECONDARY_COLOUR, TERTIARY_COLOUR,
-# THEME_NAME, and optionally USE_COMPLEMENTARY / VARIATION.
+# THEME_NAME, and optionally USE_COMPLEMENTARY / VARIATION / ANIMATED.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 declare -A PRESET_NAMES=(
@@ -12,6 +12,7 @@ declare -A PRESET_NAMES=(
     [forest]="Enchanted Forest"
     [sunset]="Golden Sunset"
     [neon]="Neon Nights"
+    [neonpink]="NeonPink"
     [nord]="Nordic Frost"
     [dracula]="Dracula Rose"
     [pastel]="Pastel Dream"
@@ -56,6 +57,14 @@ apply_preset() {
             VARIATION="0.8"
             USE_COMPLEMENTARY=true
             ;;
+        neonpink)
+            PRIMARY_COLOUR="#ffb3d9"
+            SECONDARY_COLOUR="#b15dbc"
+            TERTIARY_COLOUR="#76347f"
+            THEME_NAME="NeonPink"
+            ANIMATED=true
+            VARIATION="0.4"
+            ;;
         nord)
             PRIMARY_COLOUR="#81a1c1"
             SECONDARY_COLOUR="#a3be8c"
@@ -96,6 +105,7 @@ list_presets() {
     echo "    forest   — Green / Light Green / Brown"
     echo "    sunset   — Orange / Gold / Deep Orange (complementary)"
     echo "    neon     — Magenta / Neon Green / Cyan (high variation)"
+    echo "    neonpink — Bright Pink / Purple / Deep Purple (animated)"
     echo "    nord     — Steel Blue / Sage / Purple"
     echo "    dracula  — Pink / Yellow / Purple (complementary)"
     echo "    pastel   — Pastel Pink / Yellow / Indigo"

@@ -1,0 +1,380 @@
+#!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════
+# 🎨 uiGen — UI Theme Generator Dispatcher
+# ═══════════════════════════════════════════════════════════════════════════════
+# Generates desktop UI themes (GNOME Shell, GTK, Chrome, KDE, tmux, etc.)
+# from a shared colour palette powered by pastel.
+#
+# Usage:
+#   uiGen --target gnome-shell,gtk [OPTIONS]
+#
+# Examples:
+#   uiGen --target gnome-shell -p pink -s purple -t white --name NeonPink
+#   uiGen --target gtk,gnome-shell,tmux -p coral -s gold --animated
+#   uiGen --target all -p "#ff69b4" -s "#ffd900" --compl --variation 0.7
+#   uiGen --list-targets
+# ═══════════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# ─── Resolve paths & source libraries ─────────────────────────────────────────
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LIB_DIR="${SCRIPT_DIR}/../lib"
+SHARED_LIB="${SCRIPT_DIR}/../../../lib"
+TARGETS_DIR="${LIB_DIR}/targets"
+
+source "${SHARED_LIB}/colours.sh"
+source "${SHARED_LIB}/deps.sh"
+source "${LIB_DIR}/file-ops.sh"
+source "${LIB_DIR}/presets.sh"
+
+# ─── Default Configuration ────────────────────────────────────────────────────
+PRIMARY_COLOUR="pink"
+SECONDARY_COLOUR="yellow"
+TERTIARY_COLOUR="lavender"
+THEME_NAME="Custom Theme"
+USE_COMPLEMENTARY=false
+INVERT_THEME=false
+DRY_RUN=false
+VERBOSE=false
+ANIMATED=false
+
+OUTPUT_DIR=""
+
+BG_LIGHTNESS="0.12"
+VARIATION="0.5"
+BLUR_RADIUS="12"
+BORDER_RADIUS="12"
+
+# Comma-separated list of targets to generate
+TARGETS=""
+
+# All known target names (order matters for display)
+ALL_TARGETS="gnome-shell gtk tmux chrome kde icons gdm firefox terminals rofi grub"
+
+# ─── Colour Arrays (populated by generate_palette in colours.sh) ──────────────
+declare -a PRIMARY_SHADES=()
+declare -a SECONDARY_SHADES=()
+declare -a TERTIARY_SHADES=()
+declare -a COMPLEMENTARY_COLOURS=()
+declare -a VARIATION_COLOURS=()
+declare -a ANALOGOUS_COLOURS=()
+declare -a TRIADIC_COLOURS=()
+declare -a BLEND_COLOURS=()
+
+# ─── Usage ────────────────────────────────────────────────────────────────────
+
+print_usage() {
+    cat << 'EOF'
+🎨 uiGen — UI Theme Generator Dispatcher
+
+USAGE:
+    uiGen --target <TARGETS> [OPTIONS]
+
+TARGETS (comma-separated):
+    gnome-shell   GNOME Shell theme (gnome-shell.css)
+    gtk           GTK 3/4 theme (gtk.css — agnostic, works for both)
+    tmux          tmux status bar colours (.tmux.conf snippet)
+    chrome        Chrome/Chromium browser theme (manifest.json)
+    kde           KDE Plasma colour scheme (.colors)
+    icons         Icon colour tinting scaffold (index.theme)
+    gdm           GDM login screen (gnome-shell.css variant)
+    firefox       Firefox browser theme (manifest.json)
+    terminals     Terminal emulator themes (kitty, alacritty, foot)
+    rofi          Rofi/Wofi launcher theme (.rasi)
+    grub          GRUB bootloader theme scaffold (theme.txt)
+    all           Generate all targets
+
+OPTIONS:
+    -p, --primary <COLOUR>      Primary colour (name or hex).   Default: pink
+    -s, --secondary <COLOUR>    Secondary colour (name or hex). Default: yellow
+    -t, --tertiary <COLOUR>     Tertiary colour (name or hex).  Default: lavender
+    -n, --name <NAME>           Theme name.                     Default: "Custom Theme"
+    -o, --output <DIR>          Output directory.
+                                Default: ./out/<Name>-<date>/
+    --compl                     Generate complementary accent colours.
+    --invert                    Invert the generated palette.
+    --animated                  Add CSS animations (GNOME Shell only).
+    --variation <0.0-1.0>       Colour variation level.         Default: 0.5
+    --bg-lightness <0.0-1.0>    Background darkness level.      Default: 0.12
+    --blur <px>                 Backdrop blur radius.            Default: 12
+    --border-radius <px>        Default border radius.           Default: 12
+    --preset <NAME>             Use a built-in colour preset.
+    --list-presets              List available presets and exit.
+    --list-targets              List available targets and exit.
+    --dry-run                   Show generated output without writing files.
+    -v, --verbose               Show detailed generation info.
+    -h, --help                  Show this help message.
+    --version                   Print version and exit.
+
+COLOUR VALUES:
+    Named colours: pink, coral, gold, hotpink, lavender, skyblue, etc.
+    Hex values:    "#ff69b4", "#ffd900", "#b0c4de"
+    Bare hex:      ff69b4, ffd900 (leading '#' is stripped automatically)
+    Note: Always quote hex values with '#' — the shell treats unquoted
+          '#' as a comment character, e.g. -p "#430f02" not -p #430f02
+
+EXAMPLES:
+    # Full GNOME desktop theme
+    uiGen --target gnome-shell,gtk -p pink -s purple --animated --name NeonPink
+
+    # Everything at once
+    uiGen --target all -p coral -s gold -t skyblue --compl
+
+    # Quick tmux + terminal colours
+    uiGen --target tmux,terminals -p hotpink -s lime
+
+    # Dry-run a Chrome theme
+    uiGen --target chrome -p "#ff69b4" --dry-run -v
+EOF
+}
+
+# ─── Argument Helpers ─────────────────────────────────────────────────────────
+
+_require_arg() {
+    local flag="$1"
+    if [[ $# -lt 2 ]] || [[ -z "$2" ]]; then
+        log_error "${flag} requires a value"
+        exit 1
+    fi
+}
+_strip_hash() { printf '%s' "${1#\#}"; }
+
+# ─── Argument Parsing ─────────────────────────────────────────────────────────
+
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --target)
+                _require_arg "$1" "${2:-}"
+                TARGETS="$2"
+                shift 2
+                ;;
+            -p|--primary)
+                _require_arg "$1" "${2:-}"
+                PRIMARY_COLOUR="$(_strip_hash "$2")"
+                shift 2
+                ;;
+            -s|--secondary)
+                _require_arg "$1" "${2:-}"
+                SECONDARY_COLOUR="$(_strip_hash "$2")"
+                shift 2
+                ;;
+            -t|--tertiary)
+                _require_arg "$1" "${2:-}"
+                TERTIARY_COLOUR="$(_strip_hash "$2")"
+                shift 2
+                ;;
+            -n|--name)
+                _require_arg "$1" "${2:-}"
+                THEME_NAME="$2"
+                shift 2
+                ;;
+            -o|--output)
+                _require_arg "$1" "${2:-}"
+                OUTPUT_DIR="$2"
+                shift 2
+                ;;
+            --compl|--complementary)
+                USE_COMPLEMENTARY=true
+                shift
+                ;;
+            --invert)
+                INVERT_THEME=true
+                shift
+                ;;
+            --animated)
+                ANIMATED=true
+                shift
+                ;;
+            --variation)
+                _require_arg "$1" "${2:-}"
+                VARIATION="$2"
+                VARIATION=$(awk "BEGIN { v=$VARIATION; if(v<0) v=0; if(v>1) v=1; printf \"%.2f\", v }")
+                shift 2
+                ;;
+            --bg-lightness)
+                _require_arg "$1" "${2:-}"
+                BG_LIGHTNESS="$2"
+                shift 2
+                ;;
+            --blur)
+                _require_arg "$1" "${2:-}"
+                BLUR_RADIUS="$2"
+                shift 2
+                ;;
+            --border-radius)
+                _require_arg "$1" "${2:-}"
+                BORDER_RADIUS="$2"
+                shift 2
+                ;;
+            --dry-run)
+                DRY_RUN=true
+                shift
+                ;;
+            --preset)
+                _require_arg "$1" "${2:-}"
+                apply_preset "$2"
+                shift 2
+                ;;
+            --list-presets)
+                list_presets
+                exit 0
+                ;;
+            --list-targets)
+                list_targets
+                exit 0
+                ;;
+            -v|--verbose)
+                VERBOSE=true
+                shift
+                ;;
+            --version)
+                echo "uiGen v${UIGEN_VERSION}"
+                exit 0
+                ;;
+            -h|--help)
+                print_usage
+                exit 0
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                print_usage
+                exit 1
+                ;;
+        esac
+    done
+}
+
+# ─── Target Helpers ───────────────────────────────────────────────────────────
+
+list_targets() {
+    echo "  Available targets:"
+    echo "  ─────────────────────────────────────"
+    echo "    gnome-shell — GNOME Shell desktop theme (gnome-shell.css)"
+    echo "    gtk         — GTK 3/4 application theme (gtk.css)"
+    echo "    tmux        — tmux status bar colours (.tmux.conf)"
+    echo "    chrome      — Chrome/Chromium browser theme (manifest.json)"
+    echo "    kde         — KDE Plasma colour scheme (.colors)"
+    echo "    icons       — Icon colour tinting scaffold (index.theme)"
+    echo "    gdm         — GDM login screen theme (gnome-shell.css)"
+    echo "    firefox     — Firefox browser theme (manifest.json)"
+    echo "    terminals   — Terminal emulators (kitty, alacritty, foot)"
+    echo "    rofi        — Rofi/Wofi launcher theme (.rasi)"
+    echo "    grub        — GRUB bootloader theme scaffold (theme.txt)"
+    echo "    all         — Generate all of the above"
+    echo ""
+}
+
+resolve_targets() {
+    if [[ -z "$TARGETS" ]]; then
+        log_error "No targets specified. Use --target <name,...> or --list-targets"
+        exit 1
+    fi
+
+    if [[ "$TARGETS" == "all" ]]; then
+        TARGETS="$ALL_TARGETS"
+    fi
+
+    # Replace commas with spaces for iteration
+    TARGETS="${TARGETS//,/ }"
+}
+
+has_target() {
+    local needle="$1"
+    for t in $TARGETS; do
+        [[ "$t" == "$needle" ]] && return 0
+    done
+    return 1
+}
+
+# ─── Target Dispatch ──────────────────────────────────────────────────────────
+
+dispatch_targets() {
+    local generated=0
+
+    for target in $TARGETS; do
+        local target_script="${TARGETS_DIR}/${target}.sh"
+        if [[ ! -f "$target_script" ]]; then
+            log_warn "Unknown target '${target}' — skipping (no ${target}.sh found)"
+            continue
+        fi
+
+        source "$target_script"
+
+        local func="generate_${target//-/_}"
+        if ! declare -f "$func" > /dev/null 2>&1; then
+            log_warn "Target '${target}' has no ${func}() function — skipping"
+            continue
+        fi
+
+        log_info "Generating: ${target}"
+        "$func"
+        ((generated++))
+    done
+
+    if [[ $generated -eq 0 ]]; then
+        log_error "No targets were generated"
+        exit 1
+    fi
+
+    log_success "Generated ${generated} target(s)"
+}
+
+# ─── Main ─────────────────────────────────────────────────────────────────────
+
+main() {
+    parse_args "$@"
+
+    echo ""
+    echo "  🎨 uiGen v${UIGEN_VERSION}"
+    echo "  ═══════════════════════════════════════"
+    echo ""
+
+    resolve_targets
+    check_dependencies
+
+    log_info "Theme:     ${THEME_NAME}"
+    log_info "Primary:   ${PRIMARY_COLOUR}"
+    log_info "Secondary: ${SECONDARY_COLOUR}"
+    log_info "Tertiary:  ${TERTIARY_COLOUR}"
+    log_info "Variation: ${VARIATION}"
+    log_info "Targets:   ${TARGETS}"
+    [[ "$USE_COMPLEMENTARY" == true ]] && log_info "Complementary: enabled"
+    [[ "$INVERT_THEME" == true ]] && log_info "Invert: enabled"
+    [[ "$ANIMATED" == true ]] && log_info "Animated: enabled"
+    echo ""
+
+    # Resolve output directory
+    if [[ -z "$OUTPUT_DIR" ]]; then
+        OUTPUT_DIR=$(resolve_default_output)
+        log_info "Output directory: ${OUTPUT_DIR}"
+    fi
+
+    if [[ "$DRY_RUN" == false ]]; then
+        mkdir -p "$OUTPUT_DIR"
+    fi
+
+    # Generate palette
+    generate_palette
+
+    if [[ "$INVERT_THEME" == true ]]; then
+        invert_palette
+    fi
+
+    show_palette_preview
+
+    # Dispatch
+    if [[ "$DRY_RUN" == true ]]; then
+        log_info "Dry run — no files written"
+        echo ""
+    fi
+
+    dispatch_targets
+
+    echo ""
+    log_success "Done!"
+    echo ""
+}
+
+main "$@"
