@@ -172,4 +172,13 @@ RASIEOF
 )"
 
     write_target_file "${OUTPUT_DIR}/${THEME_NAME}/rofi/${THEME_NAME}.rasi" "$rasi"
+
+    # ── Install to user rofi themes ──────────────────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        local dest="${HOME}/.local/share/rofi/themes"
+        mkdir -p "$dest"
+        cp "${OUTPUT_DIR}/${THEME_NAME}/rofi/${THEME_NAME}.rasi" "${dest}/${THEME_NAME}.rasi"
+        log_success "Installed: ${dest}/${THEME_NAME}.rasi"
+        log_info "Use with: rofi -theme '${THEME_NAME}'"
+    fi
 }

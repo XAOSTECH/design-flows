@@ -3,7 +3,7 @@
 # kde.sh — KDE Plasma colour scheme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates a .colors file compatible with KDE Plasma's colour scheme format.
-# Can be installed to ~/.local/share/color-schemes/
+# Installs to ~/.local/share/color-schemes/ automatically.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 _hex_to_kde_rgb() {
@@ -179,4 +179,12 @@ KDEEOF
 )"
 
     write_target_file "$outfile" "$content"
+
+    # ── Install to user colour schemes ───────────────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        local dest="${HOME}/.local/share/color-schemes"
+        mkdir -p "$dest"
+        cp "$outfile" "${dest}/${THEME_NAME}.colors"
+        log_success "Installed: ${dest}/${THEME_NAME}.colors"
+    fi
 }

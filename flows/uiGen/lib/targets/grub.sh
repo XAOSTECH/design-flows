@@ -140,4 +140,30 @@ READMEEOF
 )"
 
     write_target_file "${base}/README.md" "$readme"
+
+    # ── Install to GRUB themes (sudo required) ─────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        local grub_dest="/boot/grub/themes/${THEME_NAME}"
+        log_info "Installing to ${grub_dest} (sudo required)…"
+        if sudo mkdir -p "$grub_dest" && sudo cp "${base}/theme.txt" "${base}/README.md" "$grub_dest/"; then
+            log_success "Installed: ${grub_dest}/theme.txt"
+            # Add GRUB_THEME if not already set
+            if ! grep -q "GRUB_THEME=" /etc/default/grub 2>/dev/null; then
+                echo "GRUB_THEME=\"${grub_dest}/theme.txt\"" | sudo tee -a /etc/default/grub >/dev/null
+                log_success "Added GRUB_THEME to /etc/default/grub"
+            else
+                log_info "GRUB_THEME already set in /etc/default/grub — update manually if needed"
+            fi
+            if command -v update-grub &>/dev/null; then
+                sudo update-grub
+                log_success "Ran update-grub"
+            else
+                log_info "Run 'sudo update-grub' or 'sudo grub-mkconfig -o /boot/grub/grub.cfg' to apply"
+            fi
+            log_info "Reboot for changes to take effect"
+        else
+            log_warn "sudo install failed — copy manually:"
+            log_warn "  sudo cp -r '${base}' '${grub_dest}'"
+        fi
+    fi
 }

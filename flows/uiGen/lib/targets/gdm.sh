@@ -2,12 +2,10 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # gdm.sh — GDM login screen theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# Generates a gnome-shell.css variant tailored for the GDM login screen.
-# Uses the same GNOME Shell CSS selectors but focused on login-specific
-# elements (login-dialog, user list, auth prompts).
+# Generates a gnome-shell.css for the GDM login screen, compiles it
+# into a .gresource binary, and optionally installs the result.
 #
-# Installation requires compiling into a .gresource:
-#   glib-compile-resources gnome-shell-theme.gresource.xml
+# Requires: glib-compile-resources  (from libglib2.0-dev-bin)
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_gdm() {
@@ -164,4 +162,35 @@ XMLEOF
 
     write_target_file "$css_file" "$css"
     write_target_file "$gresource_file" "$gresource_xml"
+
+    # ── Compile gresource ─────────────────────────────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        if command -v glib-compile-resources &>/dev/null; then
+            log_info "Compiling GDM gresource…"
+            if glib-compile-resources \
+                --sourcedir="${outdir}" \
+                --target="${outdir}/gnome-shell-theme.gresource" \
+                "${gresource_file}"; then
+                log_success "Compiled: ${outdir}/gnome-shell-theme.gresource"
+
+                # ── Install to system path ────────────────────────────
+                local sys_gresource="/usr/share/gnome-shell/gnome-shell-theme.gresource"
+                log_info "Installing to ${sys_gresource} (sudo required)…"
+                if sudo cp "${outdir}/gnome-shell-theme.gresource" "${sys_gresource}"; then
+                    log_success "Installed: ${sys_gresource}"
+                    log_info "Log out and back in (or reboot) for changes to take effect"
+                else
+                    log_warn "sudo cp failed — install manually:"
+                    log_warn "  sudo cp '${outdir}/gnome-shell-theme.gresource' '${sys_gresource}'"
+                fi
+            else
+                log_error "glib-compile-resources failed"
+            fi
+        else
+            log_warn "glib-compile-resources not found — skipping compilation"
+            log_warn "Install it:  sudo apt install libglib2.0-dev-bin"
+            log_warn "Then compile manually:"
+            log_warn "  glib-compile-resources --sourcedir='${outdir}' '${gresource_file}'"
+        fi
+    fi
 }

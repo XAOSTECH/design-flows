@@ -65,4 +65,18 @@ CONFEOF
 )"
 
     write_target_file "$outfile" "$conf"
+
+    # ── Install to user tmux config ──────────────────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        local dest="${HOME}/.config/tmux"
+        mkdir -p "$dest"
+        cp "$outfile" "${dest}/${THEME_NAME}.tmux.conf"
+        log_success "Installed: ${dest}/${THEME_NAME}.tmux.conf"
+        log_info "Add to .tmux.conf: source-file '${dest}/${THEME_NAME}.tmux.conf'"
+        # Live-reload if tmux is running
+        if command -v tmux &>/dev/null && tmux list-sessions &>/dev/null; then
+            tmux source-file "${dest}/${THEME_NAME}.tmux.conf" 2>/dev/null \
+                && log_success "Reloaded tmux config"
+        fi
+    fi
 }
