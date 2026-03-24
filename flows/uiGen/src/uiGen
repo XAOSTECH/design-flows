@@ -111,8 +111,7 @@ COLOUR VALUES:
     Named colours: pink, coral, gold, hotpink, lavender, skyblue, etc.
     Hex values:    "#ff69b4", "#ffd900", "#b0c4de"
     Bare hex:      ff69b4, ffd900 (leading '#' is stripped automatically)
-    Note: Always quote hex values with '#' — the shell treats unquoted
-          '#' as a comment character, e.g. -p "#430f02" not -p #430f02
+    Note: Always quote or strip values with '#', e.g. -p 430f02 or -p "#430f02" not -p #430f02
 
 EXAMPLES:
     # Full GNOME desktop theme
@@ -135,6 +134,7 @@ _require_arg() {
     local flag="$1"
     if [[ $# -lt 2 ]] || [[ -z "$2" ]]; then
         log_error "${flag} requires a value"
+        [[ "${2:-}" != -* ]] && log_error "  Hint: quote or strip colours, e.g. ${flag} \"#ff69b4\" or ${flag} \"#ff69b4\" not ${flag} #ff69b4"
         exit 1
     fi
 }
