@@ -862,4 +862,17 @@ CSSEOF
 )"
 
     write_target_file "$outfile" "$css"
+
+    # ── Install to user GTK config ───────────────────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        local gtk4_dest="${HOME}/.config/gtk-4.0"
+        local gtk3_dest="${HOME}/.config/gtk-3.0"
+        mkdir -p "$gtk4_dest"
+        cp "$outfile" "${gtk4_dest}/gtk.css"
+        log_success "Installed: ${gtk4_dest}/gtk.css"
+        if [[ ! -e "$gtk3_dest" ]]; then
+            ln -s gtk-4.0 "${HOME}/.config/gtk-3.0"
+            log_verbose "Symlinked ~/.config/gtk-3.0 → gtk-4.0"
+        fi
+    fi
 }

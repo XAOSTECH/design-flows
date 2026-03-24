@@ -867,4 +867,13 @@ CSSEOF
 )"
 
     write_target_file "$outfile" "$css"
+
+    # ── Install to user GNOME Shell themes ───────────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        local dest="${HOME}/.local/share/themes/${THEME_NAME}/gnome-shell"
+        mkdir -p "$dest"
+        cp "$outfile" "${dest}/gnome-shell.css"
+        log_success "Installed: ${dest}/gnome-shell.css"
+        log_info "Enable via GNOME Tweaks or: gsettings set org.gnome.shell.extensions.user-theme name '${THEME_NAME}'"
+    fi
 }

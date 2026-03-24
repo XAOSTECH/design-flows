@@ -107,4 +107,14 @@ MAPEOF
 
     write_target_file "$index_file" "$index_content"
     write_target_file "$colours_file" "$map_content"
+
+    # ── Install to user icon themes ──────────────────────────────────────
+    if [[ "$DRY_RUN" != true ]]; then
+        local dest="${HOME}/.local/share/icons/${THEME_NAME}"
+        mkdir -p "$dest"
+        cp "$index_file" "${dest}/index.theme"
+        cp "$colours_file" "${dest}/colour-map.sh"
+        log_success "Installed: ${dest}/index.theme"
+        log_info "Run '${dest}/colour-map.sh' to tint icons from a source theme"
+    fi
 }
