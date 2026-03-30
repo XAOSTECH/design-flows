@@ -1,4 +1,28 @@
 
+## [0.1.0] - 2026-03-30 (re-release)
+
+### Added
+- auto-install generated themes to user/system paths
+- add multi-target UI theme dispatcher
+- add comprehensive VS Code colour keys
+- add --invert flag to flip generated themes
+
+### Fixed
+- improve _require_arg error hint
+- guard against missing/unquoted arguments
+- correct repo URL in generated theme comment
+- remove duplicate editorBracketPairGuide.activeBackground keys
+- use hue-lifted variants for near-black colour operations
+- ensure badge readability + add missing SCM color keys
+
+### Changed
+- refactor: extract shared libs and scaffold uiGen
+- chore(dc-init): load workflows,actions
+- chore: update git tree visualisation
+- chore: update CHANGELOG for v0.1.0
+- chore(dc-init): update workflows
+- chore(dc-init): update workflows + action
+
 ## [0.1.0] - 2026-03-21
 
 ### Added
