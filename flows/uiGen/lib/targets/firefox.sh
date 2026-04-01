@@ -41,7 +41,7 @@ generate_firefox() {
     }
   },
   "theme": {
-    "colors": {
+    "colours": {
       "frame": "${bg}",
       "frame_inactive": "${bg}",
       "tab_background_text": "${fg}",

@@ -13,7 +13,7 @@
 - correct repo URL in generated theme comment
 - remove duplicate editorBracketPairGuide.activeBackground keys
 - use hue-lifted variants for near-black colour operations
-- ensure badge readability + add missing SCM color keys
+- ensure badge readability + add missing SCM colour keys
 
 ### Changed
 - refactor: extract shared libs and scaffold uiGen
@@ -33,7 +33,7 @@
 - correct repo URL in generated theme comment
 - remove duplicate editorBracketPairGuide.activeBackground keys
 - use hue-lifted variants for near-black colour operations
-- ensure badge readability + add missing SCM color keys
+- ensure badge readability + add missing SCM colour keys
 
 ### Changed
 - chore(dc-init): update workflows
@@ -46,7 +46,7 @@
 - add deps.sh --build manual mode for monorepo pastel
 - add --export/-e flag with symlink support
 - improve variation and bg-lightness parameters
-- auto-install pastel + UK English (COLOR→COLOUR)
+- auto-install pastel + UK English (COLOUR→COLOUR)
 - add colour presets, --list-presets, and config summary
 - expand palette with analogous, triadic, split-complementary & cross-blends
 - add WCAG contrast ratio guard for font readability
@@ -71,7 +71,7 @@
 ## [0.0.1] - 2026-02-23
 
 ### Added
-- auto-install pastel + UK English (COLOR→COLOUR)
+- auto-install pastel + UK English (COLOUR→COLOUR)
 - add colour presets, --list-presets, and config summary
 - expand palette with analogous, triadic, split-complementary & cross-blends
 - add WCAG contrast ratio guard for font readability

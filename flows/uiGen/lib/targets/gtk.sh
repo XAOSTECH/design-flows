@@ -580,14 +580,14 @@ infobar.question {
   border-color: rgba(${accent_rgb}, 0.4);
 }
 
-/* ─── Dialogs ─────────────────────────────────────────────────────── */
-dialog,
+/* ─── Dialogues ─────────────────────────────────────────────────────── */
+dialogue,
 messagedialog {
   background: rgba(${bg_window_rgb}, 0.92);
   border-radius: ${radius}px;
 }
 
-.dialog-action-area button {
+.dialogue-action-area button {
   border-radius: 0;
   border: none;
   border-top: 1px solid rgba(${border_rgb}, 0.2);

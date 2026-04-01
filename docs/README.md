@@ -66,7 +66,7 @@
 - [Flow Development](#-flow-development)
 - [Documentation](#-documentation)
 - [Contributing](#-contributing)
-- [License](#-license)
+- [Licence](#-licence)
 
 ---
 
@@ -213,7 +213,7 @@ flows/
 3. **Error handling** — Use `set -euo pipefail`
 4. **Logging** — Provide verbose output with `-v`
 5. **Dependencies** — Auto-install when possible
-6. **UK English** — Use British spelling (colour, not color)
+6. **UK English** — Use British spelling (colour, not colour)
 
 ### Example 1: Generate a New Theme
 
@@ -311,7 +311,7 @@ See the [open issues](https://github.com/XAOSTECH/design-flows/issues) for a ful
 
 ---
 
-## 📄 License
+## 📄 Licence
 
 Distributed under the GPL-3.0 License. See [`LICENSE`](LICENSE) for more information.
 
