@@ -15,7 +15,7 @@ generate_theme_json() {
     tertiary_hex=$(get_hex "$TERTIARY_COLOUR")
 
     # ── Background colours (adjusted by BG_LIGHTNESS, tinted with primary) ──
-    # BG_LIGHTNESS: 0.0 = pure black, 0.12 = default dark, 0.5 = medium gray, 1.0 = white
+    # BG_LIGHTNESS: 0.0 = pure black, 0.12 = default dark, 0.5 = medium grey, 1.0 = white
     # Convert to 0-100 scale for pastel
     local bg_base bg_main bg_sidebar bg_panel bg_dark bg_hover bg_input bg_widget
     
@@ -29,8 +29,8 @@ generate_theme_json() {
     bg_input_l=$(awk "BEGIN { printf \"%.1f\", ($BG_LIGHTNESS + 0.07) * 100 }")
     bg_widget_l=$(awk "BEGIN { printf \"%.1f\", ($BG_LIGHTNESS + 0.04) * 100 }")
     
-    # Create base grays at target lightness, then apply primary tint
-    # Mix factors: higher = more gray (subtle tinting), lower = more primary (stronger tinting)
+    # Create base greys at target lightness, then apply primary tint
+    # Mix factors: higher = more grey (subtle tinting), lower = more primary (stronger tinting)
     bg_main=$(mix_colors "$(set_lightness '#808080' "$bg_main_l")" "$primary_hex" 0.90)
     bg_sidebar=$(mix_colors "$(set_lightness '#808080' "$bg_sidebar_l")" "$primary_hex" 0.88)
     bg_panel=$(mix_colors "$(set_lightness '#808080' "$bg_panel_l")" "$primary_hex" 0.85)
