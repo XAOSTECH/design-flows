@@ -3,10 +3,220 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-03-23T01:06:20Z",
+    "generated": "2026-04-06T01:13:06Z",
     "max_commits": 500
   },
   "commits": [
+    {
+      "sha": "ce5168ca1e3010c110a124277ce5ad2642c6db01",
+      "short": "ce5168c",
+      "parents": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29 e876a22c68db04d0fc364a9ca00620eb59469f24",
+      "author": "xaostech[bot]",
+      "email": "260314499+xaostech[bot]@users.noreply.github.com",
+      "date": "2026-04-01T02:00:37Z",
+      "timestamp": 1775008837,
+      "subject": "Merge pull request #1 from XAOSTECH:anglicise/20260401-020004",
+      "refs": "HEAD -> main, origin/main",
+      "position": {
+        "x": 600,
+        "y": 60,
+        "lane": 0,
+        "radius": 10,
+        "depth": 0,
+        "is_trunk": true,
+        "is_merge": true,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "e876a22c68db04d0fc364a9ca00620eb59469f24",
+      "short": "e876a22",
+      "parents": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-04-01T02:00:04Z",
+      "timestamp": 1775008804,
+      "subject": "chore: convert American spellings to British English",
+      "refs": "origin/anglicise/20260401-020004",
+      "position": {
+        "x": 720,
+        "y": 100,
+        "lane": 1,
+        "radius": 6,
+        "depth": 1,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29",
+      "short": "1c12fb6",
+      "parents": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-03-30T01:12:50Z",
+      "timestamp": 1774833170,
+      "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
+      "refs": "tag: v0.1.0, tag: latest",
+      "position": {
+        "x": 600,
+        "y": 180,
+        "lane": 0,
+        "radius": 9,
+        "depth": 2,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": true
+      }
+    },
+    {
+      "sha": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
+      "short": "8fff7ac",
+      "parents": "591a480e120578ddb5b14577d5ffd9b9ddf97daa",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-24T18:10:34+01:00",
+      "timestamp": 1774372234,
+      "subject": "fix(vsGen,uiGen): improve _require_arg error hint",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 220,
+        "lane": 0,
+        "radius": 6,
+        "depth": 3,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "591a480e120578ddb5b14577d5ffd9b9ddf97daa",
+      "short": "591a480",
+      "parents": "857bcebc81abf35851755fc51c9aef961bd7c49b",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-24T03:05:56+01:00",
+      "timestamp": 1774317956,
+      "subject": "feat(uiGen): auto-install generated themes to user/system paths",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 260,
+        "lane": 0,
+        "radius": 6,
+        "depth": 4,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "857bcebc81abf35851755fc51c9aef961bd7c49b",
+      "short": "857bceb",
+      "parents": "709fe7f5a645b0d7e066ba6a1b414474b6a34776",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-24T01:18:00+01:00",
+      "timestamp": 1774311480,
+      "subject": "feat(uiGen): add multi-target UI theme dispatcher",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 300,
+        "lane": 0,
+        "radius": 6,
+        "depth": 5,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "709fe7f5a645b0d7e066ba6a1b414474b6a34776",
+      "short": "709fe7f",
+      "parents": "326375a2d719e94577d1e14b913a2df18f129556",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-24T00:45:05+01:00",
+      "timestamp": 1774309505,
+      "subject": "refactor: extract shared libs and scaffold uiGen",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 340,
+        "lane": 0,
+        "radius": 6,
+        "depth": 6,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "326375a2d719e94577d1e14b913a2df18f129556",
+      "short": "326375a",
+      "parents": "5e7029241cf130bd8dc966ae6c5c6295fe04405b",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-23T23:44:33+01:00",
+      "timestamp": 1774305873,
+      "subject": "fix(vsGen): guard against missing/unquoted arguments",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 380,
+        "lane": 0,
+        "radius": 6,
+        "depth": 7,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "5e7029241cf130bd8dc966ae6c5c6295fe04405b",
+      "short": "5e70292",
+      "parents": "76ad517008445e0360e74e315500449c6c55f8da",
+      "author": "xaoscience",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-23T17:49:02+01:00",
+      "timestamp": 1774284542,
+      "subject": "chore(dc-init): load workflows,actions",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 420,
+        "lane": 0,
+        "radius": 6,
+        "depth": 8,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "76ad517008445e0360e74e315500449c6c55f8da",
+      "short": "76ad517",
+      "parents": "e26a28e953463375c12afa9498a7c9532b988c66",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-03-23T01:06:20Z",
+      "timestamp": 1774227980,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 460,
+        "lane": 0,
+        "radius": 6,
+        "depth": 9,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
     {
       "sha": "e26a28e953463375c12afa9498a7c9532b988c66",
       "short": "e26a28e",
@@ -16,13 +226,13 @@
       "date": "2026-03-21T20:00:13Z",
       "timestamp": 1774123213,
       "subject": "chore: update CHANGELOG for v0.1.0",
-      "refs": "HEAD -> main, tag: v0.1.0, tag: latest, origin/main",
+      "refs": "",
       "position": {
         "x": 600,
-        "y": 60,
+        "y": 500,
         "lane": 0,
         "radius": 6,
-        "depth": 0,
+        "depth": 10,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -40,10 +250,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 100,
+        "y": 540,
         "lane": 0,
         "radius": 6,
-        "depth": 1,
+        "depth": 11,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -61,10 +271,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 140,
+        "y": 580,
         "lane": 0,
         "radius": 6,
-        "depth": 2,
+        "depth": 12,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -82,10 +292,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 180,
+        "y": 620,
         "lane": 0,
         "radius": 6,
-        "depth": 3,
+        "depth": 13,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -103,10 +313,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 220,
+        "y": 660,
         "lane": 0,
         "radius": 6,
-        "depth": 4,
+        "depth": 14,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -124,10 +334,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 260,
+        "y": 700,
         "lane": 0,
         "radius": 6,
-        "depth": 5,
+        "depth": 15,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -145,10 +355,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 300,
+        "y": 740,
         "lane": 0,
         "radius": 6,
-        "depth": 6,
+        "depth": 16,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -166,10 +376,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 340,
+        "y": 780,
         "lane": 0,
         "radius": 6,
-        "depth": 7,
+        "depth": 17,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -187,10 +397,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 380,
+        "y": 820,
         "lane": 0,
         "radius": 6,
-        "depth": 8,
+        "depth": 18,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -208,10 +418,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 420,
+        "y": 860,
         "lane": 0,
         "radius": 6,
-        "depth": 9,
+        "depth": 19,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -229,10 +439,10 @@
       "refs": "tag: v0.0.1",
       "position": {
         "x": 600,
-        "y": 460,
+        "y": 900,
         "lane": 0,
         "radius": 6,
-        "depth": 10,
+        "depth": 20,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -250,10 +460,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 500,
+        "y": 940,
         "lane": 0,
         "radius": 6,
-        "depth": 11,
+        "depth": 21,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -271,10 +481,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 540,
+        "y": 980,
         "lane": 0,
         "radius": 6,
-        "depth": 12,
+        "depth": 22,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -292,10 +502,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 580,
+        "y": 1020,
         "lane": 0,
         "radius": 6,
-        "depth": 13,
+        "depth": 23,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -313,10 +523,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 620,
+        "y": 1060,
         "lane": 0,
         "radius": 6,
-        "depth": 14,
+        "depth": 24,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -334,10 +544,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 660,
+        "y": 1100,
         "lane": 0,
         "radius": 6,
-        "depth": 15,
+        "depth": 25,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -355,10 +565,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 700,
+        "y": 1140,
         "lane": 0,
         "radius": 6,
-        "depth": 16,
+        "depth": 26,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -376,10 +586,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 740,
+        "y": 1180,
         "lane": 0,
         "radius": 6,
-        "depth": 17,
+        "depth": 27,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -397,10 +607,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 780,
+        "y": 1220,
         "lane": 0,
         "radius": 6,
-        "depth": 18,
+        "depth": 28,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -418,10 +628,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 820,
+        "y": 1260,
         "lane": 0,
         "radius": 6,
-        "depth": 19,
+        "depth": 29,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -439,10 +649,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 860,
+        "y": 1300,
         "lane": 0,
         "radius": 6,
-        "depth": 20,
+        "depth": 30,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -460,10 +670,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 900,
+        "y": 1340,
         "lane": 0,
         "radius": 6,
-        "depth": 21,
+        "depth": 31,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -481,10 +691,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 940,
+        "y": 1380,
         "lane": 0,
         "radius": 6,
-        "depth": 22,
+        "depth": 32,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -502,10 +712,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 980,
+        "y": 1420,
         "lane": 0,
         "radius": 6,
-        "depth": 23,
+        "depth": 33,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -523,10 +733,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1020,
+        "y": 1460,
         "lane": 0,
         "radius": 6,
-        "depth": 24,
+        "depth": 34,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -544,10 +754,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1060,
+        "y": 1500,
         "lane": 0,
         "radius": 6,
-        "depth": 25,
+        "depth": 35,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -565,10 +775,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1100,
+        "y": 1540,
         "lane": 0,
         "radius": 6,
-        "depth": 26,
+        "depth": 36,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -586,10 +796,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1140,
+        "y": 1580,
         "lane": 0,
         "radius": 6,
-        "depth": 27,
+        "depth": 37,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -607,10 +817,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1180,
+        "y": 1620,
         "lane": 0,
         "radius": 6,
-        "depth": 28,
+        "depth": 38,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -628,10 +838,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1220,
+        "y": 1660,
         "lane": 0,
         "radius": 6,
-        "depth": 29,
+        "depth": 39,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -649,10 +859,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1260,
+        "y": 1700,
         "lane": 0,
         "radius": 6,
-        "depth": 30,
+        "depth": 40,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -661,7 +871,7 @@
   ],
   "branches": [
     {
-      "name": "e26a28e953463375c12afa9498a7c9532b988c66 chore: update CHANGELOG for v0.1.0",
+      "name": "ce5168ca1e3010c110a124277ce5ad2642c6db01 Merge pull request #1 from XAOSTECH:anglicise/20260401-020004",
       "sha": "*",
       "current": false,
       "merged": false
@@ -670,7 +880,7 @@
   "tags": [
     {
       "name": "latest",
-      "sha": "79aead8aab19fcb82ed56f0c1b9767394bb3ed93"
+      "sha": "66110dac18c65f806af017529bf038ba16241d88"
     },
     {
       "name": "v0.0.1",
@@ -678,7 +888,7 @@
     },
     {
       "name": "v0.1.0",
-      "sha": "5d10c8f37c3edcba623b76bbb05f4d74ac99806c"
+      "sha": "48a5ceac2f6abda4ffefbc05bfc4088a000510cd"
     }
   ]
 }

@@ -3,10 +3,120 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-03-23T01:06:20Z",
+    "generated": "2026-04-06T01:13:06Z",
     "max_commits": 500
   },
   "commits": [
+  {
+    "sha": "ce5168ca1e3010c110a124277ce5ad2642c6db01",
+    "short": "ce5168c",
+    "parents": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29 e876a22c68db04d0fc364a9ca00620eb59469f24",
+    "author": "xaostech[bot]",
+    "email": "260314499+xaostech[bot]@users.noreply.github.com",
+    "date": "2026-04-01T02:00:37Z",
+    "timestamp": 1775008837,
+    "subject": "Merge pull request #1 from XAOSTECH:anglicise/20260401-020004",
+    "refs": "HEAD -> main, origin/main"
+  },
+  {
+    "sha": "e876a22c68db04d0fc364a9ca00620eb59469f24",
+    "short": "e876a22",
+    "parents": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-04-01T02:00:04Z",
+    "timestamp": 1775008804,
+    "subject": "chore: convert American spellings to British English",
+    "refs": "origin/anglicise/20260401-020004"
+  },
+  {
+    "sha": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29",
+    "short": "1c12fb6",
+    "parents": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-03-30T01:12:50Z",
+    "timestamp": 1774833170,
+    "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
+    "refs": "tag: v0.1.0, tag: latest"
+  },
+  {
+    "sha": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
+    "short": "8fff7ac",
+    "parents": "591a480e120578ddb5b14577d5ffd9b9ddf97daa",
+    "author": "XAOSTECH",
+    "email": "69734795+xaoscience@users.noreply.github.com",
+    "date": "2026-03-24T18:10:34+01:00",
+    "timestamp": 1774372234,
+    "subject": "fix(vsGen,uiGen): improve _require_arg error hint",
+    "refs": ""
+  },
+  {
+    "sha": "591a480e120578ddb5b14577d5ffd9b9ddf97daa",
+    "short": "591a480",
+    "parents": "857bcebc81abf35851755fc51c9aef961bd7c49b",
+    "author": "XAOSTECH",
+    "email": "69734795+xaoscience@users.noreply.github.com",
+    "date": "2026-03-24T03:05:56+01:00",
+    "timestamp": 1774317956,
+    "subject": "feat(uiGen): auto-install generated themes to user/system paths",
+    "refs": ""
+  },
+  {
+    "sha": "857bcebc81abf35851755fc51c9aef961bd7c49b",
+    "short": "857bceb",
+    "parents": "709fe7f5a645b0d7e066ba6a1b414474b6a34776",
+    "author": "XAOSTECH",
+    "email": "69734795+xaoscience@users.noreply.github.com",
+    "date": "2026-03-24T01:18:00+01:00",
+    "timestamp": 1774311480,
+    "subject": "feat(uiGen): add multi-target UI theme dispatcher",
+    "refs": ""
+  },
+  {
+    "sha": "709fe7f5a645b0d7e066ba6a1b414474b6a34776",
+    "short": "709fe7f",
+    "parents": "326375a2d719e94577d1e14b913a2df18f129556",
+    "author": "XAOSTECH",
+    "email": "69734795+xaoscience@users.noreply.github.com",
+    "date": "2026-03-24T00:45:05+01:00",
+    "timestamp": 1774309505,
+    "subject": "refactor: extract shared libs and scaffold uiGen",
+    "refs": ""
+  },
+  {
+    "sha": "326375a2d719e94577d1e14b913a2df18f129556",
+    "short": "326375a",
+    "parents": "5e7029241cf130bd8dc966ae6c5c6295fe04405b",
+    "author": "XAOSTECH",
+    "email": "69734795+xaoscience@users.noreply.github.com",
+    "date": "2026-03-23T23:44:33+01:00",
+    "timestamp": 1774305873,
+    "subject": "fix(vsGen): guard against missing/unquoted arguments",
+    "refs": ""
+  },
+  {
+    "sha": "5e7029241cf130bd8dc966ae6c5c6295fe04405b",
+    "short": "5e70292",
+    "parents": "76ad517008445e0360e74e315500449c6c55f8da",
+    "author": "xaoscience",
+    "email": "69734795+xaoscience@users.noreply.github.com",
+    "date": "2026-03-23T17:49:02+01:00",
+    "timestamp": 1774284542,
+    "subject": "chore(dc-init): load workflows,actions",
+    "refs": ""
+  },
+  {
+    "sha": "76ad517008445e0360e74e315500449c6c55f8da",
+    "short": "76ad517",
+    "parents": "e26a28e953463375c12afa9498a7c9532b988c66",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-03-23T01:06:20Z",
+    "timestamp": 1774227980,
+    "subject": "chore: update git tree visualisation",
+    "refs": ""
+  },
   {
     "sha": "e26a28e953463375c12afa9498a7c9532b988c66",
     "short": "e26a28e",
@@ -16,7 +126,7 @@
     "date": "2026-03-21T20:00:13Z",
     "timestamp": 1774123213,
     "subject": "chore: update CHANGELOG for v0.1.0",
-    "refs": "HEAD -> main, tag: v0.1.0, tag: latest, origin/main"
+    "refs": ""
   },
   {
     "sha": "6172ca8446961d042880576fdaf9a8fe4109187e",
@@ -350,11 +460,11 @@
   }
 ],
   "branches": [
-  {"name":"e26a28e953463375c12afa9498a7c9532b988c66 chore: update CHANGELOG for v0.1.0","sha":"*","current":false,"merged":false}
+  {"name":"ce5168ca1e3010c110a124277ce5ad2642c6db01 Merge pull request #1 from XAOSTECH:anglicise/20260401-020004","sha":"*","current":false,"merged":false}
 ],
   "tags": [
-  {"name":"latest","sha":"79aead8aab19fcb82ed56f0c1b9767394bb3ed93"},
+  {"name":"latest","sha":"66110dac18c65f806af017529bf038ba16241d88"},
   {"name":"v0.0.1","sha":"ee955c77a4ae2aac57459e764ddb6980b90154d8"},
-  {"name":"v0.1.0","sha":"5d10c8f37c3edcba623b76bbb05f4d74ac99806c"}
+  {"name":"v0.1.0","sha":"48a5ceac2f6abda4ffefbc05bfc4088a000510cd"}
 ]
 }

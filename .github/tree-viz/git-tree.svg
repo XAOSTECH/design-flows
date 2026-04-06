@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" 
      xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="1200" height="1380" 
-     viewBox="0 0 1200 1380">
+     width="1200" height="1820" 
+     viewBox="0 0 1200 1820">
   <defs>
     <radialGradient id="leafGradient">
       <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
@@ -29,19 +29,19 @@
     </style>
   </defs>
   
-  <rect width="1200" height="1380" fill="#f8fafc"/>
+  <rect width="1200" height="1820" fill="#f8fafc"/>
   <defs>
     <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
       <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#e2e8f0" stroke-width="0.5" opacity="0.3"/>
     </pattern>
   </defs>
-  <rect width="1200" height="1380" fill="url(#grid)"/>
+  <rect width="1200" height="1820" fill="url(#grid)"/>
   
   <!-- Branch connection lines -->
   <g id="branches">
-    <line class="trunk-line" x1="600" y1="60" x2="600" y2="100"/>
-    <line class="trunk-line" x1="600" y1="100" x2="600" y2="140"/>
-    <line class="trunk-line" x1="600" y1="140" x2="600" y2="180"/>
+    <line class="trunk-line" x1="600" y1="60" x2="600" y2="180"/>
+    <path class="branch-line" d="M 600 60 C 600 76, 720 84, 720 100"/>
+    <path class="branch-line" d="M 720 100 C 720 132, 600 148, 600 180"/>
     <line class="trunk-line" x1="600" y1="180" x2="600" y2="220"/>
     <line class="trunk-line" x1="600" y1="220" x2="600" y2="260"/>
     <line class="trunk-line" x1="600" y1="260" x2="600" y2="300"/>
@@ -69,40 +69,61 @@
     <line class="trunk-line" x1="600" y1="1140" x2="600" y2="1180"/>
     <line class="trunk-line" x1="600" y1="1180" x2="600" y2="1220"/>
     <line class="trunk-line" x1="600" y1="1220" x2="600" y2="1260"/>
+    <line class="trunk-line" x1="600" y1="1260" x2="600" y2="1300"/>
+    <line class="trunk-line" x1="600" y1="1300" x2="600" y2="1340"/>
+    <line class="trunk-line" x1="600" y1="1340" x2="600" y2="1380"/>
+    <line class="trunk-line" x1="600" y1="1380" x2="600" y2="1420"/>
+    <line class="trunk-line" x1="600" y1="1420" x2="600" y2="1460"/>
+    <line class="trunk-line" x1="600" y1="1460" x2="600" y2="1500"/>
+    <line class="trunk-line" x1="600" y1="1500" x2="600" y2="1540"/>
+    <line class="trunk-line" x1="600" y1="1540" x2="600" y2="1580"/>
+    <line class="trunk-line" x1="600" y1="1580" x2="600" y2="1620"/>
+    <line class="trunk-line" x1="600" y1="1620" x2="600" y2="1660"/>
+    <line class="trunk-line" x1="600" y1="1660" x2="600" y2="1700"/>
   </g>
   <!-- Commit nodes -->
   <g id="commits">
-    <circle class="commit-leaf" cx="600" cy="60" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>e26a28e: chore: update CHANGELOG for v0.1.0</title></circle>
-    <circle class="commit-leaf" cx="600" cy="100" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>6172ca8: chore(dc-init): update workflows</title></circle>
-    <circle class="commit-leaf" cx="600" cy="140" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>63dcf42: fix(vsGen): correct repo URL in generated theme comment</title></circle>
-    <circle class="commit-leaf" cx="600" cy="180" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>b021b16: fix(vsGen): remove duplicate editorBracketPairGuide.activeBackground keys</title></circle>
-    <circle class="commit-leaf" cx="600" cy="220" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>93c0c49: feat(vsGen): add comprehensive VS Code colour keys</title></circle>
-    <circle class="commit-leaf" cx="600" cy="260" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>a8d3339: feat(vsGen): add --invert flag to flip generated themes</title></circle>
-    <circle class="commit-leaf" cx="600" cy="300" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>7491727: fix(vsGen): use hue-lifted variants for near-black colour operations</title></circle>
-    <circle class="commit-leaf" cx="600" cy="340" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>9e7628f: fix(vsGen): ensure badge readability + add missing SCM color keys</title></circle>
-    <circle class="commit-leaf" cx="600" cy="380" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>ef9abea: chore(dc-init): update workflows + action</title></circle>
-    <circle class="commit-leaf" cx="600" cy="420" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>9a14f06: fix(vsGen): use American spellings and remove duplicate JSON keys</title></circle>
-    <circle class="commit-leaf" cx="600" cy="460" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>546716d: chore: update CHANGELOG for v0.0.1 (re-release)</title></circle>
-    <circle class="commit-leaf" cx="600" cy="500" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>1be9179: chore: dc-init2</title></circle>
-    <circle class="commit-leaf" cx="600" cy="540" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>2625c69: feat(vsGen): add automatic versioning for incremental theme generations</title></circle>
-    <circle class="commit-leaf" cx="600" cy="580" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>f09c67a: fix(deps): support temporary rustup toolchain for modern pastel builds</title></circle>
-    <circle class="commit-leaf" cx="600" cy="620" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>a5b840a: feat(vsgen): add deps.sh --build manual mode for monorepo pastel</title></circle>
-    <circle class="commit-leaf" cx="600" cy="660" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>b4ca585: feat: add --export/-e flag with symlink support</title></circle>
-    <circle class="commit-leaf" cx="600" cy="700" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>5affb40: feat: improve variation and bg-lightness parameters</title></circle>
-    <circle class="commit-leaf" cx="600" cy="740" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>9afea50: chore: gitkeep out + README del ref</title></circle>
-    <circle class="commit-leaf" cx="600" cy="780" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>0e74561: docs: fill README placeholders</title></circle>
-    <circle class="commit-leaf" cx="600" cy="820" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>6718818: chore(json-gen): adapt info</title></circle>
-    <circle class="commit-leaf" cx="600" cy="860" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>bc29100: chore: update CHANGELOG for v0.0.1</title></circle>
-    <circle class="commit-leaf" cx="600" cy="900" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>f4029a1: fix(vsGen): anglicise description + americanise function</title></circle>
-    <circle class="commit-leaf" cx="600" cy="940" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>d3bc18a: dc-init</title></circle>
-    <circle class="commit-leaf" cx="600" cy="980" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>6a910d9: feat: auto-install pastel + UK English (COLOR→COLOUR)</title></circle>
-    <circle class="commit-leaf" cx="600" cy="1020" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>1d807bc: fix: pass -- to pastel rotate for negative degree values</title></circle>
-    <circle class="commit-leaf" cx="600" cy="1060" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>e92deaf: feat: add colour presets, --list-presets, and config summary</title></circle>
-    <circle class="commit-leaf" cx="600" cy="1100" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>f25cdb3: feat: expand palette with analogous, triadic, split-complementary &amp; cross-blends</title></circle>
-    <circle class="commit-leaf" cx="600" cy="1140" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>ba3e87b: feat: add WCAG contrast ratio guard for font readability</title></circle>
-    <circle class="commit-leaf" cx="600" cy="1180" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>27da69d: refactor: extract libraries from monolithic vsGen script</title></circle>
-    <circle class="commit-leaf" cx="600" cy="1220" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>aa556cc: restructure folders</title></circle>
-    <circle class="commit-leaf" cx="600" cy="1260" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>b02b11b: Init</title></circle>
+    <circle class="commit-leaf" cx="600" cy="60" r="10" fill="url(#mergeGradient)" stroke="#7c3aed" stroke-width="1.5"><title>ce5168c: Merge pull request #1 from XAOSTECH:anglicise/20260401-020004</title></circle>
+    <circle class="commit-leaf" cx="720" cy="100" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>e876a22: chore: convert American spellings to British English</title></circle>
+    <circle class="commit-leaf" cx="600" cy="180" r="9" fill="url(#forkGradient)" stroke="#ea580c" stroke-width="1.5"><title>1c12fb6: chore: update CHANGELOG for v0.1.0 (re-release)</title></circle>
+    <circle class="commit-leaf" cx="600" cy="220" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>8fff7ac: fix(vsGen,uiGen): improve _require_arg error hint</title></circle>
+    <circle class="commit-leaf" cx="600" cy="260" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>591a480: feat(uiGen): auto-install generated themes to user/system paths</title></circle>
+    <circle class="commit-leaf" cx="600" cy="300" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>857bceb: feat(uiGen): add multi-target UI theme dispatcher</title></circle>
+    <circle class="commit-leaf" cx="600" cy="340" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>709fe7f: refactor: extract shared libs and scaffold uiGen</title></circle>
+    <circle class="commit-leaf" cx="600" cy="380" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>326375a: fix(vsGen): guard against missing/unquoted arguments</title></circle>
+    <circle class="commit-leaf" cx="600" cy="420" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>5e70292: chore(dc-init): load workflows,actions</title></circle>
+    <circle class="commit-leaf" cx="600" cy="460" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>76ad517: chore: update git tree visualisation</title></circle>
+    <circle class="commit-leaf" cx="600" cy="500" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>e26a28e: chore: update CHANGELOG for v0.1.0</title></circle>
+    <circle class="commit-leaf" cx="600" cy="540" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>6172ca8: chore(dc-init): update workflows</title></circle>
+    <circle class="commit-leaf" cx="600" cy="580" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>63dcf42: fix(vsGen): correct repo URL in generated theme comment</title></circle>
+    <circle class="commit-leaf" cx="600" cy="620" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>b021b16: fix(vsGen): remove duplicate editorBracketPairGuide.activeBackground keys</title></circle>
+    <circle class="commit-leaf" cx="600" cy="660" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>93c0c49: feat(vsGen): add comprehensive VS Code colour keys</title></circle>
+    <circle class="commit-leaf" cx="600" cy="700" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>a8d3339: feat(vsGen): add --invert flag to flip generated themes</title></circle>
+    <circle class="commit-leaf" cx="600" cy="740" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>7491727: fix(vsGen): use hue-lifted variants for near-black colour operations</title></circle>
+    <circle class="commit-leaf" cx="600" cy="780" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>9e7628f: fix(vsGen): ensure badge readability + add missing SCM color keys</title></circle>
+    <circle class="commit-leaf" cx="600" cy="820" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>ef9abea: chore(dc-init): update workflows + action</title></circle>
+    <circle class="commit-leaf" cx="600" cy="860" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>9a14f06: fix(vsGen): use American spellings and remove duplicate JSON keys</title></circle>
+    <circle class="commit-leaf" cx="600" cy="900" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>546716d: chore: update CHANGELOG for v0.0.1 (re-release)</title></circle>
+    <circle class="commit-leaf" cx="600" cy="940" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>1be9179: chore: dc-init2</title></circle>
+    <circle class="commit-leaf" cx="600" cy="980" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>2625c69: feat(vsGen): add automatic versioning for incremental theme generations</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1020" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>f09c67a: fix(deps): support temporary rustup toolchain for modern pastel builds</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1060" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>a5b840a: feat(vsgen): add deps.sh --build manual mode for monorepo pastel</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1100" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>b4ca585: feat: add --export/-e flag with symlink support</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1140" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>5affb40: feat: improve variation and bg-lightness parameters</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1180" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>9afea50: chore: gitkeep out + README del ref</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1220" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>0e74561: docs: fill README placeholders</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1260" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>6718818: chore(json-gen): adapt info</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1300" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>bc29100: chore: update CHANGELOG for v0.0.1</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1340" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>f4029a1: fix(vsGen): anglicise description + americanise function</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1380" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>d3bc18a: dc-init</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1420" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>6a910d9: feat: auto-install pastel + UK English (COLOR→COLOUR)</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1460" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>1d807bc: fix: pass -- to pastel rotate for negative degree values</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1500" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>e92deaf: feat: add colour presets, --list-presets, and config summary</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1540" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>f25cdb3: feat: expand palette with analogous, triadic, split-complementary &amp; cross-blends</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1580" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>ba3e87b: feat: add WCAG contrast ratio guard for font readability</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1620" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>27da69d: refactor: extract libraries from monolithic vsGen script</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1660" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>aa556cc: restructure folders</title></circle>
+    <circle class="commit-leaf" cx="600" cy="1700" r="6" fill="url(#leafGradient)" stroke="#16a34a" stroke-width="1.5"><title>b02b11b: Init</title></circle>
   </g>
   
   <!-- Legend -->
@@ -119,12 +140,12 @@
   </g>
   
   <!-- Repository info -->
-  <g id="info" transform="translate(20, 1340)">
+  <g id="info" transform="translate(20, 1780)">
     <text x="0" y="0" class="branch-label" font-size="12" fill="#666">
       Repository: design-flows
     </text>
     <text x="0" y="20" class="branch-label" font-size="10" fill="#999">
-      Generated: 2026-03-23 01:06:20 UTC
+      Generated: 2026-04-06 01:13:06 UTC
     </text>
   </g>
 </svg>
