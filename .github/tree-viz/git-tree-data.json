@@ -3,10 +3,21 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-04-06T01:13:06Z",
+    "generated": "2026-04-13T01:18:18Z",
     "max_commits": 500
   },
   "commits": [
+  {
+    "sha": "113b41d554eac22480d033a8ab68f881494d9d80",
+    "short": "113b41d",
+    "parents": "ce5168ca1e3010c110a124277ce5ad2642c6db01",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-04-06T01:13:06Z",
+    "timestamp": 1775437986,
+    "subject": "chore: update git tree visualisation",
+    "refs": "HEAD -> main, origin/main"
+  },
   {
     "sha": "ce5168ca1e3010c110a124277ce5ad2642c6db01",
     "short": "ce5168c",
@@ -16,7 +27,7 @@
     "date": "2026-04-01T02:00:37Z",
     "timestamp": 1775008837,
     "subject": "Merge pull request #1 from XAOSTECH:anglicise/20260401-020004",
-    "refs": "HEAD -> main, origin/main"
+    "refs": ""
   },
   {
     "sha": "e876a22c68db04d0fc364a9ca00620eb59469f24",
@@ -27,7 +38,7 @@
     "date": "2026-04-01T02:00:04Z",
     "timestamp": 1775008804,
     "subject": "chore: convert American spellings to British English",
-    "refs": "origin/anglicise/20260401-020004"
+    "refs": ""
   },
   {
     "sha": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29",
@@ -460,7 +471,7 @@
   }
 ],
   "branches": [
-  {"name":"ce5168ca1e3010c110a124277ce5ad2642c6db01 Merge pull request #1 from XAOSTECH:anglicise/20260401-020004","sha":"*","current":false,"merged":false}
+  {"name":"113b41d554eac22480d033a8ab68f881494d9d80 chore: update git tree visualisation","sha":"*","current":false,"merged":false}
 ],
   "tags": [
   {"name":"latest","sha":"66110dac18c65f806af017529bf038ba16241d88"},
