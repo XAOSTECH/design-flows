@@ -13,7 +13,7 @@
 - correct repo URL in generated theme comment
 - remove duplicate editorBracketPairGuide.activeBackground keys
 - use hue-lifted variants for near-black colour operations
-- ensure badge readability + add missing SCM color keys
+- ensure badge readability + add missing SCM colour keys
 
 ### Changed
 - chore: update git tree visualisation
