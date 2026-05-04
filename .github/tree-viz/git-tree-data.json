@@ -3,10 +3,54 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-04-20T01:19:13Z",
+    "generated": "2026-05-04T01:27:41Z",
     "max_commits": 500
   },
   "commits": [
+  {
+    "sha": "ef06f83302af56e10710992466643ac72f104d47",
+    "short": "ef06f83",
+    "parents": "8f29880307d7a79fd3068e95b5d161a9d7843553 5526750084ce449cc4cea3a0791dee762019e8ec",
+    "author": "xaostech[bot]",
+    "email": "260314499+xaostech[bot]@users.noreply.github.com",
+    "date": "2026-05-01T02:31:30Z",
+    "timestamp": 1777602690,
+    "subject": "Merge pull request #2 from XAOSTECH:anglicise/20260501-023055",
+    "refs": "HEAD -> main, origin/main"
+  },
+  {
+    "sha": "5526750084ce449cc4cea3a0791dee762019e8ec",
+    "short": "5526750",
+    "parents": "8f29880307d7a79fd3068e95b5d161a9d7843553",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-05-01T02:30:55Z",
+    "timestamp": 1777602655,
+    "subject": "chore: convert American spellings to British English",
+    "refs": "origin/anglicise/20260501-023055"
+  },
+  {
+    "sha": "8f29880307d7a79fd3068e95b5d161a9d7843553",
+    "short": "8f29880",
+    "parents": "a374026bae974bf132d16327e47548771b57a6ee",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-04-27T01:23:02Z",
+    "timestamp": 1777252982,
+    "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
+    "refs": "tag: v0.1.0, tag: latest"
+  },
+  {
+    "sha": "a374026bae974bf132d16327e47548771b57a6ee",
+    "short": "a374026",
+    "parents": "0a8e4a0cb0d335f3a1818c5f2e244bf2ea3de49f",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-04-20T01:19:13Z",
+    "timestamp": 1776647953,
+    "subject": "chore: update git tree visualisation",
+    "refs": ""
+  },
   {
     "sha": "0a8e4a0cb0d335f3a1818c5f2e244bf2ea3de49f",
     "short": "0a8e4a0",
@@ -16,7 +60,7 @@
     "date": "2026-04-13T01:18:18Z",
     "timestamp": 1776043098,
     "subject": "chore: update git tree visualisation",
-    "refs": "HEAD -> main, origin/main"
+    "refs": ""
   },
   {
     "sha": "113b41d554eac22480d033a8ab68f881494d9d80",
@@ -60,7 +104,7 @@
     "date": "2026-03-30T01:12:50Z",
     "timestamp": 1774833170,
     "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
-    "refs": "tag: v0.1.0, tag: latest"
+    "refs": ""
   },
   {
     "sha": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
@@ -482,11 +526,11 @@
   }
 ],
   "branches": [
-  {"name":"0a8e4a0cb0d335f3a1818c5f2e244bf2ea3de49f chore: update git tree visualisation","sha":"*","current":false,"merged":false}
+  {"name":"ef06f83302af56e10710992466643ac72f104d47 Merge pull request #2 from XAOSTECH:anglicise/20260501-023055","sha":"*","current":false,"merged":false}
 ],
   "tags": [
-  {"name":"latest","sha":"66110dac18c65f806af017529bf038ba16241d88"},
+  {"name":"latest","sha":"564270c1a185e84deef4dff4dab3b988ce8925fc"},
   {"name":"v0.0.1","sha":"ee955c77a4ae2aac57459e764ddb6980b90154d8"},
-  {"name":"v0.1.0","sha":"48a5ceac2f6abda4ffefbc05bfc4088a000510cd"}
+  {"name":"v0.1.0","sha":"2291d73c3d8065e14acdf26f517c20714a1bd631"}
 ]
 }
