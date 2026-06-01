@@ -3,10 +3,32 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-05-18T01:58:19Z",
+    "generated": "2026-06-01T02:11:52Z",
     "max_commits": 500
   },
   "commits": [
+  {
+    "sha": "6ce66bdb4ab1003e48e8a0fc7f63d0e0a14c0666",
+    "short": "6ce66bd",
+    "parents": "1c1e3b0dc1f42a574f2b477c185e83fc203a345b",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-05-25T02:02:03Z",
+    "timestamp": 1779674523,
+    "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
+    "refs": "HEAD -> main, tag: v0.1.0, tag: latest, origin/main"
+  },
+  {
+    "sha": "1c1e3b0dc1f42a574f2b477c185e83fc203a345b",
+    "short": "1c1e3b0",
+    "parents": "442e1e74f67227b25ded3168ef8184cc68b929e6",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-05-18T01:58:19Z",
+    "timestamp": 1779069499,
+    "subject": "chore: update git tree visualisation",
+    "refs": ""
+  },
   {
     "sha": "442e1e74f67227b25ded3168ef8184cc68b929e6",
     "short": "442e1e7",
@@ -16,7 +38,7 @@
     "date": "2026-05-11T01:51:05Z",
     "timestamp": 1778464265,
     "subject": "chore: update git tree visualisation",
-    "refs": "HEAD -> main, origin/main"
+    "refs": ""
   },
   {
     "sha": "7ab327136da8f7f7baa5255992816f85481b39b8",
@@ -60,7 +82,7 @@
     "date": "2026-04-27T01:23:02Z",
     "timestamp": 1777252982,
     "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
-    "refs": "tag: v0.1.0, tag: latest"
+    "refs": ""
   },
   {
     "sha": "a374026bae974bf132d16327e47548771b57a6ee",
@@ -548,11 +570,11 @@
   }
 ],
   "branches": [
-  {"name":"442e1e74f67227b25ded3168ef8184cc68b929e6 chore: update git tree visualisation","sha":"*","current":false,"merged":false}
+  {"name":"6ce66bdb4ab1003e48e8a0fc7f63d0e0a14c0666 chore: update CHANGELOG for v0.1.0 (re-release)","sha":"*","current":false,"merged":false}
 ],
   "tags": [
-  {"name":"latest","sha":"564270c1a185e84deef4dff4dab3b988ce8925fc"},
+  {"name":"latest","sha":"be984f13c72b77f62aa036a6456daafc95256a92"},
   {"name":"v0.0.1","sha":"ee955c77a4ae2aac57459e764ddb6980b90154d8"},
-  {"name":"v0.1.0","sha":"2291d73c3d8065e14acdf26f517c20714a1bd631"}
+  {"name":"v0.1.0","sha":"6f1fc23d69e29f78b044c45a196641bad81b0e93"}
 ]
 }
