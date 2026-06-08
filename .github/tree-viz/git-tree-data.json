@@ -3,10 +3,43 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-06-01T02:11:52Z",
+    "generated": "2026-06-08T02:13:07Z",
     "max_commits": 500
   },
   "commits": [
+  {
+    "sha": "30ef50c710bbaa86b1683529153939900dc7d791",
+    "short": "30ef50c",
+    "parents": "555cab632399dda0fffc86120d881a64d92bd737 219d4a31808c955a91a4352e4a6fbc6b71c40214",
+    "author": "xaostech[bot]",
+    "email": "260314499+xaostech[bot]@users.noreply.github.com",
+    "date": "2026-06-01T02:58:57Z",
+    "timestamp": 1780282737,
+    "subject": "Merge pull request #3 from XAOSTECH:anglicise/20260601-025828",
+    "refs": "HEAD -> main, origin/main"
+  },
+  {
+    "sha": "219d4a31808c955a91a4352e4a6fbc6b71c40214",
+    "short": "219d4a3",
+    "parents": "555cab632399dda0fffc86120d881a64d92bd737",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-06-01T02:58:28Z",
+    "timestamp": 1780282708,
+    "subject": "chore: convert American spellings to British English",
+    "refs": ""
+  },
+  {
+    "sha": "555cab632399dda0fffc86120d881a64d92bd737",
+    "short": "555cab6",
+    "parents": "6ce66bdb4ab1003e48e8a0fc7f63d0e0a14c0666",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-06-01T02:11:52Z",
+    "timestamp": 1780279912,
+    "subject": "chore: update git tree visualisation",
+    "refs": ""
+  },
   {
     "sha": "6ce66bdb4ab1003e48e8a0fc7f63d0e0a14c0666",
     "short": "6ce66bd",
@@ -16,7 +49,7 @@
     "date": "2026-05-25T02:02:03Z",
     "timestamp": 1779674523,
     "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
-    "refs": "HEAD -> main, tag: v0.1.0, tag: latest, origin/main"
+    "refs": "tag: v0.1.0, tag: latest"
   },
   {
     "sha": "1c1e3b0dc1f42a574f2b477c185e83fc203a345b",
@@ -570,7 +603,7 @@
   }
 ],
   "branches": [
-  {"name":"6ce66bdb4ab1003e48e8a0fc7f63d0e0a14c0666 chore: update CHANGELOG for v0.1.0 (re-release)","sha":"*","current":false,"merged":false}
+  {"name":"30ef50c710bbaa86b1683529153939900dc7d791 Merge pull request #3 from XAOSTECH:anglicise/20260601-025828","sha":"*","current":false,"merged":false}
 ],
   "tags": [
   {"name":"latest","sha":"be984f13c72b77f62aa036a6456daafc95256a92"},
