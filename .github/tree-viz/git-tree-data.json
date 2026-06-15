@@ -3,10 +3,21 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-06-08T02:13:07Z",
+    "generated": "2026-06-15T02:15:48Z",
     "max_commits": 500
   },
   "commits": [
+  {
+    "sha": "f0bc9c8725f603bf3c5f976fba2d5c6de9253600",
+    "short": "f0bc9c8",
+    "parents": "30ef50c710bbaa86b1683529153939900dc7d791",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-06-08T02:13:07Z",
+    "timestamp": 1780884787,
+    "subject": "chore: update git tree visualisation",
+    "refs": "HEAD -> main, origin/main"
+  },
   {
     "sha": "30ef50c710bbaa86b1683529153939900dc7d791",
     "short": "30ef50c",
@@ -16,7 +27,7 @@
     "date": "2026-06-01T02:58:57Z",
     "timestamp": 1780282737,
     "subject": "Merge pull request #3 from XAOSTECH:anglicise/20260601-025828",
-    "refs": "HEAD -> main, origin/main"
+    "refs": ""
   },
   {
     "sha": "219d4a31808c955a91a4352e4a6fbc6b71c40214",
@@ -603,7 +614,7 @@
   }
 ],
   "branches": [
-  {"name":"30ef50c710bbaa86b1683529153939900dc7d791 Merge pull request #3 from XAOSTECH:anglicise/20260601-025828","sha":"*","current":false,"merged":false}
+  {"name":"f0bc9c8725f603bf3c5f976fba2d5c6de9253600 chore: update git tree visualisation","sha":"*","current":false,"merged":false}
 ],
   "tags": [
   {"name":"latest","sha":"be984f13c72b77f62aa036a6456daafc95256a92"},
