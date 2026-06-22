@@ -1,4 +1,12 @@
 
+## [0.1.1] - 2026-06-22
+
+### Changed
+- chore: update git tree visualisation
+- chore: update git tree visualisation
+- Merge pull request #3 from XAOSTECH:anglicise/20260601-025828
+- chore: convert American spellings to British English
+
 ## [0.1.0] - 2026-05-25 (re-release)
 
 ### Added
