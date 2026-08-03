@@ -3,10 +3,21 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-07-27T01:28:38Z",
+    "generated": "2026-08-03T01:24:23Z",
     "max_commits": 500
   },
   "commits": [
+  {
+    "sha": "784f0740c64d485e50fb7ae0cb929ef4823fbb5d",
+    "short": "784f074",
+    "parents": "bd8115f77b933d0e5fa8a0a11e7832a2a63f1060",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-07-27T01:28:38Z",
+    "timestamp": 1785115718,
+    "subject": "chore: update git tree visualisation",
+    "refs": "HEAD -> main, origin/main"
+  },
   {
     "sha": "bd8115f77b933d0e5fa8a0a11e7832a2a63f1060",
     "short": "bd8115f",
@@ -16,7 +27,7 @@
     "date": "2026-07-13T01:21:56Z",
     "timestamp": 1783905716,
     "subject": "chore: update git tree visualisation",
-    "refs": "HEAD -> main, origin/main"
+    "refs": ""
   },
   {
     "sha": "91af564f8f083a3d77286c3ecc7e01e3b4a0e863",
@@ -669,7 +680,7 @@
   }
 ],
   "branches": [
-  {"name":"bd8115f77b933d0e5fa8a0a11e7832a2a63f1060 chore: update git tree visualisation","sha":"*","current":false,"merged":false}
+  {"name":"784f0740c64d485e50fb7ae0cb929ef4823fbb5d chore: update git tree visualisation","sha":"*","current":false,"merged":false}
 ],
   "tags": [
   {"name":"latest","sha":"6c5854361fd8e69c1c64786fe2d2f32775742b10"},
