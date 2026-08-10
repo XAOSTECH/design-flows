@@ -1,4 +1,18 @@
 
+## [0.1.1] - 2026-08-10 (re-release)
+
+### Changed
+- chore: update git tree visualisation
+- chore: update git tree visualisation
+- chore: update git tree visualisation
+- chore: update git tree visualisation
+- chore: update git tree visualisation
+- chore: update CHANGELOG for v0.1.1
+- chore: update git tree visualisation
+- chore: update git tree visualisation
+- Merge pull request #3 from XAOSTECH:anglicise/20260601-025828
+- chore: convert American spellings to British English
+
 ## [0.1.1] - 2026-06-22
 
 ### Changed
