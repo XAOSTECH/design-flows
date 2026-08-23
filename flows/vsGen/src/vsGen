@@ -13,7 +13,7 @@
 #   vsGen -p "#ff69b4" -s "#ffd900" -t coral --compl --variation 0.7
 #   vsGen --config workspace.code-workspace --primary coral
 #   vsGen -p hotpink -s lime --dry-run -v          # preview only
-#   vsGen -p coral -s gold -t skyblue              # auto-writes to ./out/
+#   vsGen -p coral -s gold -t skyblue              # auto-writes to ../out/
 # ═══════════════════════════════════════════════════════════════════════════════
 
 set -euo pipefail
