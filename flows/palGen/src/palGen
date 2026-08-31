@@ -1,0 +1,363 @@
+#!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════
+# 🎨 palGen — Palette & Design-Token Exporter
+# ═══════════════════════════════════════════════════════════════════════════════
+# Exports a generated colour palette into portable, interoperable formats for
+# other design tools and codebases (CSS, SCSS, Tailwind, W3C design tokens,
+# GIMP .gpl, SVG swatch sheet, Android colors.xml).
+#
+# Powered by the shared pastel palette engine (colours.sh).
+#
+# Usage:
+#   palGen --format css,scss [OPTIONS]
+#
+# Examples:
+#   palGen --format css -p pink -s yellow -t lavender --name "Sakura"
+#   palGen --format all -p coral -s gold -t skyblue --compl --variation 0.7
+#   palGen --format tailwind,json --preset dracula
+#   palGen --format svg -p "#ff69b4" --dry-run -v
+#   palGen --list-formats
+# ═══════════════════════════════════════════════════════════════════════════════
+
+set -euo pipefail
+
+# ─── Resolve paths & source libraries ─────────────────────────────────────────
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LIB_DIR="${SCRIPT_DIR}/../lib"
+SHARED_LIB="${SCRIPT_DIR}/../../../lib"
+FORMATS_DIR="${LIB_DIR}/formats"
+
+source "${SHARED_LIB}/colours.sh"
+source "${SHARED_LIB}/deps.sh"
+source "${LIB_DIR}/file-ops.sh"
+source "${LIB_DIR}/presets.sh"
+
+# ─── Default Configuration ────────────────────────────────────────────────────
+PRIMARY_COLOUR="pink"
+SECONDARY_COLOUR="yellow"
+TERTIARY_COLOUR="lavender"
+THEME_NAME="Custom Palette"
+USE_COMPLEMENTARY=false
+INVERT_THEME=false
+DRY_RUN=false
+VERBOSE=false
+
+OUTPUT_DIR=""
+
+# Background darkness level — drives the derived base/surface/foreground tokens.
+BG_LIGHTNESS="0.12"
+
+# Variation: 0 = no extra hues, 0.5 = standard, 1.0 = rainbow cacophony.
+VARIATION="0.5"
+
+# Comma-separated list of formats to export.
+FORMATS=""
+
+# All known format names (order matters for display).
+ALL_FORMATS="css scss tailwind json gpl svg android"
+
+# ─── Colour Arrays (populated by generate_palette in colours.sh) ──────────────
+declare -a PRIMARY_SHADES=()
+declare -a SECONDARY_SHADES=()
+declare -a TERTIARY_SHADES=()
+declare -a COMPLEMENTARY_COLOURS=()
+declare -a VARIATION_COLOURS=()
+declare -a ANALOGOUS_COLOURS=()
+declare -a TRIADIC_COLOURS=()
+declare -a BLEND_COLOURS=()
+
+# ─── Token Arrays (populated by collect_tokens in file-ops.sh) ────────────────
+declare -a TOKEN_NAMES=()
+declare -a TOKEN_HEXES=()
+declare -a TOKEN_GROUPS=()
+
+# ─── Usage ────────────────────────────────────────────────────────────────────
+
+print_usage() {
+    cat << 'EOF'
+🎨 palGen — Palette & Design-Token Exporter
+
+USAGE:
+    palGen --format <FORMATS> [OPTIONS]
+
+FORMATS (comma-separated):
+    css        CSS custom properties (:root variables)
+    scss       SCSS variables + Sass palette map
+    tailwind   Tailwind CSS colour config (module.exports)
+    json       W3C design tokens (nested $value/$type)
+    gpl        GIMP / Inkscape palette (.gpl)
+    svg        SVG swatch sheet (printable preview)
+    android    Android colour resources (colors.xml)
+    all        Export every format
+
+OPTIONS:
+    -p, --primary <COLOUR>      Primary colour (name or hex).   Default: pink
+    -s, --secondary <COLOUR>    Secondary colour (name or hex). Default: yellow
+    -t, --tertiary <COLOUR>     Tertiary colour (name or hex).  Default: lavender
+    -n, --name <NAME>           Palette name.                   Default: "Custom Palette"
+    -o, --output <DIR>          Output directory.
+                                Default: ./out/<Name>-<date>/
+    --compl                     Include complementary accent colours.
+    --invert                    Invert the generated palette.
+    --variation <0.0-1.0>       Colour variation level.         Default: 0.5
+    --bg-lightness <0.0-1.0>    Background darkness level.       Default: 0.12
+    --preset <NAME>             Use a built-in colour preset.
+    --list-presets              List available presets and exit.
+    --list-formats              List available formats and exit.
+    --dry-run                   Show generated output without writing files.
+    -v, --verbose               Show detailed generation info.
+    -h, --help                  Show this help message.
+    --version                   Print version and exit.
+
+COLOUR VALUES:
+    Named colours: pink, coral, gold, hotpink, lavender, skyblue, etc.
+    Hex values:    "#ff69b4", "#ffd900", "#b0c4de"
+    Bare hex:      ff69b4, ffd900 (leading '#' is stripped automatically)
+    Note: Always quote or strip values with '#', e.g. -p 430f02 or -p "#430f02" not -p #430f02
+
+TOKEN NAMING:
+    <colour>-50 … <colour>-900   Ten shade steps (50 = lightest, 900 = darkest)
+    analogous-N, triadic-N       Harmonic accents
+    blend-N, complementary-N     Cross-blended / complementary accents
+    variation-N                  Extra hues (when --variation > 0)
+    base-bg / surface / overlay  Derived surface tokens
+    base-fg / muted              Readable foreground tokens
+
+EXAMPLES:
+    # A web design-token bundle
+    palGen --format css,scss,tailwind -p pink -s purple --name Blossom
+
+    # Everything at once
+    palGen --format all -p coral -s gold -t skyblue --compl
+
+    # Printable swatch sheet from a preset
+    palGen --format svg --preset dracula
+
+    # Dry-run a Tailwind config
+    palGen --format tailwind -p "#ff69b4" --dry-run -v
+EOF
+}
+
+# ─── Argument Helpers ─────────────────────────────────────────────────────────
+
+_require_arg() {
+    local flag="$1"
+    if [[ $# -lt 2 ]] || [[ -z "$2" ]]; then
+        log_error "${flag} requires a value"
+        [[ "${2:-}" != -* ]] && log_error "  Hint: quote or strip colours, e.g. ${flag} \"#ff69b4\" not ${flag} #ff69b4"
+        exit 1
+    fi
+}
+_strip_hash() { printf '%s' "${1#\#}"; }
+
+# ─── Argument Parsing ─────────────────────────────────────────────────────────
+
+parse_args() {
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --format|--formats)
+                _require_arg "$1" "${2:-}"
+                FORMATS="$2"
+                shift 2
+                ;;
+            -p|--primary)
+                _require_arg "$1" "${2:-}"
+                PRIMARY_COLOUR="$(_strip_hash "$2")"
+                shift 2
+                ;;
+            -s|--secondary)
+                _require_arg "$1" "${2:-}"
+                SECONDARY_COLOUR="$(_strip_hash "$2")"
+                shift 2
+                ;;
+            -t|--tertiary)
+                _require_arg "$1" "${2:-}"
+                TERTIARY_COLOUR="$(_strip_hash "$2")"
+                shift 2
+                ;;
+            -n|--name)
+                _require_arg "$1" "${2:-}"
+                THEME_NAME="$2"
+                shift 2
+                ;;
+            -o|--output)
+                _require_arg "$1" "${2:-}"
+                OUTPUT_DIR="$2"
+                shift 2
+                ;;
+            --compl|--complementary)
+                USE_COMPLEMENTARY=true
+                shift
+                ;;
+            --invert)
+                INVERT_THEME=true
+                shift
+                ;;
+            --variation)
+                _require_arg "$1" "${2:-}"
+                VARIATION="$2"
+                VARIATION=$(awk "BEGIN { v=$VARIATION; if(v<0) v=0; if(v>1) v=1; printf \"%.2f\", v }")
+                shift 2
+                ;;
+            --bg-lightness)
+                _require_arg "$1" "${2:-}"
+                BG_LIGHTNESS="$2"
+                shift 2
+                ;;
+            --dry-run)
+                DRY_RUN=true
+                shift
+                ;;
+            --preset)
+                _require_arg "$1" "${2:-}"
+                apply_preset "$2"
+                shift 2
+                ;;
+            --list-presets)
+                list_presets
+                exit 0
+                ;;
+            --list-formats)
+                list_formats
+                exit 0
+                ;;
+            -v|--verbose)
+                VERBOSE=true
+                shift
+                ;;
+            --version)
+                echo "palGen v${PALGEN_VERSION}"
+                exit 0
+                ;;
+            -h|--help)
+                print_usage
+                exit 0
+                ;;
+            *)
+                log_error "Unknown option: $1"
+                print_usage
+                exit 1
+                ;;
+        esac
+    done
+}
+
+# ─── Format Helpers ───────────────────────────────────────────────────────────
+
+list_formats() {
+    echo "  Available formats:"
+    echo "  ─────────────────────────────────────"
+    echo "    css       — CSS custom properties (:root variables)"
+    echo "    scss      — SCSS variables + Sass palette map"
+    echo "    tailwind  — Tailwind CSS colour config (module.exports)"
+    echo "    json      — W3C design tokens (\$value / \$type)"
+    echo "    gpl       — GIMP / Inkscape palette (.gpl)"
+    echo "    svg       — SVG swatch sheet (printable preview)"
+    echo "    android   — Android colour resources (colors.xml)"
+    echo "    all       — Export all of the above"
+    echo ""
+}
+
+resolve_formats() {
+    if [[ -z "$FORMATS" ]]; then
+        log_error "No formats specified. Use --format <name,...> or --list-formats"
+        exit 1
+    fi
+
+    if [[ "$FORMATS" == "all" ]]; then
+        FORMATS="$ALL_FORMATS"
+    fi
+
+    # Replace commas with spaces for iteration.
+    FORMATS="${FORMATS//,/ }"
+}
+
+# ─── Format Dispatch ──────────────────────────────────────────────────────────
+
+dispatch_formats() {
+    local generated=0
+
+    for format in $FORMATS; do
+        local format_script="${FORMATS_DIR}/${format}.sh"
+        if [[ ! -f "$format_script" ]]; then
+            log_warn "Unknown format '${format}' — skipping (no ${format}.sh found)"
+            continue
+        fi
+
+        source "$format_script"
+
+        local func="generate_${format//-/_}"
+        if ! declare -f "$func" > /dev/null 2>&1; then
+            log_warn "Format '${format}' has no ${func}() function — skipping"
+            continue
+        fi
+
+        log_info "Exporting: ${format}"
+        "$func"
+        generated=$(( generated + 1 ))
+    done
+
+    if [[ $generated -eq 0 ]]; then
+        log_error "No formats were exported"
+        exit 1
+    fi
+
+    log_success "Exported ${generated} format(s)"
+}
+
+# ─── Main ─────────────────────────────────────────────────────────────────────
+
+main() {
+    parse_args "$@"
+
+    echo ""
+    echo "  🎨 palGen v${PALGEN_VERSION}"
+    echo "  ═══════════════════════════════════════"
+    echo ""
+
+    resolve_formats
+    check_dependencies
+
+    log_info "Palette:   ${THEME_NAME}"
+    log_info "Primary:   ${PRIMARY_COLOUR}"
+    log_info "Secondary: ${SECONDARY_COLOUR}"
+    log_info "Tertiary:  ${TERTIARY_COLOUR}"
+    log_info "Variation: ${VARIATION}"
+    log_info "Formats:   ${FORMATS}"
+    [[ "$USE_COMPLEMENTARY" == true ]] && log_info "Complementary: enabled"
+    [[ "$INVERT_THEME" == true ]] && log_info "Invert: enabled"
+    echo ""
+
+    # Resolve output directory.
+    if [[ -z "$OUTPUT_DIR" ]]; then
+        OUTPUT_DIR=$(resolve_default_output)
+        log_info "Output directory: ${OUTPUT_DIR}"
+    fi
+
+    if [[ "$DRY_RUN" == false ]]; then
+        mkdir -p "$OUTPUT_DIR"
+    fi
+
+    # Build the palette, optionally invert, then flatten into named tokens.
+    generate_palette
+
+    if [[ "$INVERT_THEME" == true ]]; then
+        invert_palette
+    fi
+
+    show_palette_preview
+    collect_tokens
+
+    if [[ "$DRY_RUN" == true ]]; then
+        log_info "Dry run — no files written"
+        echo ""
+    fi
+
+    dispatch_formats
+
+    echo ""
+    log_success "Done!"
+    echo ""
+}
+
+main "$@"

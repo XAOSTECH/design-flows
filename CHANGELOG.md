@@ -1,4 +1,9 @@
 
+## [Unreleased]
+
+### Added
+- add palGen flow — palette & design-token exporter (css, scss, tailwind, json, gpl, svg, android)
+
 ## [0.1.0] - 2026-03-21
 
 ### Added
