@@ -10,7 +10,7 @@
 
 log_verbose() {
     if [[ "${VERBOSE:-false}" == true ]]; then
-        echo -e "  \033[0;90m$1\033[0m"
+        echo -e "  \033[0;90m$1\033[0m" >&2
     fi
 }
 

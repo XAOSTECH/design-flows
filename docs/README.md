@@ -90,6 +90,18 @@ Generates VS Code workspace colour themes from 3 base colours with intelligent p
 - Configurable variation level
 - Auto-installs dependencies
 
+#### palGen — Palette & Design-Token Exporter
+
+**Location:** `flows/palGen/`
+
+Flattens a generated palette into named tokens and exports them into portable formats for other design tools and codebases.
+
+**Features:**
+- Named token model (`primary-50` … `primary-900`, harmonic accents, derived `base-*` surfaces)
+- Seven export formats: CSS, SCSS, Tailwind, W3C design-token JSON, GIMP `.gpl`, SVG swatch sheet, Android `colors.xml`
+- Shares the same presets, harmonies, variation and `--invert` options as the other flows
+- WCAG-aware foreground and surface tokens
+
 ### Why design-flows?
 
 Design workflows involve repetitive tasks that can be automated. design-flows provides:
@@ -183,6 +195,35 @@ Open in VS Code:
 
 ```bash
 code ./out/My-Theme-2026-03-05-v1.1.0.code-workspace
+```
+
+### palGen Examples
+
+```bash
+cd flows/palGen
+
+# Export a web design-token bundle
+./src/palGen --format css,scss,tailwind -p pink -s purple --name Blossom
+
+# Every format at once
+./src/palGen --format all --preset dracula
+
+# Printable SVG swatch sheet
+./src/palGen --format svg -p coral -s gold -t skyblue
+
+# Preview a Tailwind config without writing
+./src/palGen --format tailwind -p "#ff69b4" --dry-run -v
+
+# List available formats
+./src/palGen --list-formats
+```
+
+### palGen Output
+
+palGen writes one file per format into:
+
+```
+./out/<PaletteName>-<YYYY-MM-DD>/
 ```
 
 ---
