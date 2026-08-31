@@ -310,7 +310,7 @@ dispatch_targets() {
 
         log_info "Generating: ${target}"
         "$func"
-        ((generated++))
+        generated=$(( generated + 1 ))
     done
 
     if [[ $generated -eq 0 ]]; then
