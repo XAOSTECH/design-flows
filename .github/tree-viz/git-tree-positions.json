@@ -3,10 +3,745 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-03-23T01:06:20Z",
+    "generated": "2026-08-31T21:32:04Z",
     "max_commits": 500
   },
   "commits": [
+    {
+      "sha": "f972b5efa4c2b1f6db412f7f44d856a90786aba6",
+      "short": "f972b5e",
+      "parents": "cc83737a390cf4e462e0da5a053243bd06591486",
+      "author": "xaoscience",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-08-31T20:34:32Z",
+      "timestamp": 1788208472,
+      "subject": "fix(uiGen): replace ((generated++)) with safe arithmetic",
+      "refs": "HEAD -> main, origin/main",
+      "position": {
+        "x": 600,
+        "y": 60,
+        "lane": 0,
+        "radius": 6,
+        "depth": 0,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "cc83737a390cf4e462e0da5a053243bd06591486",
+      "short": "cc83737",
+      "parents": "f47791184eb87cd760bfb809f844e639c014fc8d",
+      "author": "xaoscience",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-08-31T20:34:26Z",
+      "timestamp": 1788208466,
+      "subject": "feat(palGen): add palette & design-token exporter flow",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 100,
+        "lane": 0,
+        "radius": 6,
+        "depth": 1,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "f47791184eb87cd760bfb809f844e639c014fc8d",
+      "short": "f477911",
+      "parents": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
+      "author": "xaoscience",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-08-23T00:41:34Z",
+      "timestamp": 1787445694,
+      "subject": "chore: file ops + path correct + vsGen",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 140,
+        "lane": 0,
+        "radius": 6,
+        "depth": 2,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "9fa076b7199a5301a1a2bf0349df09aff2d73ff0",
+      "short": "9fa076b",
+      "parents": "be39b55003d956ad02a0376d8c59d2050b83dc0d",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-08-10T00:44:06Z",
+      "timestamp": 1786322646,
+      "subject": "chore: update CHANGELOG for v0.1.1 (re-release)",
+      "refs": "tag: v0.1.1, tag: latest",
+      "position": {
+        "x": 720,
+        "y": 180,
+        "lane": 1,
+        "radius": 6,
+        "depth": 3,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "be39b55003d956ad02a0376d8c59d2050b83dc0d",
+      "short": "be39b55",
+      "parents": "784f0740c64d485e50fb7ae0cb929ef4823fbb5d",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-08-03T01:24:23Z",
+      "timestamp": 1785720263,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 480,
+        "y": 260,
+        "lane": -1,
+        "radius": 6,
+        "depth": 4,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "784f0740c64d485e50fb7ae0cb929ef4823fbb5d",
+      "short": "784f074",
+      "parents": "bd8115f77b933d0e5fa8a0a11e7832a2a63f1060",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-07-27T01:28:38Z",
+      "timestamp": 1785115718,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 840,
+        "y": 340,
+        "lane": 2,
+        "radius": 6,
+        "depth": 5,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "bd8115f77b933d0e5fa8a0a11e7832a2a63f1060",
+      "short": "bd8115f",
+      "parents": "91af564f8f083a3d77286c3ecc7e01e3b4a0e863",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-07-13T01:21:56Z",
+      "timestamp": 1783905716,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 360,
+        "y": 420,
+        "lane": -2,
+        "radius": 6,
+        "depth": 6,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "91af564f8f083a3d77286c3ecc7e01e3b4a0e863",
+      "short": "91af564",
+      "parents": "26cab896980738fa357e990b6026fc33a6cf8fe5",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-07-06T01:50:39Z",
+      "timestamp": 1783302639,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 960,
+        "y": 500,
+        "lane": 3,
+        "radius": 6,
+        "depth": 7,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "26cab896980738fa357e990b6026fc33a6cf8fe5",
+      "short": "26cab89",
+      "parents": "737b5175cdf4e01993a56281c88ffd607d019b4f",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-06-29T02:05:10Z",
+      "timestamp": 1782698710,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 240,
+        "y": 580,
+        "lane": -3,
+        "radius": 6,
+        "depth": 8,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "737b5175cdf4e01993a56281c88ffd607d019b4f",
+      "short": "737b517",
+      "parents": "55918539ad4e83bfcf83be23254b851389f72e14",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-06-22T02:28:27Z",
+      "timestamp": 1782095307,
+      "subject": "chore: update CHANGELOG for v0.1.1",
+      "refs": "",
+      "position": {
+        "x": 1080,
+        "y": 660,
+        "lane": 4,
+        "radius": 6,
+        "depth": 9,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "55918539ad4e83bfcf83be23254b851389f72e14",
+      "short": "5591853",
+      "parents": "f0bc9c8725f603bf3c5f976fba2d5c6de9253600",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-06-15T02:15:49Z",
+      "timestamp": 1781489749,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 120,
+        "y": 740,
+        "lane": -4,
+        "radius": 6,
+        "depth": 10,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "f0bc9c8725f603bf3c5f976fba2d5c6de9253600",
+      "short": "f0bc9c8",
+      "parents": "30ef50c710bbaa86b1683529153939900dc7d791",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-06-08T02:13:07Z",
+      "timestamp": 1780884787,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 1200,
+        "y": 820,
+        "lane": 5,
+        "radius": 6,
+        "depth": 11,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "30ef50c710bbaa86b1683529153939900dc7d791",
+      "short": "30ef50c",
+      "parents": "555cab632399dda0fffc86120d881a64d92bd737 219d4a31808c955a91a4352e4a6fbc6b71c40214",
+      "author": "xaostech[bot]",
+      "email": "260314499+xaostech[bot]@users.noreply.github.com",
+      "date": "2026-06-01T02:58:57Z",
+      "timestamp": 1780282737,
+      "subject": "Merge pull request #3 from XAOSTECH:anglicise/20260601-025828",
+      "refs": "",
+      "position": {
+        "x": 0,
+        "y": 900,
+        "lane": -5,
+        "radius": 10,
+        "depth": 12,
+        "is_trunk": false,
+        "is_merge": true,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "219d4a31808c955a91a4352e4a6fbc6b71c40214",
+      "short": "219d4a3",
+      "parents": "555cab632399dda0fffc86120d881a64d92bd737",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-06-01T02:58:28Z",
+      "timestamp": 1780282708,
+      "subject": "chore: convert American spellings to British English",
+      "refs": "",
+      "position": {
+        "x": 1320,
+        "y": 980,
+        "lane": 6,
+        "radius": 6,
+        "depth": 13,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "555cab632399dda0fffc86120d881a64d92bd737",
+      "short": "555cab6",
+      "parents": "6ce66bdb4ab1003e48e8a0fc7f63d0e0a14c0666",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-06-01T02:11:52Z",
+      "timestamp": 1780279912,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": -120,
+        "y": 1060,
+        "lane": -6,
+        "radius": 9,
+        "depth": 14,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": true
+      }
+    },
+    {
+      "sha": "6ce66bdb4ab1003e48e8a0fc7f63d0e0a14c0666",
+      "short": "6ce66bd",
+      "parents": "1c1e3b0dc1f42a574f2b477c185e83fc203a345b",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-05-25T02:02:03Z",
+      "timestamp": 1779674523,
+      "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
+      "refs": "tag: v0.1.0",
+      "position": {
+        "x": 1440,
+        "y": 1140,
+        "lane": 7,
+        "radius": 6,
+        "depth": 15,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "1c1e3b0dc1f42a574f2b477c185e83fc203a345b",
+      "short": "1c1e3b0",
+      "parents": "442e1e74f67227b25ded3168ef8184cc68b929e6",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-05-18T01:58:19Z",
+      "timestamp": 1779069499,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": -240,
+        "y": 1220,
+        "lane": -7,
+        "radius": 6,
+        "depth": 16,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "442e1e74f67227b25ded3168ef8184cc68b929e6",
+      "short": "442e1e7",
+      "parents": "7ab327136da8f7f7baa5255992816f85481b39b8",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-05-11T01:51:05Z",
+      "timestamp": 1778464265,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 1560,
+        "y": 1300,
+        "lane": 8,
+        "radius": 6,
+        "depth": 17,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "7ab327136da8f7f7baa5255992816f85481b39b8",
+      "short": "7ab3271",
+      "parents": "ef06f83302af56e10710992466643ac72f104d47",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-05-04T01:27:41Z",
+      "timestamp": 1777858061,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": -360,
+        "y": 1380,
+        "lane": -8,
+        "radius": 6,
+        "depth": 18,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "ef06f83302af56e10710992466643ac72f104d47",
+      "short": "ef06f83",
+      "parents": "8f29880307d7a79fd3068e95b5d161a9d7843553 5526750084ce449cc4cea3a0791dee762019e8ec",
+      "author": "xaostech[bot]",
+      "email": "260314499+xaostech[bot]@users.noreply.github.com",
+      "date": "2026-05-01T02:31:30Z",
+      "timestamp": 1777602690,
+      "subject": "Merge pull request #2 from XAOSTECH:anglicise/20260501-023055",
+      "refs": "",
+      "position": {
+        "x": 1680,
+        "y": 1460,
+        "lane": 9,
+        "radius": 10,
+        "depth": 19,
+        "is_trunk": false,
+        "is_merge": true,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "5526750084ce449cc4cea3a0791dee762019e8ec",
+      "short": "5526750",
+      "parents": "8f29880307d7a79fd3068e95b5d161a9d7843553",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-05-01T02:30:55Z",
+      "timestamp": 1777602655,
+      "subject": "chore: convert American spellings to British English",
+      "refs": "",
+      "position": {
+        "x": -480,
+        "y": 1540,
+        "lane": -9,
+        "radius": 6,
+        "depth": 20,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "8f29880307d7a79fd3068e95b5d161a9d7843553",
+      "short": "8f29880",
+      "parents": "a374026bae974bf132d16327e47548771b57a6ee",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-04-27T01:23:02Z",
+      "timestamp": 1777252982,
+      "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
+      "refs": "",
+      "position": {
+        "x": 1800,
+        "y": 1620,
+        "lane": 10,
+        "radius": 9,
+        "depth": 21,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": true
+      }
+    },
+    {
+      "sha": "a374026bae974bf132d16327e47548771b57a6ee",
+      "short": "a374026",
+      "parents": "0a8e4a0cb0d335f3a1818c5f2e244bf2ea3de49f",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-04-20T01:19:13Z",
+      "timestamp": 1776647953,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": -600,
+        "y": 1700,
+        "lane": -10,
+        "radius": 6,
+        "depth": 22,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "0a8e4a0cb0d335f3a1818c5f2e244bf2ea3de49f",
+      "short": "0a8e4a0",
+      "parents": "113b41d554eac22480d033a8ab68f881494d9d80",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-04-13T01:18:18Z",
+      "timestamp": 1776043098,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 1920,
+        "y": 1780,
+        "lane": 11,
+        "radius": 6,
+        "depth": 23,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "113b41d554eac22480d033a8ab68f881494d9d80",
+      "short": "113b41d",
+      "parents": "ce5168ca1e3010c110a124277ce5ad2642c6db01",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-04-06T01:13:06Z",
+      "timestamp": 1775437986,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": -720,
+        "y": 1860,
+        "lane": -11,
+        "radius": 6,
+        "depth": 24,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "ce5168ca1e3010c110a124277ce5ad2642c6db01",
+      "short": "ce5168c",
+      "parents": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29 e876a22c68db04d0fc364a9ca00620eb59469f24",
+      "author": "xaostech[bot]",
+      "email": "260314499+xaostech[bot]@users.noreply.github.com",
+      "date": "2026-04-01T02:00:37Z",
+      "timestamp": 1775008837,
+      "subject": "Merge pull request #1 from XAOSTECH:anglicise/20260401-020004",
+      "refs": "",
+      "position": {
+        "x": 2040,
+        "y": 1940,
+        "lane": 12,
+        "radius": 10,
+        "depth": 25,
+        "is_trunk": false,
+        "is_merge": true,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "e876a22c68db04d0fc364a9ca00620eb59469f24",
+      "short": "e876a22",
+      "parents": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-04-01T02:00:04Z",
+      "timestamp": 1775008804,
+      "subject": "chore: convert American spellings to British English",
+      "refs": "",
+      "position": {
+        "x": -840,
+        "y": 2020,
+        "lane": -12,
+        "radius": 6,
+        "depth": 26,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "1c12fb6a8131671fb5eddd9d1531c410e54e9a29",
+      "short": "1c12fb6",
+      "parents": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-03-30T01:12:50Z",
+      "timestamp": 1774833170,
+      "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
+      "refs": "",
+      "position": {
+        "x": 2160,
+        "y": 2100,
+        "lane": 13,
+        "radius": 9,
+        "depth": 27,
+        "is_trunk": false,
+        "is_merge": false,
+        "is_fork": true
+      }
+    },
+    {
+      "sha": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
+      "short": "8fff7ac",
+      "parents": "591a480e120578ddb5b14577d5ffd9b9ddf97daa",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-24T18:10:34+01:00",
+      "timestamp": 1774372234,
+      "subject": "fix(vsGen,uiGen): improve _require_arg error hint",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 2180,
+        "lane": 0,
+        "radius": 9,
+        "depth": 28,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": true
+      }
+    },
+    {
+      "sha": "591a480e120578ddb5b14577d5ffd9b9ddf97daa",
+      "short": "591a480",
+      "parents": "857bcebc81abf35851755fc51c9aef961bd7c49b",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-24T03:05:56+01:00",
+      "timestamp": 1774317956,
+      "subject": "feat(uiGen): auto-install generated themes to user/system paths",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 2220,
+        "lane": 0,
+        "radius": 6,
+        "depth": 29,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "857bcebc81abf35851755fc51c9aef961bd7c49b",
+      "short": "857bceb",
+      "parents": "709fe7f5a645b0d7e066ba6a1b414474b6a34776",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-24T01:18:00+01:00",
+      "timestamp": 1774311480,
+      "subject": "feat(uiGen): add multi-target UI theme dispatcher",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 2260,
+        "lane": 0,
+        "radius": 6,
+        "depth": 30,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "709fe7f5a645b0d7e066ba6a1b414474b6a34776",
+      "short": "709fe7f",
+      "parents": "326375a2d719e94577d1e14b913a2df18f129556",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-24T00:45:05+01:00",
+      "timestamp": 1774309505,
+      "subject": "refactor: extract shared libs and scaffold uiGen",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 2300,
+        "lane": 0,
+        "radius": 6,
+        "depth": 31,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "326375a2d719e94577d1e14b913a2df18f129556",
+      "short": "326375a",
+      "parents": "5e7029241cf130bd8dc966ae6c5c6295fe04405b",
+      "author": "XAOSTECH",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-23T23:44:33+01:00",
+      "timestamp": 1774305873,
+      "subject": "fix(vsGen): guard against missing/unquoted arguments",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 2340,
+        "lane": 0,
+        "radius": 6,
+        "depth": 32,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "5e7029241cf130bd8dc966ae6c5c6295fe04405b",
+      "short": "5e70292",
+      "parents": "76ad517008445e0360e74e315500449c6c55f8da",
+      "author": "xaoscience",
+      "email": "69734795+xaoscience@users.noreply.github.com",
+      "date": "2026-03-23T17:49:02+01:00",
+      "timestamp": 1774284542,
+      "subject": "chore(dc-init): load workflows,actions",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 2380,
+        "lane": 0,
+        "radius": 6,
+        "depth": 33,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "76ad517008445e0360e74e315500449c6c55f8da",
+      "short": "76ad517",
+      "parents": "e26a28e953463375c12afa9498a7c9532b988c66",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-03-23T01:06:20Z",
+      "timestamp": 1774227980,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 2420,
+        "lane": 0,
+        "radius": 6,
+        "depth": 34,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
     {
       "sha": "e26a28e953463375c12afa9498a7c9532b988c66",
       "short": "e26a28e",
@@ -16,13 +751,13 @@
       "date": "2026-03-21T20:00:13Z",
       "timestamp": 1774123213,
       "subject": "chore: update CHANGELOG for v0.1.0",
-      "refs": "HEAD -> main, tag: v0.1.0, tag: latest, origin/main",
+      "refs": "",
       "position": {
         "x": 600,
-        "y": 60,
+        "y": 2460,
         "lane": 0,
         "radius": 6,
-        "depth": 0,
+        "depth": 35,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -40,10 +775,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 100,
+        "y": 2500,
         "lane": 0,
         "radius": 6,
-        "depth": 1,
+        "depth": 36,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -61,10 +796,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 140,
+        "y": 2540,
         "lane": 0,
         "radius": 6,
-        "depth": 2,
+        "depth": 37,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -82,10 +817,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 180,
+        "y": 2580,
         "lane": 0,
         "radius": 6,
-        "depth": 3,
+        "depth": 38,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -103,10 +838,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 220,
+        "y": 2620,
         "lane": 0,
         "radius": 6,
-        "depth": 4,
+        "depth": 39,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -124,10 +859,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 260,
+        "y": 2660,
         "lane": 0,
         "radius": 6,
-        "depth": 5,
+        "depth": 40,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -145,10 +880,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 300,
+        "y": 2700,
         "lane": 0,
         "radius": 6,
-        "depth": 6,
+        "depth": 41,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -166,10 +901,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 340,
+        "y": 2740,
         "lane": 0,
         "radius": 6,
-        "depth": 7,
+        "depth": 42,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -187,10 +922,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 380,
+        "y": 2780,
         "lane": 0,
         "radius": 6,
-        "depth": 8,
+        "depth": 43,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -208,10 +943,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 420,
+        "y": 2820,
         "lane": 0,
         "radius": 6,
-        "depth": 9,
+        "depth": 44,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -229,10 +964,10 @@
       "refs": "tag: v0.0.1",
       "position": {
         "x": 600,
-        "y": 460,
+        "y": 2860,
         "lane": 0,
         "radius": 6,
-        "depth": 10,
+        "depth": 45,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -250,10 +985,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 500,
+        "y": 2900,
         "lane": 0,
         "radius": 6,
-        "depth": 11,
+        "depth": 46,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -271,10 +1006,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 540,
+        "y": 2940,
         "lane": 0,
         "radius": 6,
-        "depth": 12,
+        "depth": 47,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -292,10 +1027,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 580,
+        "y": 2980,
         "lane": 0,
         "radius": 6,
-        "depth": 13,
+        "depth": 48,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -313,10 +1048,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 620,
+        "y": 3020,
         "lane": 0,
         "radius": 6,
-        "depth": 14,
+        "depth": 49,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -334,10 +1069,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 660,
+        "y": 3060,
         "lane": 0,
         "radius": 6,
-        "depth": 15,
+        "depth": 50,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -355,10 +1090,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 700,
+        "y": 3100,
         "lane": 0,
         "radius": 6,
-        "depth": 16,
+        "depth": 51,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -376,10 +1111,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 740,
+        "y": 3140,
         "lane": 0,
         "radius": 6,
-        "depth": 17,
+        "depth": 52,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -397,10 +1132,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 780,
+        "y": 3180,
         "lane": 0,
         "radius": 6,
-        "depth": 18,
+        "depth": 53,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -418,10 +1153,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 820,
+        "y": 3220,
         "lane": 0,
         "radius": 6,
-        "depth": 19,
+        "depth": 54,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -439,10 +1174,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 860,
+        "y": 3260,
         "lane": 0,
         "radius": 6,
-        "depth": 20,
+        "depth": 55,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -460,10 +1195,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 900,
+        "y": 3300,
         "lane": 0,
         "radius": 6,
-        "depth": 21,
+        "depth": 56,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -481,10 +1216,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 940,
+        "y": 3340,
         "lane": 0,
         "radius": 6,
-        "depth": 22,
+        "depth": 57,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -502,10 +1237,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 980,
+        "y": 3380,
         "lane": 0,
         "radius": 6,
-        "depth": 23,
+        "depth": 58,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -523,10 +1258,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1020,
+        "y": 3420,
         "lane": 0,
         "radius": 6,
-        "depth": 24,
+        "depth": 59,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -544,10 +1279,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1060,
+        "y": 3460,
         "lane": 0,
         "radius": 6,
-        "depth": 25,
+        "depth": 60,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -565,10 +1300,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1100,
+        "y": 3500,
         "lane": 0,
         "radius": 6,
-        "depth": 26,
+        "depth": 61,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -586,10 +1321,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1140,
+        "y": 3540,
         "lane": 0,
         "radius": 6,
-        "depth": 27,
+        "depth": 62,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -607,10 +1342,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1180,
+        "y": 3580,
         "lane": 0,
         "radius": 6,
-        "depth": 28,
+        "depth": 63,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -628,10 +1363,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1220,
+        "y": 3620,
         "lane": 0,
         "radius": 6,
-        "depth": 29,
+        "depth": 64,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -649,10 +1384,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1260,
+        "y": 3660,
         "lane": 0,
         "radius": 6,
-        "depth": 30,
+        "depth": 65,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -661,7 +1396,7 @@
   ],
   "branches": [
     {
-      "name": "e26a28e953463375c12afa9498a7c9532b988c66 chore: update CHANGELOG for v0.1.0",
+      "name": "f972b5efa4c2b1f6db412f7f44d856a90786aba6 fix(uiGen): replace ((generated++)) with safe arithmetic",
       "sha": "*",
       "current": false,
       "merged": false
@@ -670,7 +1405,7 @@
   "tags": [
     {
       "name": "latest",
-      "sha": "79aead8aab19fcb82ed56f0c1b9767394bb3ed93"
+      "sha": "ca7237cd1584836524caa7cf50d6664b6146f5cd"
     },
     {
       "name": "v0.0.1",
@@ -678,7 +1413,11 @@
     },
     {
       "name": "v0.1.0",
-      "sha": "5d10c8f37c3edcba623b76bbb05f4d74ac99806c"
+      "sha": "6f1fc23d69e29f78b044c45a196641bad81b0e93"
+    },
+    {
+      "name": "v0.1.1",
+      "sha": "a5049180abf493d17c4cd9ab618d827ba7aa9779"
     }
   ]
 }
