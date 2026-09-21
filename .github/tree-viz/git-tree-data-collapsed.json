@@ -3,42 +3,33 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-08-31T21:32:04Z",
+    "generated": "2026-09-07T01:29:19Z",
     "max_commits": 500
   },
   "commits": [
     {
-      "sha": "f972b5efa4c2b1f6db412f7f44d856a90786aba6",
-      "short": "f972b5e",
-      "parents": "cc83737a390cf4e462e0da5a053243bd06591486",
-      "author": "xaoscience",
-      "email": "69734795+xaoscience@users.noreply.github.com",
-      "date": "2026-08-31T20:34:32Z",
-      "timestamp": 1788208472,
-      "subject": "fix(uiGen): replace ((generated++)) with safe arithmetic",
+      "sha": "468b34899bee7ad456529cd604beb28cac42235a",
+      "short": "468b348",
+      "parents": "collapsed:f972b5efa4c2b1f6db412f7f44d856a90786aba6:f47791184eb87cd760bfb809f844e639c014fc8d",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-09-07T01:29:19Z",
+      "timestamp": 1788744559,
+      "subject": "chore: update git tree visualisation",
       "refs": "HEAD -> main, origin/main"
     },
     {
-      "sha": "cc83737a390cf4e462e0da5a053243bd06591486",
-      "short": "cc83737",
-      "parents": "f47791184eb87cd760bfb809f844e639c014fc8d",
-      "author": "xaoscience",
-      "email": "69734795+xaoscience@users.noreply.github.com",
-      "date": "2026-08-31T20:34:26Z",
-      "timestamp": 1788208466,
-      "subject": "feat(palGen): add palette & design-token exporter flow",
-      "refs": ""
-    },
-    {
-      "sha": "f47791184eb87cd760bfb809f844e639c014fc8d",
-      "short": "f477911",
+      "sha": "collapsed:f972b5efa4c2b1f6db412f7f44d856a90786aba6:f47791184eb87cd760bfb809f844e639c014fc8d",
+      "short": "3",
       "parents": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
-      "author": "xaoscience",
-      "email": "69734795+xaoscience@users.noreply.github.com",
-      "date": "2026-08-23T00:41:34Z",
-      "timestamp": 1787445694,
-      "subject": "chore: file ops + path correct + vsGen",
-      "refs": ""
+      "author": "",
+      "email": "",
+      "date": "2026-08-31T20:34:32Z",
+      "timestamp": 1788208472,
+      "subject": "3 commits",
+      "refs": "",
+      "collapsed": true,
+      "count": 3
     },
     {
       "sha": "9fa076b7199a5301a1a2bf0349df09aff2d73ff0",
@@ -262,7 +253,7 @@
   ],
   "branches": [
     {
-      "name": "f972b5efa4c2b1f6db412f7f44d856a90786aba6 fix(uiGen): replace ((generated++)) with safe arithmetic",
+      "name": "468b34899bee7ad456529cd604beb28cac42235a chore: update git tree visualisation",
       "sha": "*",
       "current": false,
       "merged": false
