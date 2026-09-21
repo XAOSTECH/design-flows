@@ -3,19 +3,19 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-08-31T21:32:04Z",
+    "generated": "2026-09-07T01:29:19Z",
     "max_commits": 500
   },
   "commits": [
     {
-      "sha": "f972b5efa4c2b1f6db412f7f44d856a90786aba6",
-      "short": "f972b5e",
-      "parents": "cc83737a390cf4e462e0da5a053243bd06591486",
-      "author": "xaoscience",
-      "email": "69734795+xaoscience@users.noreply.github.com",
-      "date": "2026-08-31T20:34:32Z",
-      "timestamp": 1788208472,
-      "subject": "fix(uiGen): replace ((generated++)) with safe arithmetic",
+      "sha": "468b34899bee7ad456529cd604beb28cac42235a",
+      "short": "468b348",
+      "parents": "collapsed:f972b5efa4c2b1f6db412f7f44d856a90786aba6:f47791184eb87cd760bfb809f844e639c014fc8d",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-09-07T01:29:19Z",
+      "timestamp": 1788744559,
+      "subject": "chore: update git tree visualisation",
       "refs": "HEAD -> main, origin/main",
       "position": {
         "x": 600,
@@ -29,42 +29,23 @@
       }
     },
     {
-      "sha": "cc83737a390cf4e462e0da5a053243bd06591486",
-      "short": "cc83737",
-      "parents": "f47791184eb87cd760bfb809f844e639c014fc8d",
-      "author": "xaoscience",
-      "email": "69734795+xaoscience@users.noreply.github.com",
-      "date": "2026-08-31T20:34:26Z",
-      "timestamp": 1788208466,
-      "subject": "feat(palGen): add palette & design-token exporter flow",
+      "sha": "collapsed:f972b5efa4c2b1f6db412f7f44d856a90786aba6:f47791184eb87cd760bfb809f844e639c014fc8d",
+      "short": "3",
+      "parents": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
+      "author": "",
+      "email": "",
+      "date": "2026-08-31T20:34:32Z",
+      "timestamp": 1788208472,
+      "subject": "3 commits",
       "refs": "",
+      "collapsed": true,
+      "count": 3,
       "position": {
         "x": 600,
         "y": 100,
         "lane": 0,
         "radius": 6,
         "depth": 1,
-        "is_trunk": true,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "f47791184eb87cd760bfb809f844e639c014fc8d",
-      "short": "f477911",
-      "parents": "8fff7ac8b325d88b11731f6c928c65c0ff561748",
-      "author": "xaoscience",
-      "email": "69734795+xaoscience@users.noreply.github.com",
-      "date": "2026-08-23T00:41:34Z",
-      "timestamp": 1787445694,
-      "subject": "chore: file ops + path correct + vsGen",
-      "refs": "",
-      "position": {
-        "x": 600,
-        "y": 140,
-        "lane": 0,
-        "radius": 6,
-        "depth": 2,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -82,10 +63,10 @@
       "refs": "tag: v0.1.1, tag: latest",
       "position": {
         "x": 720,
-        "y": 180,
+        "y": 140,
         "lane": 1,
         "radius": 6,
-        "depth": 3,
+        "depth": 2,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -105,10 +86,10 @@
       "count": 8,
       "position": {
         "x": 480,
-        "y": 260,
+        "y": 220,
         "lane": -1,
         "radius": 6,
-        "depth": 4,
+        "depth": 3,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -126,10 +107,10 @@
       "refs": "",
       "position": {
         "x": 840,
-        "y": 340,
+        "y": 300,
         "lane": 2,
         "radius": 10,
-        "depth": 5,
+        "depth": 4,
         "is_trunk": false,
         "is_merge": true,
         "is_fork": false
@@ -147,10 +128,10 @@
       "refs": "",
       "position": {
         "x": 360,
-        "y": 420,
+        "y": 380,
         "lane": -2,
         "radius": 6,
-        "depth": 6,
+        "depth": 5,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -168,10 +149,10 @@
       "refs": "",
       "position": {
         "x": 960,
-        "y": 500,
+        "y": 460,
         "lane": 3,
         "radius": 9,
-        "depth": 7,
+        "depth": 6,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": true
@@ -189,10 +170,10 @@
       "refs": "tag: v0.1.0",
       "position": {
         "x": 240,
-        "y": 580,
+        "y": 540,
         "lane": -3,
         "radius": 6,
-        "depth": 8,
+        "depth": 7,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -212,10 +193,10 @@
       "count": 3,
       "position": {
         "x": 1080,
-        "y": 660,
+        "y": 620,
         "lane": 4,
         "radius": 6,
-        "depth": 9,
+        "depth": 8,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -233,10 +214,10 @@
       "refs": "",
       "position": {
         "x": 120,
-        "y": 740,
+        "y": 700,
         "lane": -4,
         "radius": 10,
-        "depth": 10,
+        "depth": 9,
         "is_trunk": false,
         "is_merge": true,
         "is_fork": false
@@ -254,10 +235,10 @@
       "refs": "",
       "position": {
         "x": 1200,
-        "y": 820,
+        "y": 780,
         "lane": 5,
         "radius": 6,
-        "depth": 11,
+        "depth": 10,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -275,10 +256,10 @@
       "refs": "",
       "position": {
         "x": 0,
-        "y": 900,
+        "y": 860,
         "lane": -5,
         "radius": 9,
-        "depth": 12,
+        "depth": 11,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": true
@@ -298,10 +279,10 @@
       "count": 3,
       "position": {
         "x": 1320,
-        "y": 980,
+        "y": 940,
         "lane": 6,
         "radius": 6,
-        "depth": 13,
+        "depth": 12,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -319,10 +300,10 @@
       "refs": "",
       "position": {
         "x": -120,
-        "y": 1060,
+        "y": 1020,
         "lane": -6,
         "radius": 10,
-        "depth": 14,
+        "depth": 13,
         "is_trunk": false,
         "is_merge": true,
         "is_fork": false
@@ -340,10 +321,10 @@
       "refs": "",
       "position": {
         "x": 1440,
-        "y": 1140,
+        "y": 1100,
         "lane": 7,
         "radius": 6,
-        "depth": 15,
+        "depth": 14,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -361,10 +342,10 @@
       "refs": "",
       "position": {
         "x": -240,
-        "y": 1220,
+        "y": 1180,
         "lane": -7,
         "radius": 9,
-        "depth": 16,
+        "depth": 15,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": true
@@ -382,10 +363,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1300,
+        "y": 1260,
         "lane": 0,
         "radius": 9,
-        "depth": 17,
+        "depth": 16,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": true
@@ -405,10 +386,10 @@
       "count": 16,
       "position": {
         "x": 600,
-        "y": 1340,
+        "y": 1300,
         "lane": 0,
         "radius": 6,
-        "depth": 18,
+        "depth": 17,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -426,10 +407,10 @@
       "refs": "tag: v0.0.1",
       "position": {
         "x": 600,
-        "y": 1380,
+        "y": 1340,
         "lane": 0,
         "radius": 6,
-        "depth": 19,
+        "depth": 18,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -449,10 +430,10 @@
       "count": 19,
       "position": {
         "x": 600,
-        "y": 1420,
+        "y": 1380,
         "lane": 0,
         "radius": 6,
-        "depth": 20,
+        "depth": 19,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -470,10 +451,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 1460,
+        "y": 1420,
         "lane": 0,
         "radius": 6,
-        "depth": 21,
+        "depth": 20,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -482,7 +463,7 @@
   ],
   "branches": [
     {
-      "name": "f972b5efa4c2b1f6db412f7f44d856a90786aba6 fix(uiGen): replace ((generated++)) with safe arithmetic",
+      "name": "468b34899bee7ad456529cd604beb28cac42235a chore: update git tree visualisation",
       "sha": "*",
       "current": false,
       "merged": false

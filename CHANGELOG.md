@@ -1,4 +1,16 @@
 
+## [0.1.1] - 2026-09-21 (re-release)
+
+### Added
+- add palette & design-token exporter flow
+
+### Fixed
+- replace ((generated++)) with safe arithmetic
+
+### Changed
+- chore: update git tree visualisation
+- chore: update git tree visualisation
+
 ## [Unreleased]
 
 ### Added
