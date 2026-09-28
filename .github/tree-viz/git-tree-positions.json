@@ -3,10 +3,52 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-09-07T01:29:19Z",
+    "generated": "2026-09-21T01:55:25Z",
     "max_commits": 500
   },
   "commits": [
+    {
+      "sha": "d4026c2649a6ec31d0c160a111150de86c933bc0",
+      "short": "d4026c2",
+      "parents": "d2c76c6bf1482b1f4ccf892df8fcbf9d763661b0",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-09-21T01:55:25Z",
+      "timestamp": 1789955725,
+      "subject": "chore: update CHANGELOG for v0.1.1 (re-release)",
+      "refs": "HEAD -> main, tag: v0.1.1, tag: latest, origin/main",
+      "position": {
+        "x": 600,
+        "y": 60,
+        "lane": 0,
+        "radius": 6,
+        "depth": 0,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
+    {
+      "sha": "d2c76c6bf1482b1f4ccf892df8fcbf9d763661b0",
+      "short": "d2c76c6",
+      "parents": "468b34899bee7ad456529cd604beb28cac42235a",
+      "author": "xaos-bot",
+      "email": "262248812+xaos-bot@users.noreply.github.com",
+      "date": "2026-09-14T01:55:41Z",
+      "timestamp": 1789350941,
+      "subject": "chore: update git tree visualisation",
+      "refs": "",
+      "position": {
+        "x": 600,
+        "y": 100,
+        "lane": 0,
+        "radius": 6,
+        "depth": 1,
+        "is_trunk": true,
+        "is_merge": false,
+        "is_fork": false
+      }
+    },
     {
       "sha": "468b34899bee7ad456529cd604beb28cac42235a",
       "short": "468b348",
@@ -16,13 +58,13 @@
       "date": "2026-09-07T01:29:19Z",
       "timestamp": 1788744559,
       "subject": "chore: update git tree visualisation",
-      "refs": "HEAD -> main, origin/main",
+      "refs": "",
       "position": {
         "x": 600,
-        "y": 60,
+        "y": 140,
         "lane": 0,
         "radius": 6,
-        "depth": 0,
+        "depth": 2,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -40,10 +82,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 100,
+        "y": 180,
         "lane": 0,
         "radius": 6,
-        "depth": 1,
+        "depth": 3,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -61,10 +103,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 140,
+        "y": 220,
         "lane": 0,
         "radius": 6,
-        "depth": 2,
+        "depth": 4,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -82,265 +124,13 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 180,
+        "y": 260,
         "lane": 0,
         "radius": 6,
-        "depth": 3,
+        "depth": 5,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
-      }
-    },
-    {
-      "sha": "9fa076b7199a5301a1a2bf0349df09aff2d73ff0",
-      "short": "9fa076b",
-      "parents": "be39b55003d956ad02a0376d8c59d2050b83dc0d",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-08-10T00:44:06Z",
-      "timestamp": 1786322646,
-      "subject": "chore: update CHANGELOG for v0.1.1 (re-release)",
-      "refs": "tag: v0.1.1, tag: latest",
-      "position": {
-        "x": 720,
-        "y": 220,
-        "lane": 1,
-        "radius": 6,
-        "depth": 4,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "be39b55003d956ad02a0376d8c59d2050b83dc0d",
-      "short": "be39b55",
-      "parents": "784f0740c64d485e50fb7ae0cb929ef4823fbb5d",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-08-03T01:24:23Z",
-      "timestamp": 1785720263,
-      "subject": "chore: update git tree visualisation",
-      "refs": "",
-      "position": {
-        "x": 480,
-        "y": 300,
-        "lane": -1,
-        "radius": 6,
-        "depth": 5,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "784f0740c64d485e50fb7ae0cb929ef4823fbb5d",
-      "short": "784f074",
-      "parents": "bd8115f77b933d0e5fa8a0a11e7832a2a63f1060",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-07-27T01:28:38Z",
-      "timestamp": 1785115718,
-      "subject": "chore: update git tree visualisation",
-      "refs": "",
-      "position": {
-        "x": 840,
-        "y": 380,
-        "lane": 2,
-        "radius": 6,
-        "depth": 6,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "bd8115f77b933d0e5fa8a0a11e7832a2a63f1060",
-      "short": "bd8115f",
-      "parents": "91af564f8f083a3d77286c3ecc7e01e3b4a0e863",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-07-13T01:21:56Z",
-      "timestamp": 1783905716,
-      "subject": "chore: update git tree visualisation",
-      "refs": "",
-      "position": {
-        "x": 360,
-        "y": 460,
-        "lane": -2,
-        "radius": 6,
-        "depth": 7,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "91af564f8f083a3d77286c3ecc7e01e3b4a0e863",
-      "short": "91af564",
-      "parents": "26cab896980738fa357e990b6026fc33a6cf8fe5",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-07-06T01:50:39Z",
-      "timestamp": 1783302639,
-      "subject": "chore: update git tree visualisation",
-      "refs": "",
-      "position": {
-        "x": 960,
-        "y": 540,
-        "lane": 3,
-        "radius": 6,
-        "depth": 8,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "26cab896980738fa357e990b6026fc33a6cf8fe5",
-      "short": "26cab89",
-      "parents": "737b5175cdf4e01993a56281c88ffd607d019b4f",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-06-29T02:05:10Z",
-      "timestamp": 1782698710,
-      "subject": "chore: update git tree visualisation",
-      "refs": "",
-      "position": {
-        "x": 240,
-        "y": 620,
-        "lane": -3,
-        "radius": 6,
-        "depth": 9,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "737b5175cdf4e01993a56281c88ffd607d019b4f",
-      "short": "737b517",
-      "parents": "55918539ad4e83bfcf83be23254b851389f72e14",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-06-22T02:28:27Z",
-      "timestamp": 1782095307,
-      "subject": "chore: update CHANGELOG for v0.1.1",
-      "refs": "",
-      "position": {
-        "x": 1080,
-        "y": 700,
-        "lane": 4,
-        "radius": 6,
-        "depth": 10,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "55918539ad4e83bfcf83be23254b851389f72e14",
-      "short": "5591853",
-      "parents": "f0bc9c8725f603bf3c5f976fba2d5c6de9253600",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-06-15T02:15:49Z",
-      "timestamp": 1781489749,
-      "subject": "chore: update git tree visualisation",
-      "refs": "",
-      "position": {
-        "x": 120,
-        "y": 780,
-        "lane": -4,
-        "radius": 6,
-        "depth": 11,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "f0bc9c8725f603bf3c5f976fba2d5c6de9253600",
-      "short": "f0bc9c8",
-      "parents": "30ef50c710bbaa86b1683529153939900dc7d791",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-06-08T02:13:07Z",
-      "timestamp": 1780884787,
-      "subject": "chore: update git tree visualisation",
-      "refs": "",
-      "position": {
-        "x": 1200,
-        "y": 860,
-        "lane": 5,
-        "radius": 6,
-        "depth": 12,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "30ef50c710bbaa86b1683529153939900dc7d791",
-      "short": "30ef50c",
-      "parents": "555cab632399dda0fffc86120d881a64d92bd737 219d4a31808c955a91a4352e4a6fbc6b71c40214",
-      "author": "xaostech[bot]",
-      "email": "260314499+xaostech[bot]@users.noreply.github.com",
-      "date": "2026-06-01T02:58:57Z",
-      "timestamp": 1780282737,
-      "subject": "Merge pull request #3 from XAOSTECH:anglicise/20260601-025828",
-      "refs": "",
-      "position": {
-        "x": 0,
-        "y": 940,
-        "lane": -5,
-        "radius": 10,
-        "depth": 13,
-        "is_trunk": false,
-        "is_merge": true,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "219d4a31808c955a91a4352e4a6fbc6b71c40214",
-      "short": "219d4a3",
-      "parents": "555cab632399dda0fffc86120d881a64d92bd737",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-06-01T02:58:28Z",
-      "timestamp": 1780282708,
-      "subject": "chore: convert American spellings to British English",
-      "refs": "",
-      "position": {
-        "x": 1320,
-        "y": 1020,
-        "lane": 6,
-        "radius": 6,
-        "depth": 14,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": false
-      }
-    },
-    {
-      "sha": "555cab632399dda0fffc86120d881a64d92bd737",
-      "short": "555cab6",
-      "parents": "6ce66bdb4ab1003e48e8a0fc7f63d0e0a14c0666",
-      "author": "xaos-bot",
-      "email": "262248812+xaos-bot@users.noreply.github.com",
-      "date": "2026-06-01T02:11:52Z",
-      "timestamp": 1780279912,
-      "subject": "chore: update git tree visualisation",
-      "refs": "",
-      "position": {
-        "x": -120,
-        "y": 1100,
-        "lane": -6,
-        "radius": 9,
-        "depth": 15,
-        "is_trunk": false,
-        "is_merge": false,
-        "is_fork": true
       }
     },
     {
@@ -354,11 +144,11 @@
       "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
       "refs": "tag: v0.1.0",
       "position": {
-        "x": 1440,
-        "y": 1180,
-        "lane": 7,
+        "x": 720,
+        "y": 300,
+        "lane": 1,
         "radius": 6,
-        "depth": 16,
+        "depth": 6,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -375,11 +165,11 @@
       "subject": "chore: update git tree visualisation",
       "refs": "",
       "position": {
-        "x": -240,
-        "y": 1260,
-        "lane": -7,
+        "x": 480,
+        "y": 380,
+        "lane": -1,
         "radius": 6,
-        "depth": 17,
+        "depth": 7,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -396,11 +186,11 @@
       "subject": "chore: update git tree visualisation",
       "refs": "",
       "position": {
-        "x": 1560,
-        "y": 1340,
-        "lane": 8,
+        "x": 840,
+        "y": 460,
+        "lane": 2,
         "radius": 6,
-        "depth": 18,
+        "depth": 8,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -417,11 +207,11 @@
       "subject": "chore: update git tree visualisation",
       "refs": "",
       "position": {
-        "x": -360,
-        "y": 1420,
-        "lane": -8,
+        "x": 360,
+        "y": 540,
+        "lane": -2,
         "radius": 6,
-        "depth": 19,
+        "depth": 9,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -438,11 +228,11 @@
       "subject": "Merge pull request #2 from XAOSTECH:anglicise/20260501-023055",
       "refs": "",
       "position": {
-        "x": 1680,
-        "y": 1500,
-        "lane": 9,
+        "x": 960,
+        "y": 620,
+        "lane": 3,
         "radius": 10,
-        "depth": 20,
+        "depth": 10,
         "is_trunk": false,
         "is_merge": true,
         "is_fork": false
@@ -459,11 +249,11 @@
       "subject": "chore: convert American spellings to British English",
       "refs": "",
       "position": {
-        "x": -480,
-        "y": 1580,
-        "lane": -9,
+        "x": 240,
+        "y": 700,
+        "lane": -3,
         "radius": 6,
-        "depth": 21,
+        "depth": 11,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -480,11 +270,11 @@
       "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
       "refs": "",
       "position": {
-        "x": 1800,
-        "y": 1660,
-        "lane": 10,
+        "x": 1080,
+        "y": 780,
+        "lane": 4,
         "radius": 9,
-        "depth": 22,
+        "depth": 12,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": true
@@ -501,11 +291,11 @@
       "subject": "chore: update git tree visualisation",
       "refs": "",
       "position": {
-        "x": -600,
-        "y": 1740,
-        "lane": -10,
+        "x": 120,
+        "y": 860,
+        "lane": -4,
         "radius": 6,
-        "depth": 23,
+        "depth": 13,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -522,11 +312,11 @@
       "subject": "chore: update git tree visualisation",
       "refs": "",
       "position": {
-        "x": 1920,
-        "y": 1820,
-        "lane": 11,
+        "x": 1200,
+        "y": 940,
+        "lane": 5,
         "radius": 6,
-        "depth": 24,
+        "depth": 14,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -543,11 +333,11 @@
       "subject": "chore: update git tree visualisation",
       "refs": "",
       "position": {
-        "x": -720,
-        "y": 1900,
-        "lane": -11,
+        "x": 0,
+        "y": 1020,
+        "lane": -5,
         "radius": 6,
-        "depth": 25,
+        "depth": 15,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -564,11 +354,11 @@
       "subject": "Merge pull request #1 from XAOSTECH:anglicise/20260401-020004",
       "refs": "",
       "position": {
-        "x": 2040,
-        "y": 1980,
-        "lane": 12,
+        "x": 1320,
+        "y": 1100,
+        "lane": 6,
         "radius": 10,
-        "depth": 26,
+        "depth": 16,
         "is_trunk": false,
         "is_merge": true,
         "is_fork": false
@@ -585,11 +375,11 @@
       "subject": "chore: convert American spellings to British English",
       "refs": "",
       "position": {
-        "x": -840,
-        "y": 2060,
-        "lane": -12,
+        "x": -120,
+        "y": 1180,
+        "lane": -6,
         "radius": 6,
-        "depth": 27,
+        "depth": 17,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": false
@@ -606,11 +396,11 @@
       "subject": "chore: update CHANGELOG for v0.1.0 (re-release)",
       "refs": "",
       "position": {
-        "x": 2160,
-        "y": 2140,
-        "lane": 13,
+        "x": 1440,
+        "y": 1260,
+        "lane": 7,
         "radius": 9,
-        "depth": 28,
+        "depth": 18,
         "is_trunk": false,
         "is_merge": false,
         "is_fork": true
@@ -628,10 +418,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2220,
+        "y": 1340,
         "lane": 0,
         "radius": 9,
-        "depth": 29,
+        "depth": 19,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": true
@@ -649,10 +439,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2260,
+        "y": 1380,
         "lane": 0,
         "radius": 6,
-        "depth": 30,
+        "depth": 20,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -670,10 +460,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2300,
+        "y": 1420,
         "lane": 0,
         "radius": 6,
-        "depth": 31,
+        "depth": 21,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -691,10 +481,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2340,
+        "y": 1460,
         "lane": 0,
         "radius": 6,
-        "depth": 32,
+        "depth": 22,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -712,10 +502,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2380,
+        "y": 1500,
         "lane": 0,
         "radius": 6,
-        "depth": 33,
+        "depth": 23,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -733,10 +523,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2420,
+        "y": 1540,
         "lane": 0,
         "radius": 6,
-        "depth": 34,
+        "depth": 24,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -754,10 +544,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2460,
+        "y": 1580,
         "lane": 0,
         "radius": 6,
-        "depth": 35,
+        "depth": 25,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -775,10 +565,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2500,
+        "y": 1620,
         "lane": 0,
         "radius": 6,
-        "depth": 36,
+        "depth": 26,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -796,10 +586,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2540,
+        "y": 1660,
         "lane": 0,
         "radius": 6,
-        "depth": 37,
+        "depth": 27,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -817,10 +607,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2580,
+        "y": 1700,
         "lane": 0,
         "radius": 6,
-        "depth": 38,
+        "depth": 28,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -838,10 +628,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2620,
+        "y": 1740,
         "lane": 0,
         "radius": 6,
-        "depth": 39,
+        "depth": 29,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -859,10 +649,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2660,
+        "y": 1780,
         "lane": 0,
         "radius": 6,
-        "depth": 40,
+        "depth": 30,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -880,10 +670,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2700,
+        "y": 1820,
         "lane": 0,
         "radius": 6,
-        "depth": 41,
+        "depth": 31,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -901,10 +691,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2740,
+        "y": 1860,
         "lane": 0,
         "radius": 6,
-        "depth": 42,
+        "depth": 32,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -922,10 +712,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2780,
+        "y": 1900,
         "lane": 0,
         "radius": 6,
-        "depth": 43,
+        "depth": 33,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -943,10 +733,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2820,
+        "y": 1940,
         "lane": 0,
         "radius": 6,
-        "depth": 44,
+        "depth": 34,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -964,10 +754,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2860,
+        "y": 1980,
         "lane": 0,
         "radius": 6,
-        "depth": 45,
+        "depth": 35,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -985,10 +775,10 @@
       "refs": "tag: v0.0.1",
       "position": {
         "x": 600,
-        "y": 2900,
+        "y": 2020,
         "lane": 0,
         "radius": 6,
-        "depth": 46,
+        "depth": 36,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1006,10 +796,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2940,
+        "y": 2060,
         "lane": 0,
         "radius": 6,
-        "depth": 47,
+        "depth": 37,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1027,10 +817,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 2980,
+        "y": 2100,
         "lane": 0,
         "radius": 6,
-        "depth": 48,
+        "depth": 38,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1048,10 +838,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3020,
+        "y": 2140,
         "lane": 0,
         "radius": 6,
-        "depth": 49,
+        "depth": 39,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1069,10 +859,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3060,
+        "y": 2180,
         "lane": 0,
         "radius": 6,
-        "depth": 50,
+        "depth": 40,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1090,10 +880,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3100,
+        "y": 2220,
         "lane": 0,
         "radius": 6,
-        "depth": 51,
+        "depth": 41,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1111,10 +901,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3140,
+        "y": 2260,
         "lane": 0,
         "radius": 6,
-        "depth": 52,
+        "depth": 42,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1132,10 +922,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3180,
+        "y": 2300,
         "lane": 0,
         "radius": 6,
-        "depth": 53,
+        "depth": 43,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1153,10 +943,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3220,
+        "y": 2340,
         "lane": 0,
         "radius": 6,
-        "depth": 54,
+        "depth": 44,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1174,10 +964,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3260,
+        "y": 2380,
         "lane": 0,
         "radius": 6,
-        "depth": 55,
+        "depth": 45,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1195,10 +985,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3300,
+        "y": 2420,
         "lane": 0,
         "radius": 6,
-        "depth": 56,
+        "depth": 46,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1216,10 +1006,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3340,
+        "y": 2460,
         "lane": 0,
         "radius": 6,
-        "depth": 57,
+        "depth": 47,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1237,10 +1027,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3380,
+        "y": 2500,
         "lane": 0,
         "radius": 6,
-        "depth": 58,
+        "depth": 48,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1258,10 +1048,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3420,
+        "y": 2540,
         "lane": 0,
         "radius": 6,
-        "depth": 59,
+        "depth": 49,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1279,10 +1069,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3460,
+        "y": 2580,
         "lane": 0,
         "radius": 6,
-        "depth": 60,
+        "depth": 50,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1300,10 +1090,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3500,
+        "y": 2620,
         "lane": 0,
         "radius": 6,
-        "depth": 61,
+        "depth": 51,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1321,10 +1111,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3540,
+        "y": 2660,
         "lane": 0,
         "radius": 6,
-        "depth": 62,
+        "depth": 52,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1342,10 +1132,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3580,
+        "y": 2700,
         "lane": 0,
         "radius": 6,
-        "depth": 63,
+        "depth": 53,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1363,10 +1153,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3620,
+        "y": 2740,
         "lane": 0,
         "radius": 6,
-        "depth": 64,
+        "depth": 54,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1384,10 +1174,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3660,
+        "y": 2780,
         "lane": 0,
         "radius": 6,
-        "depth": 65,
+        "depth": 55,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1405,10 +1195,10 @@
       "refs": "",
       "position": {
         "x": 600,
-        "y": 3700,
+        "y": 2820,
         "lane": 0,
         "radius": 6,
-        "depth": 66,
+        "depth": 56,
         "is_trunk": true,
         "is_merge": false,
         "is_fork": false
@@ -1417,7 +1207,7 @@
   ],
   "branches": [
     {
-      "name": "468b34899bee7ad456529cd604beb28cac42235a chore: update git tree visualisation",
+      "name": "d4026c2649a6ec31d0c160a111150de86c933bc0 chore: update CHANGELOG for v0.1.1 (re-release)",
       "sha": "*",
       "current": false,
       "merged": false
@@ -1426,7 +1216,7 @@
   "tags": [
     {
       "name": "latest",
-      "sha": "ca7237cd1584836524caa7cf50d6664b6146f5cd"
+      "sha": "9a6cb8dccd4061a127230e40453efe9e3d2aa204"
     },
     {
       "name": "v0.0.1",
@@ -1438,7 +1228,7 @@
     },
     {
       "name": "v0.1.1",
-      "sha": "a5049180abf493d17c4cd9ab618d827ba7aa9779"
+      "sha": "d1a0303c0de0173722b7e589c0df6c7d426a79b1"
     }
   ]
 }
