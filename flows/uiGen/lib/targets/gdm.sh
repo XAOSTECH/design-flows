@@ -60,8 +60,8 @@ stage {
     rgba(${bg_deep_rgb}, 0.55));
 }
 
-/* Login dialog */
-.login-dialog {
+/* Login dialogue */
+.login-dialogue {
   background: rgba(${bg_mid_rgb}, 0.4);
   border: 2px solid rgba(${border_rgb}, 0.6);
   border-radius: ${radius}px;
@@ -70,11 +70,11 @@ stage {
               0 0 40px rgba(${glow_rgb}, 0.25);
 }
 
-.login-dialog-prompt-layout {
+.login-dialogue-prompt-layout {
   padding: 24px;
 }
 
-.login-dialog-prompt-entry {
+.login-dialogue-prompt-entry {
   background: rgba(${bg_deep_rgb}, 0.6);
   border: 2px solid rgba(${border_rgb}, 0.5);
   border-radius: 8px;
@@ -83,44 +83,44 @@ stage {
   font-size: 14pt;
 }
 
-.login-dialog-prompt-entry:focus {
+.login-dialogue-prompt-entry:focus {
   border-color: rgba(${border_rgb}, 0.9);
   box-shadow: 0 0 10px rgba(${glow_rgb}, 0.4);
 }
 
-.login-dialog-user-list {
+.login-dialogue-user-list {
   background: transparent;
 }
 
-.login-dialog-user-list-item {
+.login-dialogue-user-list-item {
   border-radius: 10px;
   padding: 8px 12px;
   transition: all 0.15s ease;
 }
 
-.login-dialog-user-list-item:hover,
-.login-dialog-user-list-item:focus {
+.login-dialogue-user-list-item:hover,
+.login-dialogue-user-list-item:focus {
   background: rgba(${glow_rgb}, 0.25);
 }
 
-.login-dialog-user-list-item:selected {
+.login-dialogue-user-list-item:selected {
   background: rgba(${accent_bright_rgb}, 0.3);
   border: 1px solid rgba(${border_rgb}, 0.6);
 }
 
-.login-dialog-banner {
+.login-dialogue-banner {
   color: rgba(${fg_rgb}, 0.7);
   font-size: 10pt;
 }
 
-.login-dialog-button-box .button {
+.login-dialogue-button-box .button {
   background: linear-gradient(135deg, rgba(${bg_mid_rgb}, 0.4), rgba(${bg_deep_rgb}, 0.45));
   border: 1px solid rgba(${border_rgb}, 0.5);
   border-radius: 10px;
   color: ${fg_colour};
 }
 
-.login-dialog-button-box .button:hover {
+.login-dialogue-button-box .button:hover {
   background: rgba(${glow_rgb}, 0.4);
   border-color: rgba(${border_rgb}, 0.8);
 }
@@ -133,7 +133,7 @@ stage {
     rgba(${bg_mid_rgb}, 0.65));
 }
 
-.unlock-dialog {
+.unlock-dialogue {
   background: rgba(${bg_mid_rgb}, 0.4);
   border: 2px solid rgba(${border_rgb}, 0.6);
   border-radius: ${radius}px;
