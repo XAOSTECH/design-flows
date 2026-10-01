@@ -81,7 +81,7 @@ terminal-font:  "Inter Regular 12"
     left   = 25%
     top    = 82%
     width  = 50%
-    align  = "center"
+    align  = "centre"
     id     = "__timeout__"
     text   = "Booting in %d seconds"
     font   = "Inter Regular 11"

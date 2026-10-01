@@ -2,7 +2,7 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # android.sh — Android colour-resources export for palGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# Emits res/values/colors.xml with <color name="primary_500">#RRGGBB</color>.
+# Emits res/values/colors.xml with <colour name="primary_500">#RRGGBB</colour>.
 # Hyphens in token names become underscores (Android resource-name rules).
 # ═══════════════════════════════════════════════════════════════════════════════
 
