@@ -126,14 +126,14 @@ ALAEOF
 #
 # Place in ~/.config/foot/ and add: include=${THEME_NAME}.ini
 
-[colors]
+[colours]
 foreground = ${fg#\#}
 background = ${bg#\#}
 
 [cursor]
 color = ${bg#\#} ${cursor#\#}
 
-[colors]
+[colours]
 selection-foreground = ${bg#\#}
 selection-background = ${selection#\#}
 

@@ -2,8 +2,8 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # kde.sh — KDE Plasma colour scheme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# Generates a .colors file compatible with KDE Plasma's colour scheme format.
-# Installs to ~/.local/share/color-schemes/ automatically.
+# Generates a .colours file compatible with KDE Plasma's colour scheme format.
+# Installs to ~/.local/share/colour-schemes/ automatically.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 _hex_to_kde_rgb() {
@@ -68,7 +68,7 @@ Name=${THEME_NAME}
 ColorScheme=${THEME_NAME}
 shadeSortColumn=true
 
-[Colors:Window]
+[Colours:Window]
 ForegroundNormal=${fg_kde}
 ForegroundInactive=${inactive_kde}
 ForegroundActive=${accent_kde}
@@ -82,7 +82,7 @@ BackgroundAlternate=${bg_alt_kde}
 DecorationFocus=${accent_kde}
 DecorationHover=${hover_kde}
 
-[Colors:View]
+[Colours:View]
 ForegroundNormal=${fg_kde}
 ForegroundInactive=${inactive_kde}
 ForegroundActive=${accent_kde}
@@ -96,7 +96,7 @@ BackgroundAlternate=${bg_alt_kde}
 DecorationFocus=${accent_kde}
 DecorationHover=${hover_kde}
 
-[Colors:Button]
+[Colours:Button]
 ForegroundNormal=${fg_kde}
 ForegroundInactive=${inactive_kde}
 ForegroundActive=${accent_kde}
@@ -110,7 +110,7 @@ BackgroundAlternate=${bg_kde}
 DecorationFocus=${accent_kde}
 DecorationHover=${hover_kde}
 
-[Colors:Selection]
+[Colours:Selection]
 ForegroundNormal=${bg_kde}
 ForegroundInactive=${bg_alt_kde}
 ForegroundActive=${bg_kde}
@@ -124,7 +124,7 @@ BackgroundAlternate=${focus_kde}
 DecorationFocus=${accent_kde}
 DecorationHover=${hover_kde}
 
-[Colors:Tooltip]
+[Colours:Tooltip]
 ForegroundNormal=${fg_kde}
 ForegroundInactive=${inactive_kde}
 ForegroundActive=${accent_kde}
@@ -138,7 +138,7 @@ BackgroundAlternate=${bg_alt_kde}
 DecorationFocus=${accent_kde}
 DecorationHover=${hover_kde}
 
-[Colors:Complementary]
+[Colours:Complementary]
 ForegroundNormal=${fg_kde}
 ForegroundInactive=${inactive_kde}
 ForegroundActive=${accent_kde}
@@ -152,7 +152,7 @@ BackgroundAlternate=${bg_alt_kde}
 DecorationFocus=${accent_kde}
 DecorationHover=${hover_kde}
 
-[Colors:Header]
+[Colours:Header]
 ForegroundNormal=${fg_kde}
 ForegroundInactive=${inactive_kde}
 ForegroundActive=${accent_kde}

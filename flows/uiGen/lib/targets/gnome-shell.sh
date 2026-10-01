@@ -3,11 +3,11 @@
 # gnome-shell.sh — GNOME Shell theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates a comprehensive gnome-shell.css covering:
-#   Stage, panel, popup menus, modal dialogs, workspace switcher, overview,
+#   Stage, panel, popup menus, modal dialogues, workspace switcher, overview,
 #   search, buttons, quick settings, calendar, notifications, tooltips,
 #   sliders/switches, window picker, app icons, dash, looking glass, OSD,
 #   lock screen, alt-tab switcher, app grid/folders, screenshot UI,
-#   on-screen keyboard, system dialogs, world clock/weather, tile preview,
+#   on-screen keyboard, system dialogues, world clock/weather, tile preview,
 #   and global typography.
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -146,7 +146,7 @@ ${anim_stage_extra}
 /* ─── Panels & Menus — glassmorphism base ─────────────────────────── */
 #panel,
 .popup-menu,
-.modal-dialog,
+.modal-dialogue,
 .notification-banner,
 .osd-window {
   background: linear-gradient(135deg, rgba(${bg_mid_rgb}, 0.35) 0%, rgba(${bg_deep_rgb}, 0.4) 100%);
@@ -220,8 +220,8 @@ ${shadow_popup}${anim_popup}
   border-radius: 8px;
 }
 
-/* ─── Modal Dialogs ───────────────────────────────────────────────── */
-.modal-dialog {
+/* ─── Modal Dialogues ───────────────────────────────────────────────── */
+.modal-dialogue {
   box-shadow: 0 0 15px rgba(${glow_rgb}, 0.45),
               0 0 30px rgba(${glow_soft_rgb}, 0.3),
               0 0 45px rgba(${border_rgb}, 0.2),
@@ -287,7 +287,7 @@ ${shadow_popup}${anim_popup}
 
 /* ─── Buttons ─────────────────────────────────────────────────────── */
 .button,
-.modal-dialog-linked-button {
+.modal-dialogue-linked-button {
   background: linear-gradient(135deg, rgba(${bg_mid_rgb}, 0.4), rgba(${bg_deep_rgb}, 0.45));
   border: 1px solid rgba(${border_rgb}, 0.5);
   border-radius: 10px;
@@ -504,7 +504,7 @@ ${shadow_popup}${anim_popup}
 }
 
 /* ─── Looking Glass (Alt+F2 Debugger) ─────────────────────────────── */
-.lg-dialog {
+.lg-dialogue {
   background: rgba(${bg_deep_rgb}, 0.9);
   border: 2px solid rgba(${border_rgb}, 0.8);
   border-radius: ${radius}px;
@@ -518,7 +518,7 @@ ${shadow_popup}${anim_popup}
   border-radius: 8px;
 }
 
-.lg-dialog-entry {
+.lg-dialogue-entry {
   background: rgba(${bg_mid_rgb}, 0.4);
   border: 1px solid rgba(${border_rgb}, 0.5);
   border-radius: 6px;
@@ -575,7 +575,7 @@ ${shadow_popup}${anim_popup}
   border-radius: ${radius}px;
 }
 
-.unlock-dialog {
+.unlock-dialogue {
   background: rgba(${bg_mid_rgb}, 0.4);
   border: 2px solid rgba(${border_rgb}, 0.6);
   border-radius: ${radius}px;
@@ -583,12 +583,12 @@ ${shadow_popup}${anim_popup}
   box-shadow: 0 0 20px rgba(${glow_rgb}, 0.5);
 }
 
-.unlock-dialog-clock {
+.unlock-dialogue-clock {
   color: ${fg_colour};
   font-weight: bold;
 }
 
-.unlock-dialog-notification-label {
+.unlock-dialogue-notification-label {
   color: rgba(${fg_rgb}, 0.8);
 }
 
@@ -781,11 +781,11 @@ ${shadow_popup}${anim_popup}
   backdrop-filter: blur(8px);
 }
 
-/* ─── System Dialogs ──────────────────────────────────────────────── */
-.nm-dialog,
-.polkit-dialog,
-.end-session-dialog,
-.run-dialog {
+/* ─── System Dialogues ──────────────────────────────────────────────── */
+.nm-dialogue,
+.polkit-dialogue,
+.end-session-dialogue,
+.run-dialogue {
   background: rgba(${bg_mid_rgb}, 0.5);
   border: 2px solid rgba(${border_rgb}, 0.6);
   border-radius: ${radius}px;
@@ -794,21 +794,21 @@ ${shadow_popup}${anim_popup}
               0 0 30px rgba(${glow_soft_rgb}, 0.25);
 }
 
-.prompt-dialog {
+.prompt-dialogue {
   background: rgba(${bg_mid_rgb}, 0.5);
   border: 2px solid rgba(${border_rgb}, 0.6);
   border-radius: ${radius}px;
   backdrop-filter: blur(${blur}px);
 }
 
-.prompt-dialog-password-entry {
+.prompt-dialogue-password-entry {
   background: rgba(${bg_deep_rgb}, 0.6);
   border: 1px solid rgba(${border_rgb}, 0.5);
   border-radius: 6px;
   color: ${fg_colour};
 }
 
-.prompt-dialog-password-entry:focus {
+.prompt-dialogue-password-entry:focus {
   border-color: rgba(${border_rgb}, 0.9);
   box-shadow: 0 0 8px rgba(${glow_soft_rgb}, 0.4);
 }
