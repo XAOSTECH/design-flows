@@ -3,10 +3,43 @@
     "repository": "design-flows",
     "current_branch": "main",
     "repo_url": "https://github.com/XAOSTECH/design-flows",
-    "generated": "2026-09-21T01:55:25Z",
+    "generated": "2026-10-01T03:33:34Z",
     "max_commits": 500
   },
   "commits": [
+  {
+    "sha": "22f621f8f36523c834467a76e737f0211e30161a",
+    "short": "22f621f",
+    "parents": "405d10e3621cd2393a9e0029707788bc8cb08825 e6e5f18ed9faa93f9dbbbc998339e56b178e65d8",
+    "author": "xaostech[bot]",
+    "email": "260314499+xaostech[bot]@users.noreply.github.com",
+    "date": "2026-10-01T03:33:34Z",
+    "timestamp": 1790825614,
+    "subject": "Merge pull request #4 from XAOSTECH:anglicise/20261001-033259",
+    "refs": "HEAD -> main, origin/main"
+  },
+  {
+    "sha": "e6e5f18ed9faa93f9dbbbc998339e56b178e65d8",
+    "short": "e6e5f18",
+    "parents": "405d10e3621cd2393a9e0029707788bc8cb08825",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-10-01T03:32:59Z",
+    "timestamp": 1790825579,
+    "subject": "chore: convert American spellings to British English",
+    "refs": "origin/anglicise/20261001-033259"
+  },
+  {
+    "sha": "405d10e3621cd2393a9e0029707788bc8cb08825",
+    "short": "405d10e",
+    "parents": "d4026c2649a6ec31d0c160a111150de86c933bc0",
+    "author": "xaos-bot",
+    "email": "262248812+xaos-bot@users.noreply.github.com",
+    "date": "2026-09-28T02:10:19Z",
+    "timestamp": 1790561419,
+    "subject": "chore: update git tree visualisation",
+    "refs": ""
+  },
   {
     "sha": "d4026c2649a6ec31d0c160a111150de86c933bc0",
     "short": "d4026c2",
@@ -16,7 +49,7 @@
     "date": "2026-09-21T01:55:25Z",
     "timestamp": 1789955725,
     "subject": "chore: update CHANGELOG for v0.1.1 (re-release)",
-    "refs": "HEAD -> main, tag: v0.1.1, tag: latest, origin/main"
+    "refs": "tag: v0.1.1, tag: latest"
   },
   {
     "sha": "d2c76c6bf1482b1f4ccf892df8fcbf9d763661b0",
@@ -636,7 +669,7 @@
   }
 ],
   "branches": [
-  {"name":"d4026c2649a6ec31d0c160a111150de86c933bc0 chore: update CHANGELOG for v0.1.1 (re-release)","sha":"*","current":false,"merged":false}
+  {"name":"22f621f8f36523c834467a76e737f0211e30161a Merge pull request #4 from XAOSTECH:anglicise/20261001-033259","sha":"*","current":false,"merged":false}
 ],
   "tags": [
   {"name":"latest","sha":"9a6cb8dccd4061a127230e40453efe9e3d2aa204"},
