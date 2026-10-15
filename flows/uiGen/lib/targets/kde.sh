@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# kde.sh — KDE Plasma colour scheme target for uiGen
+# ═══════════════════════════════════════════════════════════════════════════════ kde.sh — KDE Plasma colour scheme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates a .colours file compatible with KDE Plasma's colour scheme format.
 # Installs to ~/.local/share/colour-schemes/ automatically.

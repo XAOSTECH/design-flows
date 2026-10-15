@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ rofi.sh — Rofi / Wofi launcher theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# rofi.sh — Rofi / Wofi launcher theme target for uiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Generates a .rasi colour theme for Rofi (also usable by Wofi with minor
-# adjustments). Covers: window, inputbar, listview, element, sidebar, message.
+# Generates a .rasi colour theme for Rofi (also usable by Wofi with minor adjustments). Covers: window, inputbar, listview, element, sidebar, message.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_rofi() {

@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ gdm.sh — GDM login screen theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# gdm.sh — GDM login screen theme target for uiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Generates a gnome-shell.css for the GDM login screen, compiles it
-# into a .gresource binary, and optionally installs the result.
+# Generates a gnome-shell.css for the GDM login screen, compiles it into a .gresource binary, and optionally installs the result.
 #
 # Requires: glib-compile-resources  (from libglib2.0-dev-bin)
 # ═══════════════════════════════════════════════════════════════════════════════

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# json.sh — W3C design-tokens export for palGen
+# ═══════════════════════════════════════════════════════════════════════════════ json.sh — W3C design-tokens export for palGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Emits nested design tokens following the W3C Design Tokens format
 # (groups of { "$value": "#...", "$type": "color" }).

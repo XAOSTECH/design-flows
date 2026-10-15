@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# colours.sh — ANSI helpers, colour manipulation and palette generation
+# ═══════════════════════════════════════════════════════════════════════════════ colours.sh — ANSI helpers, colour manipulation and palette generation
 # ═══════════════════════════════════════════════════════════════════════════════
 # Shared library for all design-flows.
 # Provides: ANSI log helpers, pastel wrappers, palette-building logic.
@@ -127,9 +126,7 @@ _contrast_ratio() {
 }
 
 # Ensure a foreground colour is readable on a dark editor background.
-# Strategy: first check HSL lightness floor, then verify WCAG contrast
-# ratio ≥ 3.0 against a typical dark background (#1e1e1e). If too low,
-# lighten iteratively until it passes.
+# Strategy: first check HSL lightness floor, then verify WCAG contrast ratio ≥ 3.0 against a typical dark background (#1e1e1e). If too low, lighten iteratively until it passes.
 ensure_readable() {
     local colour="$1"
     local min_lightness="${2:-$MIN_FG_LIGHTNESS}"
@@ -191,10 +188,7 @@ generate_palette() {
     log_verbose "Tertiary base:  $tertiary_hex"
 
     # ── Lift near-black colours for hue operations ──────────────────────────
-    # Hue rotation / saturation of pure black (#000000) produces black — useless
-    # for palette generation.  We create "hue-capable" variants at L≈0.10 so that
-    # analogous, triadic, variation, and blend operations can produce visible
-    # tinted dark colours, while the original hex is still used for backgrounds.
+    # Hue rotation / saturation of pure black (#000000) produces black — useless for palette generation.  We create "hue-capable" variants at L≈0.10 so that analogous, triadic, variation, and blend operations can produce visible tinted dark colours, while the original hex is still used for backgrounds.
     local primary_hue_hex="$primary_hex"
     local secondary_hue_hex="$secondary_hex"
     local tertiary_hue_hex="$tertiary_hex"
@@ -330,8 +324,7 @@ generate_palette() {
             local rotated
             rotated=$(rotate_hue "$primary_hue_hex" "$angle")
 
-            # Mix back toward primary by (1 - variation) so low variation
-            # keeps hues close while high variation lets them go wild.
+            # Mix back toward primary by (1 - variation) so low variation keeps hues close while high variation lets them go wild.
             local mix_factor
             mix_factor=$(awk "BEGIN { printf \"%.2f\", 1.0 - $VARIATION }")
             if (( $(awk "BEGIN { print ($mix_factor > 0.02) }") )); then

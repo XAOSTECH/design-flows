@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# gtk.sh — GTK 3/4 theme target for uiGen
+# ═══════════════════════════════════════════════════════════════════════════════ gtk.sh — GTK 3/4 theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates a single gtk.css that works for both GTK3 and GTK4 via symlink
 # (gtk-3.0/ → gtk-4.0/). Covers comprehensive widget theming including

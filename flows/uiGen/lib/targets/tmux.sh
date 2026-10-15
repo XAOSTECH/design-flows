@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ tmux.sh — tmux colour theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# tmux.sh — tmux colour theme target for uiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Generates a .tmux.conf snippet with status bar, pane border, message, and
-# mode colours derived from the palette.
+# Generates a .tmux.conf snippet with status bar, pane border, message, and mode colours derived from the palette.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_tmux() {

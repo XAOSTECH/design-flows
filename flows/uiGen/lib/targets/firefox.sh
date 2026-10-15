@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# firefox.sh — Firefox browser theme target for uiGen
+# ═══════════════════════════════════════════════════════════════════════════════ firefox.sh — Firefox browser theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates a Firefox theme extension directory with manifest.json.
 # Can be loaded as a temporary add-on via about:debugging.

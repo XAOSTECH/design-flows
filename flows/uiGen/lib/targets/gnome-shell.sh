@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# gnome-shell.sh — GNOME Shell theme target for uiGen
+# ═══════════════════════════════════════════════════════════════════════════════ gnome-shell.sh — GNOME Shell theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates a comprehensive gnome-shell.css covering:
 #   Stage, panel, popup menus, modal dialogues, workspace switcher, overview,
