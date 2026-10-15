@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ file-ops.sh — File I/O and token flattening for palGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# file-ops.sh — File I/O and token flattening for palGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Handles output-directory resolution, writing generated files to disk, and
-# flattening the palette arrays into an ordered list of named colour tokens
-# that every export format consumes.
+# Handles output-directory resolution, writing generated files to disk, and flattening the palette arrays into an ordered list of named colour tokens that every export format consumes.
 #
 # Requires: colours.sh sourced first (for log_* helpers and pastel wrappers)
 # ═══════════════════════════════════════════════════════════════════════════════

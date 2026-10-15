@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# json-gen.sh — VS Code theme JSON generation for vscode-theme-gen
+# ═══════════════════════════════════════════════════════════════════════════════ json-gen.sh — VS Code theme JSON generation for vscode-theme-gen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Builds the "workbench.colorCustomizations" and
 # "editor.tokenColorCustomizations" JSON blocks.

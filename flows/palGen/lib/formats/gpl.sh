@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# gpl.sh — GIMP / Inkscape palette export for palGen
+# ═══════════════════════════════════════════════════════════════════════════════ gpl.sh — GIMP / Inkscape palette export for palGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Emits a .gpl palette file usable by GIMP, Inkscape, Krita and friends.
 # Each entry is "R G B<TAB>token-name".

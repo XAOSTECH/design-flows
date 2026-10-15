@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# presets.sh — Built-in colour presets for palGen
+# ═══════════════════════════════════════════════════════════════════════════════ presets.sh — Built-in colour presets for palGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Each preset defines PRIMARY_COLOUR, SECONDARY_COLOUR, TERTIARY_COLOUR,
 # THEME_NAME, and optionally USE_COMPLEMENTARY / VARIATION.

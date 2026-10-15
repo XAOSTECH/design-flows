@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ grub.sh — GRUB bootloader theme scaffold target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# grub.sh — GRUB bootloader theme scaffold target for uiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Generates a theme.txt file with palette-derived menu colours and a minimal
-# directory scaffold. The user must supply their own background image.
+# Generates a theme.txt file with palette-derived menu colours and a minimal directory scaffold. The user must supply their own background image.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_grub() {

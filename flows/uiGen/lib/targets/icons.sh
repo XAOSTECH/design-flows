@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# icons.sh — Icon colour tinting scaffold for uiGen
+# ═══════════════════════════════════════════════════════════════════════════════ icons.sh — Icon colour tinting scaffold for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates an index.theme and a colour-mapping file for recolouring icon sets
 # (e.g. Papirus, Yaru) with palette-derived accent colours.
 #
-# This is a scaffold — actual SVG recolouring requires post-processing with
-# sed/xslt on the source icon SVGs.
+# This is a scaffold — actual SVG recolouring requires post-processing with sed/xslt on the source icon SVGs.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_icons() {

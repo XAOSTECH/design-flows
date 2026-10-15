@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# terminals.sh — Terminal emulator theme target for uiGen
+# ═══════════════════════════════════════════════════════════════════════════════ terminals.sh — Terminal emulator theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates colour configs for kitty, alacritty, and foot from the palette.
 # Maps the 16 ANSI colours from palette shades/analogous/triadic arrays.

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# presets.sh — Built-in colour presets for uiGen
+# ═══════════════════════════════════════════════════════════════════════════════ presets.sh — Built-in colour presets for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Each preset defines PRIMARY_COLOUR, SECONDARY_COLOUR, TERTIARY_COLOUR,
 # THEME_NAME, and optionally USE_COMPLEMENTARY / VARIATION / ANIMATED.

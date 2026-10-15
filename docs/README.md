@@ -152,8 +152,7 @@ If you use monorepo `pastel`, build it once:
 ./flows/vsGen/lib/deps.sh --build --check -v
 ```
 
-This keeps `vsGen` itself unchanged and lets you trigger submodule build logic
-manually from `deps.sh` when you want it.
+This keeps `vsGen` itself unchanged and lets you trigger submodule build logic manually from `deps.sh` when you want it.
 
 ---
 

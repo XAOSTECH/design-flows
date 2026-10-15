@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# chrome.sh — Chrome/Chromium browser theme target for uiGen
+# ═══════════════════════════════════════════════════════════════════════════════ chrome.sh — Chrome/Chromium browser theme target for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Generates a Chrome theme extension directory with manifest.json.
 # The theme can be loaded via chrome://extensions in developer mode.

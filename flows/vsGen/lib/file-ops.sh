@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ file-ops.sh — File I/O operations for vscode-theme-gen
 # ═══════════════════════════════════════════════════════════════════════════════
-# file-ops.sh — File I/O operations for vscode-theme-gen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Handles creating new workspace files, updating existing ones, and
-# generating the default output path with date+version stamps.
+# Handles creating new workspace files, updating existing ones, and generating the default output path with date+version stamps.
 #
 # Requires: deps.sh, json-gen.sh sourced
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -31,9 +29,7 @@ resolve_default_output() {
 }
 
 # ─── Get next version number for incremental generations ────────────────────
-# Takes a base filename (e.g., "theme.code-workspace") and finds the highest
-# numbered version (theme1.code-workspace, theme2.code-workspace, etc.),
-# then returns the next number and full versioned filename.
+# Takes a base filename (e.g., "theme.code-workspace") and finds the highest numbered version (theme1.code-workspace, theme2.code-workspace, etc.), then returns the next number and full versioned filename.
 #
 # Output: prints comma-separated "next_number,versioned_filename"
 # Examples:

@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ svg.sh — SVG swatch-sheet export for palGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# svg.sh — SVG swatch-sheet export for palGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Emits a printable SVG contact sheet: one row per token group, each swatch
-# labelled with its key and hex value on a dark canvas.
+# Emits a printable SVG contact sheet: one row per token group, each swatch labelled with its key and hex value on a dark canvas.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_svg() {

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# tailwind.sh — Tailwind CSS colour-config export for palGen
+# ═══════════════════════════════════════════════════════════════════════════════ tailwind.sh — Tailwind CSS colour-config export for palGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Emits a CommonJS module grouping tokens into nested colour scales, ready for
 #   theme: { extend: { colours: require('./<name>.tailwind.js') } }

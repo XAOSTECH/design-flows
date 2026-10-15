@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ file-ops.sh — File I/O operations for uiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# file-ops.sh — File I/O operations for uiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Handles output directory creation, theme directory structures, and
-# writing generated files to disk.
+# Handles output directory creation, theme directory structures, and writing generated files to disk.
 #
 # Requires: colours.sh sourced first (for log_* helpers)
 # ═══════════════════════════════════════════════════════════════════════════════
