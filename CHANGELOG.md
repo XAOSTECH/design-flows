@@ -1,4 +1,25 @@
 
+## [0.1.1] - 2026-10-19 (re-release)
+
+### Added
+- add palette & design-token exporter flow
+- auto-install generated themes to user/system paths
+- add multi-target UI theme dispatcher
+
+### Fixed
+- replace ((generated++)) with safe arithmetic
+- improve _require_arg error hint
+- guard against missing/unquoted arguments
+
+### Changed
+- chore: humanise hard-wrapped comments and prose
+- chore(dc-init): recover interrupted update
+- chore: convert American spellings to British English
+- chore: file ops + path correct + vsGen
+- refactor: extract shared libs and scaffold uiGen
+- chore(dc-init): load workflows,actions
+- chore(dc-init): update workflows
+
 ## [0.1.1] - 2026-09-21 (re-release)
 
 ### Added
