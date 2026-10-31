@@ -63,10 +63,12 @@ write_target_file() {
 
 create_gtk_dirs() {
     local base="${OUTPUT_DIR}/${THEME_NAME}"
-    mkdir -p "${base}/gtk-4.0"
-    if [[ ! -e "${base}/gtk-3.0" ]]; then
-        ln -s gtk-4.0 "${base}/gtk-3.0"
-        log_verbose "Symlinked gtk-3.0 → gtk-4.0"
+    if [[ "${DRY_RUN:-false}" != true ]]; then
+        mkdir -p "${base}/gtk-4.0"
+        if [[ ! -e "${base}/gtk-3.0" ]]; then
+            ln -s gtk-4.0 "${base}/gtk-3.0"
+            log_verbose "Symlinked gtk-3.0 → gtk-4.0"
+        fi
     fi
     echo "${base}"
 }
@@ -75,6 +77,6 @@ create_gtk_dirs() {
 
 create_gnome_shell_dirs() {
     local base="${OUTPUT_DIR}/${THEME_NAME}"
-    mkdir -p "${base}/gnome-shell"
+    [[ "${DRY_RUN:-false}" != true ]] && mkdir -p "${base}/gnome-shell"
     echo "${base}"
 }
