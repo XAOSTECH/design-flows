@@ -102,6 +102,30 @@ Flattens a generated palette into named tokens and exports them into portable fo
 - Shares the same presets, harmonies, variation and `--invert` options as the other flows
 - WCAG-aware foreground and surface tokens
 
+#### uiGen — Desktop UI Theme Generator
+
+**Location:** `flows/uiGen/`
+
+Generates desktop GUI themes (GNOME Shell, GTK, KDE, GDM, GRUB, icons, rofi, Chrome, Firefox) from a shared colour palette.
+
+**Features:**
+- GNOME Shell and GTK 3/4 themes (with optional CSS animations)
+- KDE, GDM, GRUB, icon, rofi and browser targets
+- Shares presets, harmonies, variation and `--invert` with the other flows
+- Delegates terminal/shell surfaces to tuiGen, so `--target all` themes GUI and terminal in a single run
+
+#### tuiGen — Terminal & Shell Theme Generator
+
+**Location:** `flows/tuiGen/`
+
+Generates terminal and shell colour themes from the shared palette. See [tuiGen README](../flows/tuiGen/README.md).
+
+**Features:**
+- First-class targets: kitty, starship, tmux
+- Scaffold targets for other setups: alacritty, foot, fish
+- Shared 16-colour ANSI derivation across the terminal emulators
+- Receives delegated terminal/shell work from uiGen; runtime palette cycling lives in the `themes` repository
+
 ### Why design-flows?
 
 Design workflows involve repetitive tasks that can be automated. design-flows provides:
@@ -225,6 +249,39 @@ palGen writes one file per format into:
 ./out/<PaletteName>-<YYYY-MM-DD>/
 ```
 
+### tuiGen Examples
+
+```bash
+cd flows/tuiGen
+
+# Terminal + prompt + multiplexer
+./src/tuiGen --target kitty,starship,tmux -p pink -s purple --name NeonPink
+
+# Every terminal/shell target from a preset
+./src/tuiGen --target all --preset dracula
+
+# Preview a kitty theme without writing
+./src/tuiGen --target kitty -p "#ff69b4" --dry-run -v
+
+# List available targets
+./src/tuiGen --list-targets
+```
+
+### tuiGen Output
+
+tuiGen writes one directory per target into:
+
+```
+./out/<ThemeName>-<YYYY-MM-DD>/<ThemeName>/<target>/
+```
+
+uiGen can also drive tuiGen for you — it themes the GUI itself and delegates the terminal/shell set:
+
+```bash
+cd flows/uiGen
+./src/uiGen --target all --preset neonpink
+```
+
 ---
 
 ## 🛠️ Flow Development
@@ -299,7 +356,10 @@ complementary_colours: true
 
 | Flow | Documentation | Description |
 |------|---------------|-------------|
-| **vsGen** | [README](../flows/vsGen/README.md) | VS Code theme generator |
+| **vsGen** | [README](../flows/vsGen/README.md) | VS Code workspace theme generator |
+| **palGen** | [Overview](#-available-flows) | Palette & design-token exporter |
+| **uiGen** | [Overview](#-available-flows) | Desktop GUI theme generator (delegates TUI to tuiGen) |
+| **tuiGen** | [README](../flows/tuiGen/README.md) | Terminal & shell theme generator |
 
 ### Additional Resources
 
