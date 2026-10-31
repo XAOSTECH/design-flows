@@ -2,8 +2,11 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # 🎨 uiGen — UI Theme Generator Dispatcher
 # ═══════════════════════════════════════════════════════════════════════════════
-# Generates desktop UI themes (GNOME Shell, GTK, Chrome, KDE, tmux, etc.)
+# Generates desktop GUI themes (GNOME Shell, GTK, Chrome, KDE, GRUB, etc.)
 # from a shared colour palette powered by pastel.
+#
+# Terminal and shell surfaces (kitty, starship, tmux, ...) are delegated to the
+# sibling tuiGen flow, so a single uiGen run can still theme everything.
 #
 # Usage:
 #   uiGen --target gnome-shell,gtk [OPTIONS]
@@ -49,8 +52,13 @@ BORDER_RADIUS="12"
 # Comma-separated list of targets to generate
 TARGETS=""
 
-# All known target names (order matters for display)
-ALL_TARGETS="gnome-shell gtk tmux chrome kde icons gdm firefox terminals rofi grub"
+# All known target names (order matters for display).
+# GUI/desktop targets only — terminal/shell surfaces are delegated to tuiGen.
+ALL_TARGETS="gnome-shell gtk chrome kde icons gdm firefox rofi grub"
+
+# Terminal/shell target names recognised here and handed to the tuiGen flow.
+# 'terminals' is a legacy alias expanded to the individual emulator targets.
+TUI_TARGETS="tui terminals kitty starship tmux alacritty foot fish"
 
 # ─── Colour Arrays (populated by generate_palette in colours.sh) ──────────────
 declare -a PRIMARY_SHADES=()
@@ -74,16 +82,18 @@ USAGE:
 TARGETS (comma-separated):
     gnome-shell   GNOME Shell theme (gnome-shell.css)
     gtk           GTK 3/4 theme (gtk.css — agnostic, works for both)
-    tmux          tmux status bar colours (.tmux.conf snippet)
     chrome        Chrome/Chromium browser theme (manifest.json)
     kde           KDE Plasma colour scheme (.colors)
     icons         Icon colour tinting scaffold (index.theme)
     gdm           GDM login screen (gnome-shell.css variant)
     firefox       Firefox browser theme (manifest.json)
-    terminals     Terminal emulator themes (kitty, alacritty, foot)
     rofi          Rofi/Wofi launcher theme (.rasi)
     grub          GRUB bootloader theme scaffold (theme.txt)
-    all           Generate all targets
+    all           Generate all targets (GUI + delegated terminal/shell)
+
+  Delegated to tuiGen (terminal/shell):
+    kitty, starship, tmux, alacritty, foot, fish
+    terminals     Legacy alias → kitty, alacritty, foot
 
 OPTIONS:
     -p, --primary <COLOUR>      Primary colour (name or hex).   Default: pink
@@ -120,7 +130,7 @@ EXAMPLES:
     # Everything at once
     uiGen --target all -p coral -s gold -t skyblue --compl
 
-    # Quick tmux + terminal colours
+    # Quick tmux + terminal colours (delegated to tuiGen)
     uiGen --target tmux,terminals -p hotpink -s lime
 
     # Dry-run a Chrome theme
@@ -253,16 +263,18 @@ list_targets() {
     echo "  ─────────────────────────────────────"
     echo "    gnome-shell — GNOME Shell desktop theme (gnome-shell.css)"
     echo "    gtk         — GTK 3/4 application theme (gtk.css)"
-    echo "    tmux        — tmux status bar colours (.tmux.conf)"
     echo "    chrome      — Chrome/Chromium browser theme (manifest.json)"
     echo "    kde         — KDE Plasma colour scheme (.colors)"
     echo "    icons       — Icon colour tinting scaffold (index.theme)"
     echo "    gdm         — GDM login screen theme (gnome-shell.css)"
     echo "    firefox     — Firefox browser theme (manifest.json)"
-    echo "    terminals   — Terminal emulators (kitty, alacritty, foot)"
     echo "    rofi        — Rofi/Wofi launcher theme (.rasi)"
     echo "    grub        — GRUB bootloader theme scaffold (theme.txt)"
-    echo "    all         — Generate all of the above"
+    echo "    all         — Generate all of the above (plus delegated TUI)"
+    echo ""
+    echo "  Delegated to tuiGen (terminal/shell):"
+    echo "    kitty, starship, tmux, alacritty, foot, fish"
+    echo "    terminals   — legacy alias → kitty, alacritty, foot"
     echo ""
 }
 
@@ -321,6 +333,57 @@ dispatch_targets() {
     log_success "Generated ${generated} target(s)"
 }
 
+# ─── tuiGen Delegation ────────────────────────────────────────────────────────
+# Terminal/shell surfaces live in the sibling tuiGen flow. uiGen recognises
+# their target names and hands them over with the resolved palette, so a single
+# uiGen invocation (especially --target all) still themes everything.
+
+_is_tui_target() {
+    local t="$1" name
+    for name in $TUI_TARGETS; do
+        [[ "$t" == "$name" ]] && return 0
+    done
+    return 1
+}
+
+# Map a uiGen-side TUI name onto concrete tuiGen target(s).
+_map_tui_target() {
+    case "$1" in
+        terminals) echo "kitty alacritty foot" ;;
+        tui)       echo "kitty starship tmux alacritty foot fish" ;;
+        *)         echo "$1" ;;
+    esac
+}
+
+# Run tuiGen for the requested terminal/shell targets, reusing the resolved
+# palette and writing into the same output directory.
+delegate_tui() {
+    local tui_targets="$1"
+    local tuigen_bin="${SCRIPT_DIR}/../../tuiGen/src/tuiGen"
+
+    if [[ ! -x "$tuigen_bin" ]]; then
+        log_warn "tuiGen not found or not executable at ${tuigen_bin}"
+        log_warn "Skipping terminal/shell targets: ${tui_targets// /, }"
+        return 0
+    fi
+
+    log_info "Delegating to tuiGen: ${tui_targets// /, }"
+
+    local args=(
+        --target "${tui_targets// /,}"
+        -p "$PRIMARY_COLOUR" -s "$SECONDARY_COLOUR" -t "$TERTIARY_COLOUR"
+        -n "$THEME_NAME"
+        --variation "$VARIATION" --bg-lightness "$BG_LIGHTNESS"
+        -o "$OUTPUT_DIR"
+    )
+    [[ "$USE_COMPLEMENTARY" == true ]] && args+=( --compl )
+    [[ "$INVERT_THEME" == true ]]     && args+=( --invert )
+    [[ "$DRY_RUN" == true ]]          && args+=( --dry-run )
+    [[ "$VERBOSE" == true ]]          && args+=( --verbose )
+
+    "$tuigen_bin" "${args[@]}"
+}
+
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 main() {
@@ -330,6 +393,11 @@ main() {
     echo "  🎨 uiGen v${UIGEN_VERSION}"
     echo "  ═══════════════════════════════════════"
     echo ""
+
+    # Capture 'all' intent before resolve_targets expands it to GUI targets,
+    # so --target all also delegates the full terminal/shell set to tuiGen.
+    local want_all_tui=false
+    [[ "$TARGETS" == "all" ]] && want_all_tui=true
 
     resolve_targets
     check_dependencies
@@ -370,7 +438,32 @@ main() {
         echo ""
     fi
 
-    dispatch_targets
+    # Partition requested targets into GUI (handled here) and terminal/shell
+    # (delegated to tuiGen).
+    local gui_list="" tui_list="" t
+    for t in $TARGETS; do
+        if _is_tui_target "$t"; then
+            tui_list+=" $(_map_tui_target "$t")"
+        else
+            gui_list+=" $t"
+        fi
+    done
+    tui_list="$(echo "$tui_list" | tr ' ' '\n' | awk 'NF' | sort -u | tr '\n' ' ')"
+    tui_list="${tui_list#"${tui_list%%[![:space:]]*}"}"
+    tui_list="${tui_list%"${tui_list##*[![:space:]]}"}"
+
+    # GUI generation (skip when only terminal/shell targets were requested).
+    if [[ -n "${gui_list// /}" ]]; then
+        TARGETS="$gui_list"
+        dispatch_targets
+    fi
+
+    # Terminal/shell delegation.
+    if [[ "$want_all_tui" == true ]]; then
+        delegate_tui "all"
+    elif [[ -n "$tui_list" ]]; then
+        delegate_tui "$tui_list"
+    fi
 
     echo ""
     log_success "Done!"
