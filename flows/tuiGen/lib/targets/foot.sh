@@ -4,7 +4,7 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # Community scaffold: functional, but not part of the maintainer's daily setup.
 # Emits a foot colour include. Note: foot's own config schema spells the section
-# [colors] (and expects bare 6-digit hex), so those tokens stay in foot's syntax
+# [colours] (and expects bare 6-digit hex), so those tokens stay in foot's syntax
 # rather than UK spelling.
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -27,7 +27,7 @@ generate_foot() {
 [cursor]
 color=${TUI_BG#\#} ${TUI_CURSOR#\#}
 
-[colors]
+[colours]
 foreground=${TUI_FG#\#}
 background=${TUI_BG#\#}
 selection-foreground=${TUI_BG#\#}
