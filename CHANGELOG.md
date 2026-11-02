@@ -1,4 +1,29 @@
 
+## [0.1.1] - 2026-11-02 (re-release)
+
+### Added
+- add terminal and shell theme generation flow
+- add palette & design-token exporter flow
+- auto-install generated themes to user/system paths
+- add multi-target UI theme dispatcher
+
+### Fixed
+- honour --dry-run in GTK and GNOME Shell dir helpers
+- replace ((generated++)) with safe arithmetic
+- improve _require_arg error hint
+- guard against missing/unquoted arguments
+
+### Changed
+- chore: convert American spellings to British English
+- docs(README): document tuiGen flow and uiGen delegation
+- refactor(uiGen): delegate terminal and shell targets to tuiGen
+- chore: humanise hard-wrapped comments and prose
+- chore(dc-init): recover interrupted update
+- chore: file ops + path correct + vsGen
+- refactor: extract shared libs and scaffold uiGen
+- chore(dc-init): load workflows,actions
+- chore(dc-init): update workflows
+
 ## [0.1.1] - 2026-10-19 (re-release)
 
 ### Added
