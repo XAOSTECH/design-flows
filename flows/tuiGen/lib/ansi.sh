@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ ansi.sh — Shared ANSI 16-colour derivation for terminal targets
 # ═══════════════════════════════════════════════════════════════════════════════
-# ansi.sh — Shared ANSI 16-colour derivation for terminal targets
-# ═══════════════════════════════════════════════════════════════════════════════
-# Maps the generated palette (shades, analogous, triadic, complementary) onto the
-# standard terminal model: foreground, background, cursor, selection and the
-# 16 ANSI colours. Used by the kitty, alacritty and foot targets so the mapping
-# lives in exactly one place.
+# Maps the generated palette (shades, analogous, triadic, complementary) onto the standard terminal model: foreground, background, cursor, selection and the
+# 16 ANSI colours. Used by the kitty, alacritty and foot targets so the mapping lives in exactly one place.
 #
 # Requires: colours.sh (pastel wrappers) and a populated palette (generate_palette).
 #

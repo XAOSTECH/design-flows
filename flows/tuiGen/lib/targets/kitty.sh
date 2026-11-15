@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ kitty.sh — kitty terminal colour theme target for tuiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# kitty.sh — kitty terminal colour theme target for tuiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# First-class target. Emits a standalone kitty colour config that is pulled in
-# from kitty.conf via `include`. Installs into ~/.config/kitty when present.
+# First-class target. Emits a standalone kitty colour config that is pulled in from kitty.conf via `include`. Installs into ~/.config/kitty when present.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_kitty() {

@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# foot.sh — foot terminal colour theme target for tuiGen
+# ═══════════════════════════════════════════════════════════════════════════════ foot.sh — foot terminal colour theme target for tuiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Community scaffold: functional, but not part of the maintainer's daily setup.
 # Emits a foot colour include. Note: foot's own config schema spells the section
-# [colours] (and expects bare 6-digit hex), so those tokens stay in foot's syntax
-# rather than UK spelling.
+# [colours] (and expects bare 6-digit hex), so those tokens stay in foot's syntax rather than UK spelling.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_foot() {

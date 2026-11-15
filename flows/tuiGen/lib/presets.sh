@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-# ═══════════════════════════════════════════════════════════════════════════════
-# presets.sh — Built-in colour presets for tuiGen
+# ═══════════════════════════════════════════════════════════════════════════════ presets.sh — Built-in colour presets for tuiGen
 # ═══════════════════════════════════════════════════════════════════════════════
 # Each preset defines PRIMARY_COLOUR, SECONDARY_COLOUR, TERTIARY_COLOUR,
 # THEME_NAME, and optionally USE_COMPLEMENTARY / VARIATION.
-# Colour values are kept in sync with the other flows so a preset produces a
-# matching palette across palGen, uiGen and tuiGen.
+# Colour values are kept in sync with the other flows so a preset produces a matching palette across palGen, uiGen and tuiGen.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 declare -A PRESET_NAMES=(
