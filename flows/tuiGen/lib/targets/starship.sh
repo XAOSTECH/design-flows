@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ starship.sh — Starship prompt palette target for tuiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# starship.sh — Starship prompt palette target for tuiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# First-class target. Emits a Starship palette block ([palettes.<name>]) derived
-# from the generated palette, plus the one-line selector to activate it.
+# First-class target. Emits a Starship palette block ([palettes.<name>]) derived from the generated palette, plus the one-line selector to activate it.
 #
-# At rest this is a static, includable palette. The themes palette cycler selects
-# between pre-generated palettes at runtime via STARSHIP_CONFIG (no toml mutation),
-# so generation (here) and activation (themes) stay cleanly separated.
+# At rest this is a static, includable palette. The themes palette cycler selects between pre-generated palettes at runtime via STARSHIP_CONFIG (no toml mutation), so generation (here) and activation (themes) stay cleanly separated.
 # ═══════════════════════════════════════════════════════════════════════════════
 
 generate_starship() {
@@ -63,7 +59,6 @@ STARSHIPEOF
 
     write_target_file "$outfile" "$conf"
 
-    # Starship has no config subdir convention beyond the single file; install
-    # the palette alongside it only when ~/.config exists.
+    # Starship has no config subdir convention beyond the single file; install the palette alongside it only when ~/.config exists.
     install_to_config "$outfile" "${HOME}/.config/starship" "starship"
 }

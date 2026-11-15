@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ alacritty.sh — Alacritty terminal colour theme target for tuiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# alacritty.sh — Alacritty terminal colour theme target for tuiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Community scaffold: functional, but not part of the maintainer's daily setup,
-# so treat the output as a starting point rather than a validated theme.
+# Community scaffold: functional, but not part of the maintainer's daily setup, so treat the output as a starting point rather than a validated theme.
 # Emits an Alacritty colour TOML imported from alacritty.toml.
 # ═══════════════════════════════════════════════════════════════════════════════
 

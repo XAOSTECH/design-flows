@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ file-ops.sh — File I/O operations for tuiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# file-ops.sh — File I/O operations for tuiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Handles output directory resolution, writing generated files to disk, and
-# optional installation into a user's live config directory.
+# Handles output directory resolution, writing generated files to disk, and optional installation into a user's live config directory.
 #
 # Requires: colours.sh sourced first (for log_* helpers)
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -71,10 +69,8 @@ write_target_file() {
 }
 
 # ─── Install a generated file into a live config directory ───────────────────
-# Copies a generated file into a destination directory, but only when that
-# directory already exists (we never create a user's tool config tree for them).
-# Honours dry-run. Advisory and non-fatal: a skipped install is a normal
-# outcome, so this always returns 0 — never let it abort a target under set -e.
+# Copies a generated file into a destination directory, but only when that directory already exists (we never create a user's tool config tree for them).
+# Honours dry-run. Advisory and non-fatal: a skipped install is a normal outcome, so this always returns 0 — never let it abort a target under set -e.
 #
 # Usage: install_to_config "$generated_file" "${HOME}/.config/kitty" ["label"]
 

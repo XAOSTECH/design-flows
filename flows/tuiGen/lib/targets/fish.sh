@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
+# ═══════════════════════════════════════════════════════════════════════════════ fish.sh — fish shell colour theme target for tuiGen
 # ═══════════════════════════════════════════════════════════════════════════════
-# fish.sh — fish shell colour theme target for tuiGen
-# ═══════════════════════════════════════════════════════════════════════════════
-# Scaffold target (new, not in the maintainer's daily setup). Emits a fish
-# colour snippet using `set -g fish_color_*` variables. fish expects bare hex
+# Scaffold target (new, not in the maintainer's daily setup). Emits a fish colour snippet using `set -g fish_color_*` variables. fish expects bare hex
 # (no leading '#'), so the tokens are stripped accordingly.
 #
 # Source it from config.fish, or drop it into ~/.config/fish/conf.d/ to autoload.
